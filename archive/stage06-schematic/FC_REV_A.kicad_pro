@@ -1,0 +1,20 @@
+{
+  "meta": {
+    "filename": "FC_REV_A.kicad_pro",
+    "version": 1
+  },
+  "text_variables": {
+    "PROJECT_ID": "FC-FC-REV-A",
+    "REVISION": "A-S03-01",
+    "STAGE": "03 FOUNDATION ONLY",
+    "RELEASE_STATUS": "NOT FOR FABRICATION"
+  },
+  "net_settings": {
+    "classes": [],
+    "netclass_assignments": {},
+    "netclass_patterns": [],
+    "meta": {
+      "version": 4
+    }
+  }
+}

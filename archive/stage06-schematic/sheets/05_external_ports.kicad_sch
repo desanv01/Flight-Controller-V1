@@ -1,0 +1,4 @@
+(kicad_sch (version 20250114) (generator "eeschema") (uuid "d3ec3cae-c2f8-50a3-9ff7-89e3f7378b9d") (paper "A4") (title_block (title "FC Drone FC Rev A - External UART and I2C ports") (date "2026-09-07") (rev "A-S03-01") (company "FC Drone Project") (comment 1 "FOUNDATION ONLY - NOT FOR FABRICATION")) (lib_symbols)
+(text "EMPTY FOUNDATION SHEET - circuit capture deferred." (at 20 30 0) (effects (font (size 1.27 1.27)) (justify left)) (uuid "2c7a53d2-7334-530a-bf74-42ffb76cb61b"))
+(text "RC / GPS / telemetry / lidar / companion / AUX contracts preserved." (at 20 40 0) (effects (font (size 1.27 1.27)) (justify left)) (uuid "628c0abb-8b9f-5251-b23f-fc928f9d5645"))
+)

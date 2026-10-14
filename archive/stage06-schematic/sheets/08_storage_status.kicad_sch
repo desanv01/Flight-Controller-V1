@@ -1,0 +1,4 @@
+(kicad_sch (version 20250114) (generator "eeschema") (uuid "c0255931-d06a-596c-b4cc-a11cae1b0975") (paper "A4") (title_block (title "FC Drone FC Rev A - Storage and status") (date "2026-09-07") (rev "A-S03-01") (company "FC Drone Project") (comment 1 "FOUNDATION ONLY - NOT FOR FABRICATION")) (lib_symbols)
+(text "EMPTY FOUNDATION SHEET - circuit capture deferred." (at 20 30 0) (effects (font (size 1.27 1.27)) (justify left)) (uuid "2c7a53d2-7334-530a-bf74-42ffb76cb61b"))
+(text "SDMMC1 four-bit microSD required. Status options retain recommendation status." (at 20 40 0) (effects (font (size 1.27 1.27)) (justify left)) (uuid "1617c72e-e711-50d1-bb47-b4caada11c4d"))
+)

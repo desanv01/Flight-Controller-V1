@@ -1,0 +1,4 @@
+(kicad_sch (version 20250114) (generator "eeschema") (uuid "9ea7d245-c75c-51da-8215-366f354072a9") (paper "A4") (title_block (title "FC Drone FC Rev A - CAN interfaces") (date "2026-09-07") (rev "A-S03-01") (company "FC Drone Project") (comment 1 "FOUNDATION ONLY - NOT FOR FABRICATION")) (lib_symbols)
+(text "EMPTY FOUNDATION SHEET - circuit capture deferred." (at 20 30 0) (effects (font (size 1.27 1.27)) (justify left)) (uuid "2c7a53d2-7334-530a-bf74-42ffb76cb61b"))
+(text "CAN1 required population later. CAN2 PB5/PB6 reserved; transceiver and connector DNP." (at 20 40 0) (effects (font (size 1.27 1.27)) (justify left)) (uuid "81157c89-934a-5659-9555-c91e4d62e983"))
+)

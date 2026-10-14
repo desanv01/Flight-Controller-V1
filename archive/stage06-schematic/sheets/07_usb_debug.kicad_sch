@@ -1,0 +1,4 @@
+(kicad_sch (version 20250114) (generator "eeschema") (uuid "fef61f4a-9ef0-5765-bfe3-e2a6e7e6b53a") (paper "A4") (title_block (title "FC Drone FC Rev A - USB and debug") (date "2026-09-07") (rev "A-S03-01") (company "FC Drone Project") (comment 1 "FOUNDATION ONLY - NOT FOR FABRICATION")) (lib_symbols)
+(text "EMPTY FOUNDATION SHEET - circuit capture deferred." (at 20 30 0) (effects (font (size 1.27 1.27)) (justify left)) (uuid "2c7a53d2-7334-530a-bf74-42ffb76cb61b"))
+(text "USB VBUS sense only; no FC power/backfeed. SWD reserved." (at 20 40 0) (effects (font (size 1.27 1.27)) (justify left)) (uuid "62d9a47b-0ea4-5170-bbf6-7ce9ec4508b1"))
+)

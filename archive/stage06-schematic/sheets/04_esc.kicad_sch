@@ -1,0 +1,4 @@
+(kicad_sch (version 20250114) (generator "eeschema") (uuid "c07c90d9-2b96-5972-b1c3-43190ea34731") (paper "A4") (title_block (title "FC Drone FC Rev A - ESC signal boundary") (date "2026-09-07") (rev "A-S03-01") (company "FC Drone Project") (comment 1 "FOUNDATION ONLY - NOT FOR FABRICATION")) (lib_symbols)
+(text "EMPTY FOUNDATION SHEET - circuit capture deferred." (at 20 30 0) (effects (font (size 1.27 1.27)) (justify left)) (uuid "2c7a53d2-7334-530a-bf74-42ffb76cb61b"))
+(text "J1-1 and J1-4: NO CONTACT / CONDUCTOR / COPPER. CURR DNP informational." (at 20 40 0) (effects (font (size 1.27 1.27)) (justify left)) (uuid "cb0b3c13-908e-5f5d-a4a6-df46018a1772"))
+)
