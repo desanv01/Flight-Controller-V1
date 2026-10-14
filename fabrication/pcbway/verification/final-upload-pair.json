@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-14",
+  "bom": "FC_REV_A-BOM-PCBWay.csv",
+  "placement": "FC_REV_A-Centroid-PCBWay.txt",
+  "bom_rows": 77,
+  "bom_references": 273,
+  "placement_references": 272,
+  "BOM_only_references": [
+    "J_POWER1"
+  ],
+  "placement_only_references": [],
+  "duplicate_bom": false,
+  "duplicate_placement": false,
+  "status": "SMT reference set reconciled; BOM-only THT/manual exceptions require assembly instructions"
+}

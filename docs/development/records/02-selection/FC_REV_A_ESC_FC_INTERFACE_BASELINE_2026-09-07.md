@@ -65,8 +65,8 @@ DECISION: the FC-to-ESC boundary is signal and ground only. J1 pin 1 and pin 4 h
 ## 6. Source basis
 
 - Local OpenESC commit `1da7dbd046760160639fb9c3f470702250b4b2cb`.
-- Official JST SH connector drawing: http[LOCAL_SOURCE]
-- Official AM32 repository README: http[LOCAL_SOURCE]
+- Official JST SH connector drawing: https://www.jst-mfg.com/product/pdf/eng/eSH.pdf
+- Official AM32 repository README: https://github.com/am32-firmware/AM32/blob/main/README.md
 - Recovered integrated memo: `[LOCAL_SOURCE] FILES\ESC_Integration_Confirmation_FC_Team_v3.docx`, SHA-256 `EBA75496BA2D96328D0B650CDC12E1478F503C959608C68E616846C42D58C7D4`.
 - The separately named original project interface PDF, original raw ESC response, rev3.3 BOM, and controlled release package are still missing and remain OPEN.
 - Any raw-battery self-power instruction in the recovered memo is superseded by this controlled baseline; J1-1 and J1-4 remain no-contact/no-conductor/no-copper.

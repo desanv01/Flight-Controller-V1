@@ -1,0 +1,17 @@
+[
+  {
+    "file": "Flight-Controller-V1-Development-Archive.zip",
+    "bytes": 158399015,
+    "sha256": "1ccc1d5ba97c65ac9edf7ccd420194e73a4558b792d20694a1f6ed141e7b2d75"
+  },
+  {
+    "file": "Flight-Controller-V1-JLCPCB-Engineering.zip",
+    "bytes": 6093497,
+    "sha256": "fb7f1854e08fad2706318bec0944d429fa87104633b81801d54b56ccc07fa6ac"
+  },
+  {
+    "file": "Flight-Controller-V1-PCBWAY-Engineering.zip",
+    "bytes": 6098759,
+    "sha256": "bb538538902375fad541c4bfd1e854dfa78c8b75ac03fe162d8ce885213eb58f"
+  }
+]

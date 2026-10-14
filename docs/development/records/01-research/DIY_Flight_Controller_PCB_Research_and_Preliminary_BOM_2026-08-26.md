@@ -364,7 +364,49 @@ Connector rules:
 
 Modular hardware also creates firmware work. PX4 and ArduPilot need board-specific definitions for the physical UARTs, buses, timers, ADCs, CAN nodes and sensor drivers. A standard connector makes wiring clearer; it does not make a new H743 board automatically supported by either flight stack. If external GPS/compass, lidar and MAVLink companion integration are central assessment features, ArduPilot or PX4 is a more natural long-term fit than a Betaflight-only target. Betaflight remains the shortest path to a manual/stabilized quad demonstration.
 
-References for this decision: Pixhawk Reference Standards (historical source reference) | High-level autonomy, video, telemetry, logging | Linux ecosystem, CSI-2/USB camera and AI software, networking, carrier-board integration | Linux scheduling and boot time are not deterministic enough for the inner rate loop by themselves; CM5 requires a separate carrier |
+References for this decision: [Pixhawk Reference Standards](https://pixhawk.org/standards/), [PX4 GNSS/GPS setup](https://docs.px4.io/main/en/gps_compass/), [PX4 magnetometer guidance](https://docs.px4.io/main/en/gps_compass/magnetometer), [PX4 ARK CANnode](https://docs.px4.io/main/en/dronecan/ark_cannode), [NXP UM10204 I2C specification](https://community.nxp.com/pwmxy87654/attachments/pwmxy87654/nxp-designs/931/1/UM10204.pdf), [TI long-cable I2C guidance](https://www.ti.com/kr/lit/pdf/sdaa306), and [CAN in Automation high-speed CAN guidance](https://www.can-cia.org/can-knowledge/can-hs-transmission).
+
+---
+
+## 4. Options investigated: boards, MCUs, SBCs, and FPGAs
+
+### 4.1 Main processor / MCU candidates
+
+| Candidate | Class | Useful characteristics | Strengths | Limitations | Suitability for this custom FC |
+|---|---|---|---|---|---|
+| **STM32H743VIT6 / H743ZI** | Cortex-M7 MCU | Up to 480 MHz, up to 2 MB Flash and 1 MB RAM, many timers, SPI/UART/CAN/USB, DSP/FPU | Strong PX4/ArduPilot ecosystem; good real-time capability; LQFP packages available | Requires careful power, clock, VCAP, decoupling, and high-speed layout; stock prices vary | **Best Rev A main MCU** |
+| **STM32H753** | Cortex-M7 MCU | Similar high-performance H7 family; extra security/crypto features in relevant variants | Suitable when security or more advanced processing is required | More expensive/complex than necessary for a first student board | Good Rev B or security-focused design |
+| **STM32H723/H725** | Cortex-M7 MCU | High performance with slightly different memory/peripheral mix | Can reduce cost and still support a capable FC | Verify exact RAM/Flash/peripheral needs and community firmware support | Good alternate if supply is better |
+| **STM32F767** | Cortex-M7 MCU | Mature 216 MHz-class MCU family with broad tool support | Easier historical references; capable for basic stabilization | Less headroom and memory than H7; older family | Viable lower-cost experiment |
+| **STM32G4** | Cortex-M4 MCU | Fast control-oriented peripherals and ADCs | Very useful for motor control, power electronics, or an I/O coprocessor | Less suited than H7 as a feature-rich autopilot main processor | Excellent optional companion/ESC-control MCU |
+| **NXP i.MX RT1170** | Crossover MCU | Very high-performance real-time MCU family | Powerful and interesting research platform | More complex ecosystem and custom firmware work; less direct PX4/ArduPilot path | Research alternate, not first choice |
+| **Teensy 4.1** | MCU development board | Fast NXP MCU on a convenient module | Rapid algorithm experiments and bench work | Not a custom bare-metal board; board-level interfaces/EMC are not the project result | Useful proof-of-concept, not final PCB |
+| **Arduino Portenta H7** | MCU module | Dual-core STM32H747-based development platform | Rapid prototyping and software exploration | Cost, module dependence, and less control over the custom PCB | Good software prototype; not the custom-board deliverable |
+| **Raspberry Pi Pico 2 / RP2350** | MCU board/chip | Low-cost and accessible | Good for simple I/O or education | Not a direct PX4/ArduPilot flight-controller path; fewer autopilot references | Auxiliary experiment only |
+| **ESP32-S3** | MCU/SoC | Wi-Fi/Bluetooth and inexpensive | Connectivity and rapid IoT experiments | Wireless stack and timing are not ideal as the first primary FC; ecosystem mismatch | Companion/telemetry experiment only |
+| **Arduino Uno R3/R4** | Educational development board | Very accessible | Excellent for learning basic PWM and sensors | Insufficient memory/performance/architecture for a modern multicopter autopilot | Demonstration or sensor bench only |
+
+**Selection:** STM32H743VIT6 is the default recommendation. Use H753 only if the project has a specific need for the added security/feature set. Do not select the MCU by clock frequency alone; pin count, timer/DMA layout, sensor-bus support, boot/debug path, firmware porting cost, package availability, and supply continuity matter more.
+
+### 4.2 Ready-made flight-controller boards used as reference benchmarks
+
+These are useful for studying functional partitioning, connectors, power domains, and firmware support. They are not substitutes for the requested custom design.
+
+| Board/family | Typical role | Reference value | Caution |
+|---|---|---|---|
+| Pixhawk 6C / 6X | Open-ecosystem autopilot hardware | Shows modern H7 architecture, IMUs, barometers, CAN, power, and Pixhawk connector conventions | Commercial board; exact layout/firmware target and license must be respected |
+| Cube Orange+ | Mature autopilot module | Useful comparison for redundancy and enclosure/module design | Not a simple first custom-board reference |
+| CUAV X7 | Commercial H7 autopilot | Useful for interface and redundancy comparison | Proprietary manufacturing and exact implementation |
+| Holybro Kakute H7 | Compact multicopter FC | Useful for high-density sensor/power layout ideas | FPV-centric integration differs from a Pixhawk-style research board |
+| Durandal / ARKV6X | Commercial/open-ecosystem references | Show alternative connector and sensor arrangements | Use only as a benchmark, not a copy |
+
+The key lesson from these boards is not “copy a Pixhawk.” It is “understand why the board has separated power rails, multiple sensor paths, debug access, robust connectors, and a defined firmware target.”
+
+### 4.3 Companion computers and SBCs
+
+| Candidate | Use | What it adds | Why it should not replace the Rev A inner-loop MCU |
+|---|---|---|---|
+| Raspberry Pi Compute Module 5 (CM5) | High-level autonomy, video, telemetry, logging | Linux ecosystem, CSI-2/USB camera and AI software, networking, carrier-board integration | Linux scheduling and boot time are not deterministic enough for the inner rate loop by themselves; CM5 requires a separate carrier |
 | NVIDIA Jetson Orin Nano Super | Vision/AI and perception | GPU acceleration and computer-vision frameworks | Higher power, thermal, and software complexity |
 | BeagleBone / NXP i.MX 8M Plus | Industrial/embedded Linux | Real-time expansion options and vision/edge processing | More integration work than needed for first prototype |
 | ModalAI VOXL 2 / Auterion Skynode S | Commercial autonomy platform | Integrated compute, sensors, and robotics software | Excellent reference, but contrary to a from-scratch low-cost board objective |
@@ -605,8 +647,432 @@ The quantities below are for **one populated Rev A PCB**, excluding normal assem
 
 | Ref. | Candidate MPN / part | Function | Package / assembly note | Qty | Indicative price observed | Example source / technical reference | Selection note |
 |---|---|---|---|---:|---:|---|---|
-| U1 | **STM32H743VIT6** | Main flight-control MCU | LQFP-100; practical for hand inspection/rework compared with BGA | 1 | About **US$6.48** at one LCSC listing; about **US$16.67** at a DigiKey listing; availability and seller context differ | ST product page (historical source reference) | CAN physical-layer transceiver | SOT-23-8; 3.3 V; CAN-FD-capable variant | 1 | The GDCNR listing was out of stock; the GDCNT substitute showed about **US$3.72** quantity one | TI TCAN332 (historical source reference), surge, heat, and body-diode direction |
-| D1 | SMBJ33A or correctly sized TVS | Input transient protection | SMB; voltage depends on actual input | 1 | Around **US$0.45** in one distributor example | DigiKey example (historical source reference) from **external modular devices** (ESC, receiver, GNSS/compass, CM5 carrier, telemetry and lidar). Do not present a connector as compatible with a Pixhawk standard until the exact standard revision and pinout have been checked.
+| U1 | **STM32H743VIT6** | Main flight-control MCU | LQFP-100; practical for hand inspection/rework compared with BGA | 1 | About **US$6.48** at one LCSC listing; about **US$16.67** at a DigiKey listing; availability and seller context differ | [ST product page](https://www.st.com/en/microcontrollers-microprocessors/stm32h743zi.html), [ST datasheet](https://www.st.com/resource/en/datasheet/stm32h743zi.pdf), [LCSC example](https://www.lcsc.com/product-detail/Microcontrollers-MCU-MPU-SOC_STMicroelectronics-STM32H743VIT6_C114409.html), [DigiKey example](https://www.digikey.com/en/products/detail/stmicroelectronics/STM32H743VIT6/7809237) | Main recommendation. Verify package suffix, genuine source, Flash/RAM variant, and current stock before ordering |
+| U1 alternate | STM32H743ZI / H753 variant | Main MCU alternate | Larger package; pin map changes | 0–1 | N/A — quote/verify | [STM32H7 documentation](https://www.st.com/en/microcontrollers-microprocessors/stm32h7-series/documentation.html) | Select only after a pin-map review |
+| U2 | **ICM-42688-P** | Six-axis accelerometer + gyroscope | LGA-14; use vendor land pattern and MEMS assembly guidance | 1 | Distributor/search results around **US$4.67–4.91**; other marketplace pages were much higher | [TDK product page](https://www.invensense.tdk.com/en-us/products/6-axis/icm-42688-p), [datasheet](https://product.tdk.com/system/files/dam/doc/product/sensor/mortion-inertial/imu/data_sheet/ds-000347-icm-42688-p-v1.6.pdf), [PCB/MEMS assembly note](https://invensense.tdk.com/wp-content/uploads/2023/05/an-000393_imu-pcb-design-and-mems-assembly-guidelines.pdf) | Good high-rate primary IMU. Buy from an authorized source where possible |
+| U3 optional | ICM-42688-P second footprint | Sensor diversity/redundancy experiment | Same as U2; may use another SPI bus/chip-select | 0–1 | Same uncertainty as U2 | Same as U2 | Do not populate until firmware and placement strategy are defined |
+| U2 alternate | **Bosch BMI088** | Six-axis drone/robotics IMU | Compact package; accelerometer and gyro are separate dies in one module | 0–1 | Quote/verify current distributor price | [Bosch BMI088 page](https://www.bosch-sensortec.com/en/products/motion-sensors/imus/bmi088), [datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi088-ds001.pdf) | Excellent alternate; follow Bosch placement, vibration, and SPI guidance |
+| U4 | **BMP390** | Barometric pressure / relative altitude | LGA-10; protect pressure port and avoid prop wash | 1 | Around **US$3.11–3.30** in distributor results | [Bosch BMP390 page](https://www.bosch-sensortec.com/en/products/environmental-sensors/pressure-sensors/bmp390) | Preferred current barometer candidate |
+| U4 alternate | DPS368 / equivalent current pressure sensor | Barometer alternate | Package and availability dependent | 0–1 | Quote/verify | Use the current manufacturer datasheet and authorized distributor | Do not start a new design around DPS310 without checking lifecycle; one distributor page labels it discontinued/not recommended for new designs |
+| U5 optional | **IST8310** | Three-axis magnetometer | Confirm exact package drawing before footprint creation | 0–1 | About **US$3.19** at one LCSC listing | [LCSC example](https://www.lcsc.com/product-detail/C2683055.html) | Prefer external compass placement for real vehicle use |
+| U5 alternate | **MMC5983MA** | High-resolution magnetometer | Small LGA; I2C/SPI; external placement preferred | 0–1 | About **US$2.27** at one LCSC listing | [LCSC example](https://www.lcsc.com/product-detail/Magnetic-Sensors_MEMSIC-MMC5983MA_C404329.html) | Strong alternate; verify magnetic environment before relying on it |
+| U6 | **TPS62162DSGT** | 5 V to 3.3 V digital rail | 8-WSON; fixed 3.3 V, 1 A, 3–17 V input | 1 | **US$2.22** quantity one at the current DigiKey listing; lower at volume | [TI part details](https://www.ti.com/product/TPS62162/part-details/TPS62162DSGT), [DigiKey exact listing](https://www.digikey.com/en/products/detail/texas-instruments/TPS62162DSGT/2782703) | Confirm input source, thermal path, inductor, and output capacitance before layout |
+| U7 | **LP5907MFX-3.3/NOPB** | Low-noise sensor LDO | SOT-23-5; fixed 3.3 V, 250 mA | 1 | **US$0.66** quantity one at the current DigiKey listing | [TI LP5907](https://www.ti.com/product/LP5907), [DigiKey exact listing](https://www.digikey.com/en/products/detail/texas-instruments/LP5907MFX-3-3-NOPB/3906441) | Use after a 5 V or clean upstream rail; do not feed it raw 6S |
+| U8 | **TCAN332GDCNT** (preferred current listing) | CAN physical-layer transceiver | SOT-23-8; 3.3 V; CAN-FD-capable variant | 1 | The GDCNR listing was out of stock; the GDCNT substitute showed about **US$3.72** quantity one | [TI TCAN332](https://www.ti.com/product/TCAN332), [DigiKey GDCNR listing](https://www.digikey.com/en/products/detail/texas-instruments/TCAN332GDCNR/6572320), [LCSC example](https://www.lcsc.com/product-detail/CAN-Transceivers_Texas-Instruments-TCAN332DCNT_C2671325.html) | One CAN bus for Rev A; check pin/package differences before approving the substitute |
+| U9 | **TPS2116** | USB 5 V / external 5 V power mux | Small power-path package; verify current/thermal layout | 1 | Quote/verify | [TI TPS2116](https://www.ti.com/product/TPS2116) | It is a low-voltage power mux, not a raw-battery regulator |
+| U10 | **TPD4EUSB30DQAR** or suitable USB ESD array | USB D+/D− and connector ESD | 10-USON; four-channel USB protection | 1 | About **US$1.52** quantity one at the current DigiKey filter result | [TI USB ESD datasheet](https://www.ti.com/lit/ds/symlink/tpd4eusb30.pdf), [DigiKey search/result](https://www.digikey.com/en/products/filter/transient-voltage-suppressors-tvs/tvs-diodes/144) | Choose a device with appropriate capacitance and USB speed rating |
+| U11 | **W25Q128JVSIQ-TR** | Optional SPI NOR flash for parameters/logging | 8-SOIC; 128 Mbit, 2.7–3.6 V | 1 | About **US$3.94** quantity one at the current DigiKey listing; one LCSC listing showed a lower marketplace price | [Winbond/DigiKey exact listing](https://www.digikey.com/en/products/detail/winbond-electronics/W25Q128JVSIQ-TR/5803944), [LCSC example](https://www.lcsc.com/product-detail/C97521.html) | Optional if microSD logging is sufficient; verify genuine source and constrained-supply status |
+| U12 | **M24C64-RMN6TP** | Optional I2C EEPROM | SOIC-8 | 1 | About **US$0.60** at one LCSC listing | [LCSC example](https://www.lcsc.com/product-detail/C222104.html) | Optional; avoid duplicating storage without a use case |
+| U13 optional | **STM32G0B1CET6** | Optional I/O/failsafe coprocessor | LQFP/QFN variant; choose package deliberately | 0–1 | Quote/verify | [STM32G0 family](https://www.st.com/en/microcontrollers-microprocessors/stm32g0-series.html) | Prefer this family for a new coprocessor over obsolete F103 |
+| U13 legacy alternate | STM32F103C8T6 | Historical I/O coprocessor | LQFP-48 | 0–1 | About **US$1.73** at one LCSC listing; about **US$8.24** at one DigiKey listing with supply uncertainty | [LCSC example](https://www.lcsc.com/product-detail/C8734.html), [DigiKey example](https://www.digikey.com/en/products/detail/stmicroelectronics/STM32F103C8T6/1646338) | Familiar but old; do not add just because it is cheap |
+| U14 optional | **TPS386000** | Multi-rail supervisor/watchdog | VQFN; Rev B feature | 0–1 | Quote/verify | [TI TPS386000](https://www.ti.com/product/TPS386000) | Use the H743 watchdog first; add only after the basic board works |
+| U15 optional | INA230 / INA226 | Digital current/voltage monitor | Package and shunt design dependent | 0–1 | Quote/verify | Use current TI datasheet and distributor listing | Power module analog V/I is simpler for Rev A |
+| Q1/Q2 | Reverse-polarity MOSFET or ideal-diode stage | Input protection | Choose voltage/current-rated FETs | 1–2 | Quote/verify | Select from current distributor based on actual battery | Do not choose a FET by voltage rating alone; check RDS(on), surge, heat, and body-diode direction |
+| D1 | SMBJ33A or correctly sized TVS | Input transient protection | SMB; voltage depends on actual input | 1 | Around **US$0.45** in one distributor example | [DigiKey example](https://www.digikey.com/en/products/detail/littelfuse-inc/SMBJ33A/286006), [LCSC example](https://www.lcsc.com/product-detail/C320242.html) | **Not a blind recommendation.** Recalculate standoff/clamp for the final 2S–6S input and regulator |
+| D2+ | USB/CAN/connector ESD arrays | Interface protection | Package depends on line count | As needed | Quote/verify | Use manufacturer application notes | Add where cable exposure warrants it; do not load high-speed lines with unsuitable capacitance |
+
+### 8.1 Main MCU support parts
+
+| Function | Preliminary choice | Quantity guidance | Notes |
+|---|---|---:|---|
+| MCU VDD decoupling | 100 nF X7R, 0402/0603, 10–16 V | One per relevant VDD supply pin; commonly 8–12 total | Exact count comes from the selected package pinout and datasheet |
+| MCU bulk decoupling | 4.7 µF or 10 µF X7R, 0603/0805 | 2–3 | Place close to power-entry clusters |
+| VCAP | 2.2 µF low-ESR capacitor, per H743 datasheet | 1 or exact datasheet requirement | Do not substitute a random value |
+| VDDA/VREF | 100 nF + 1 µF, optionally ferrite-filtered | 1 set | Keep analog supply clean |
+| HSE crystal | 8/16/25 MHz candidate chosen for firmware/USB plan | 1 | The frequency and load capacitance must match the selected design |
+| HSE load capacitors | C0G/NP0, value from crystal CL calculation | 2 | Use short symmetrical traces |
+| LSE crystal | 32.768 kHz, optional | 1 | Useful for RTC/timekeeping; not essential for the first control loop |
+| LSE load capacitors | C0G/NP0 | 2 | Optional |
+| BOOT0 pulldown | 10 kΩ | 1 | Add a jumper/test pad for recovery |
+| NRST pull-up | 10 kΩ | 1 | Add a reset switch and debug access |
+| NRST capacitor | 100 nF, if supported by the reset design | 1 | Follow ST guidance; do not create an excessively slow reset |
+| SWD connector | 1×5 or 2×5, 1.27 mm, or Tag-Connect/test pads | 1 | SWDIO, SWCLK, NRST, 3V3, GND; optional SWO |
+| Status LEDs | Green/red/blue LEDs | 3 | Use visible status codes |
+| LED resistors | 1 kΩ–2.2 kΩ | 3 | Verify MCU sink/source current |
+| Buzzer driver | BSS138/2N7002, 100 Ω gate resistor, 100 kΩ pulldown | 1 set | Optional; use a connector for external buzzer |
+
+---
+
+## 9. Preliminary BOM — power, protection, passives, and connectors
+
+### 9.1 Power and protection
+
+| Ref. | Part/function | Preliminary value or rule | Qty | Notes |
+|---|---|---|---:|---|
+| F1 | Input fuse or resettable fuse | Rated for the external 5 V source and expected fault current | 1 | For raw battery, calculate fault energy; a small PTC is not automatically enough |
+| J1 | External regulated 5 V input | Keyed connector, ground adjacent to 5 V | 1 | Label polarity and maximum input |
+| D1 | Input TVS | Select standoff and clamp after actual battery/source calculation | 1 | SMBJ33A is only an example; do not copy its value blindly |
+| Q1/Q2 | Reverse-polarity protection | PFET/NFET/ideal-diode circuit | 1–2 | Add only after a real current/thermal calculation |
+| C1 | Bulk input capacitor | 47–100 µF, 10–35 V as applicable | 1–2 | Voltage rating must exceed the real source/transients |
+| C2 | Ceramic input capacitor | 1 µF–10 µF | 1–2 | Follow regulator layout guidance |
+| L1 | 3.3 V buck inductor | Exact value and saturation/current rating from U6 datasheet | 1 | Do not choose by nominal inductance only |
+| C3/C4 | Buck input/output capacitors | Exact value/ESR from U6 datasheet | 2–4 | Place in the recommended loop geometry |
+| FB1 | Sensor-rail ferrite bead | Select impedance/current for 3.3 V sensor branch | 1 | Avoid excessive DC resistance |
+| C5/C6 | Sensor-rail bulk/decoupling | 1 µF + 100 nF per sensor/reference design | 2+ | Use sensor manufacturer values |
+| U9 | Power mux | TPS2116 or selected equivalent | 1 | USB 5 V and external 5 V only; not raw battery |
+| D_USB | USB ESD | TPD4EUSB30 or suitable array | 1 | Keep near connector and return to ground correctly |
+
+### 9.2 Interface passives
+
+| Function | Initial value / quantity | Engineering reason |
+|---|---|---|
+| PWM/DShot output series resistors | 33–100 Ω × 8 footprints | Reduces ringing/EMI; tune or populate after scope review |
+| I2C pull-ups | 2.2 kΩ–4.7 kΩ on SDA/SCL | Final value depends on bus speed, capacitance, and whether external devices already have pull-ups |
+| CAN termination | 120 Ω plus jumper/switch | Terminate only when the node is at the end of the bus |
+| Split CAN termination | 60 Ω + 60 Ω + optional 4.7 nF to ground | Optional topology; use only if compatible with the network |
+| USB-C CC resistors | 5.1 kΩ from CC1/CC2 to ground for a USB device | Required for correct device-role advertisement |
+| USB D+/D− series resistors | 22 Ω footprints if ST design recommends them | Populate only according to the selected USB design/reference |
+| SDMMC series resistors | 22–33 Ω optional on clock/CMD/DATA | Tune for ringing and trace length |
+| UART protection | ESD or 22–100 Ω series where cable exposure requires | Avoid unnecessary capacitance on high-speed lines |
+| ADC voltage divider | Example 100 kΩ / 20 kΩ plus 1 kΩ + 100 nF filter | Must be recalculated for the maximum voltage and ADC range |
+| ADC current filter | Example 1 kΩ + 100 nF | Filters the power module’s analog current signal |
+| Test points | 5 V, 3V3, 3V3_SENSOR, GND, SWD, USB, IMU SPI, CAN | Make measurements possible without probing tiny pads |
+
+### 9.3 Storage and connectors
+
+| Function | Preliminary part/style | Qty | Notes |
+|---|---|---:|---|
+| microSD socket | Push-push or hinged 3.3 V socket | 1 | Keep the card away from high vibration and provide ESD/decoupling |
+| GNSS/compass | JST GH 1.25 mm or a keyed connector | 1 | Put compass on a remote module if possible |
+| Telemetry UART | JST GH 1.25 mm or equivalent | 1 | Include signal ground and defined voltage |
+| CAN | Keyed two/three/four-pin connector | 1 | Include CANH, CANL, ground; power only if the system requires it |
+| Receiver | UART/CRSF/S.BUS connector as required | 1 | Do not assume all receiver voltage levels are 3.3 V-safe |
+| Motor outputs | 1×8/1×10 header or keyed harness | 1 | Put ground beside signal where possible |
+| USB-C | GCT USB4105-GF-A or equivalent | 1 | Example page indicates roughly US$0.80 class; verify current stock |
+| M2/M3 mounting hardware | Nonmagnetic hardware near magnetometer | 4+ | Keep mounting holes and keepouts in the mechanical drawing |
+| JST GH example | SM04B-GHS-TB-LF-SN | As needed | [LCSC example](https://www.lcsc.com/product-detail/Wire-To-Board-Wire-To-Wire-Connector_JST-Sales-America_SM04B-GHS-TB-LF-SN_JST-Sales-America-SM04B-GHS-TB-LF-SN_C189895.html) |
+| USB-C example | USB4105-GF-A | 1 | [DigiKey example](https://www.digikey.com/en/products/detail/gct/USB4105-GF-A/11198441) |
+
+### 9.4 Passive value matrix for purchasing
+
+The final quantity is generated from the schematic. The matrix below is a sensible first-order purchase list for one or a few boards, with spares:
+
+| Passive | Package | Suggested stock for prototype batch | Typical unit/pack range | Use |
+|---|---|---:|---:|---|
+| 0 Ω | 0603 | 20–50 | US$0.005–0.05 | Configuration links, power isolation, debug options |
+| 22 Ω | 0603 | 20–50 | US$0.005–0.05 | USB/SD/series damping options |
+| 33 Ω | 0603 | 20–50 | US$0.005–0.05 | PWM/SD series options |
+| 47 Ω | 0603 | 20–50 | US$0.005–0.05 | Signal damping options |
+| 100 Ω | 0603 | 20–50 | US$0.005–0.05 | Gate/signal resistors |
+| 1 kΩ | 0603 | 50–100 | US$0.005–0.05 | LED/current filters |
+| 2.2 kΩ | 0603 | 20–50 | US$0.005–0.05 | I2C pull-up or gate networks |
+| 4.7 kΩ | 0603 | 20–50 | US$0.005–0.05 | I2C/pull-up options |
+| 10 kΩ | 0603 | 50–100 | US$0.005–0.05 | BOOT0, NRST, biasing |
+| 20 kΩ | 0603 | 20–50 | US$0.005–0.05 | ADC divider example; recalculate |
+| 100 kΩ | 0603 | 20–50 | US$0.005–0.05 | ADC/filter/gate pull-down |
+| 100 nF | 0603 X7R | 100–200 | US$0.01–0.05 | MCU/sensor decoupling |
+| 1 µF | 0603 X7R | 20–50 | US$0.02–0.08 | Rail/sensor decoupling |
+| 2.2 µF | 0603/0805 X7R | 10–30 | US$0.03–0.15 | VCAP/rail decoupling; verify dielectric/rating |
+| 4.7 µF | 0603/0805 X7R | 20–50 | US$0.05–0.20 | MCU/regulator bulk |
+| 10 µF | 0805/1206 X7R | 20–50 | US$0.05–0.25 | Power rail bulk |
+| 47–100 µF | 1210/polymer/electrolytic | 2–6 | US$0.20–2.00 | Input bulk; voltage rating dominates |
+| Crystal load caps | 0603 C0G | 10–20 | US$0.02–0.10 | HSE/LSE clock |
+| Ferrite bead | 0603 | 5–20 | US$0.05–0.50 | Sensor rail / USB power filtering |
+| 120 Ω | 0603 | 5–10 | US$0.005–0.05 | CAN termination |
+| 60 Ω | 0603 | 5–10 | US$0.005–0.05 | Split termination option |
+
+For the first hand-assembled board, **0603** is a reasonable compromise between density and reworkability. Use 0402 only where the selected sensor/reference design or space constraint requires it. Tiny LGA sensors are the main assembly risk; plan for stencil, controlled hot-air/reflow, magnification, and inspection.
+
+### 9.5 Purchase entry points for generic SMD parts
+
+Generic passives should be locked by exact MPN after the schematic and voltage/current calculations are complete. These are live distributor search links rather than claims that one particular search result is approved:
+
+| Part group | LCSC search | DigiKey search | Approval rule |
+|---|---|---|---|
+| 0603 10 kΩ resistors | [LCSC search](https://www.lcsc.com/search?q=0603%2010k%20resistor) | [DigiKey search](https://www.digikey.com/en/products/result?keywords=0603%2010k%20resistor) | Select tolerance/power rating and a current, traceable MPN |
+| 0603 100 nF X7R capacitors | [LCSC search](https://www.lcsc.com/search?q=0603%20100nF%20X7R%2016V) | [DigiKey search](https://www.digikey.com/en/products/result?keywords=0603%20100nF%20X7R%2016V) | Check DC-bias derating, voltage, dielectric, and package |
+| 0805 10 µF X7R capacitors | [LCSC search](https://www.lcsc.com/search?q=0805%2010uF%20X7R%2016V) | [DigiKey search](https://www.digikey.com/en/products/result?keywords=0805%2010uF%20X7R%2016V) | Check effective capacitance under rail voltage |
+| 0603 ferrite beads | [LCSC search](https://www.lcsc.com/search?q=0603%20ferrite%20bead%20600%20ohm) | [DigiKey search](https://www.digikey.com/en/products/result?keywords=0603%20ferrite%20bead%20600%20ohm) | Check rated current and DC resistance |
+| 0603 0 Ω links | [LCSC search](https://www.lcsc.com/search?q=0603%200%20ohm%20resistor) | [DigiKey search](https://www.digikey.com/en/products/result?keywords=0603%200%20ohm%20resistor) | Use as configuration links, not as a substitute for a fuse |
+| 120 Ω CAN termination | [LCSC search](https://www.lcsc.com/search?q=0603%20120%20ohm%20resistor) | [DigiKey search](https://www.digikey.com/en/products/result?keywords=0603%20120%20ohm%20resistor) | Use a precision resistor and a jumper/switch if termination is selectable |
+| C0G crystal capacitors | [LCSC search](https://www.lcsc.com/search?q=0603%20C0G%20capacitor) | [DigiKey search](https://www.digikey.com/en/products/result?keywords=0603%20C0G%20capacitor) | Calculate from the selected crystal load capacitance |
+
+For the final manufacturing BOM, replace every search link with the exact distributor SKU, manufacturer part number, package, approved alternate, stock state, and date checked.
+
+### 9.6 Exact orderable examples from the current spot check
+
+The following entries turn the value matrix into an initial purchasing list. They are **candidate parts**, not automatic approvals. The prices and stock states were observed during the 26 August 2026 research pass and can change.
+
+| Function | Candidate exact MPN | Package / rating | Observed low-quantity price and state | Purchase / datasheet link | Important caveat |
+|---|---|---|---|---|---|
+| 3.3 V buck | TPS62162DSGT | 8-WSON, fixed 3.3 V, 1 A, 3–17 V input | US$2.22, 5,666 in stock in the observed DigiKey listing | [DigiKey](https://www.digikey.com/en/products/detail/texas-instruments/TPS62162DSGT/2782703) | TI datasheet recommends a specific power-loop layout, inductor, and approximately 22 µF output capacitance |
+| Buck inductor candidate | 744029003 | Shielded 3.3 µH-class substitute for the TI-recommended family | US$1.53, 5,823 in stock in the observed substitute listing | [DigiKey search/result](https://www.digikey.com/en/products/detail/wurth-elektronik/744029003/7321088) | Validate saturation/current/footprint against the final TPS62162 operating point |
+| Buck inductor alternate | SPM3012T-3R3M-LR | Shielded 3.3 µH-class alternate | US$1.06, 264 in stock in the observed substitute listing | [DigiKey search/result](https://www.digikey.com/en/products/detail/tdk-corporation/SPM3012T-3R3M-LR/445174444) | This is an alternate, not a drop-in approval; compare DCR, Isat, dimensions, and land pattern |
+| Sensor LDO | LP5907MFX-3.3/NOPB | SOT-23-5, 3.3 V, 250 mA | US$0.66, active and 199,263 in stock in the observed DigiKey listing | [DigiKey](https://www.digikey.com/en/products/detail/texas-instruments/LP5907MFX-3-3-NOPB/3906441) | The 5.5 V maximum input requires a clean 5 V or lower upstream rail |
+| CAN transceiver | TCAN332GDCNT | SOT-23-8, 3.0–3.6 V | About US$3.72 for the observed available substitute; GDCNR was out of stock | [DigiKey GDCNR page](https://www.digikey.com/en/products/detail/texas-instruments/TCAN332GDCNR/6572320) | Confirm whether the chosen package/variant is CAN-FD and verify pin compatibility |
+| USB ESD | TPD4EUSB30DQAR | 10-USON, four-channel | About US$1.52 in the observed DigiKey filter result; 141,096 in stock | [DigiKey TVS/ESD result](https://www.digikey.com/en/products/filter/transient-voltage-suppressors-tvs/tvs-diodes/144) | Select the exact product from the filter and verify capacitance/USB suitability |
+| SPI flash | W25Q128JVSIQ-TR | 8-SOIC, 128 Mbit, 2.7–3.6 V | US$3.94 quantity one, 77,997 in stock; maximum purchase limit noted | [DigiKey](https://www.digikey.com/en/products/detail/winbond-electronics/W25Q128JVSIQ-TR/5803944) | DigiKey noted temporary constrained supply; keep microSD as an alternate |
+| 100 nF decoupler | GRM188R72A104KA35D | 0603, 100 nF, 100 V, X7R | US$0.15, more than 2.5 million in stock in the observed substitute listing | [DigiKey substitute/result](https://www.digikey.com/en/products/detail/murata-electronics/GRM188R72A104KA35D/4903285) | The earlier 16 V Murata example was marked obsolete; 100 V is electrically conservative but not necessarily the smallest/cheapest choice |
+| 4.7 µF rail capacitor | GRM21BR71C475KE51L | 0805, 4.7 µF, 16 V, X7R | US$0.12, 1,588 in stock in the observed listing | [DigiKey](https://www.digikey.com/en/products/detail/murata-electronics/GRM21BR71C475KE51L/6606095) | Check DC-bias derating and effective capacitance; the similar KA73L example was obsolete |
+| 10 µF rail capacitor | GRM21BR61C106KE15L | 0805, 10 µF, 16 V, X5R | About US$0.12, active, with large observed stock | [DigiKey](https://www.digikey.com/en/products/detail/murata-electronics/GRM21BR61C106KE15L/965900) | Use only on rails whose maximum voltage and bias derating are appropriate |
+| 10 kΩ bias resistor | RC0603FR-0710KL | 0603, 10 kΩ, 1%, 0.1 W | US$0.10 quantity one; US$0.025 at quantity ten; more than 2 million in stock | [DigiKey](https://www.digikey.com/en/products/detail/yageo/RC0603FR-0710KL/729827) | Use the same Yageo RC0603FR-07 family for 1 kΩ, 2.2 kΩ, 4.7 kΩ, 20 kΩ, and 100 kΩ after checking each exact suffix |
+| Sensor-rail ferrite | BLM18AG601SN1D | 0603, 600 Ω at 100 MHz, 500 mA maximum | US$0.10 quantity one; more than 1.7 million in the observed listing | [DigiKey](https://www.digikey.com/en/products/detail/murata-electronics/BLM18AG601SN1D/584225) | Verify DC resistance and rail current; do not place it in a path that exceeds its rating |
+| HSE crystal candidate | ABM3B-8.000MHZ-B2-T | 5 × 3.2 mm, 8 MHz, 18 pF, ±20 ppm | US$0.69 quantity one; 73,483 in stock in the observed listing | [DigiKey](https://www.digikey.com/en/products/detail/abracon-llc/ABM3B-8-000MHZ-B2-T/1873166) | Confirm H743 clock configuration, crystal load capacitance, drive level, and USB/firmware plan |
+| Buzzer/LED driver MOSFET | 2N7002K-7-W | SOT-23, 60 V, 380 mA class | US$0.24 quantity one in the observed listing | [DigiKey](https://www.digikey.com/en/products/detail/diodes-incorporated/2N7002K-7-W/27803631) | Suitable as a small signal/buzzer driver, not as a motor or battery switch |
+| Input TVS candidate | SMBJ33A family | SMB, 33 V reverse standoff, 600 W class | Equivalent listings around US$0.45–0.63; original Littelfuse listing out of stock | [DigiKey](https://www.digikey.com/en/products/detail/littelfuse-inc/SMBJ33A/286006) | **Do not approve without calculating the actual source maximum and required clamp voltage**; 33 V is not automatically right for every 6S input architecture |
+| USB-C receptacle | USB4105-GF-A | USB 2.0 Type-C, right-angle SMT plus through-hole retention | US$0.80 quantity one; more than 153,000 in stock in the observed listing | [DigiKey](https://www.digikey.com/en/products/detail/gct-emea-ltd/USB4105-GF-A/11198509) | Confirm mechanical outline and place ESD/CC resistors close to the connector |
+| JST-style external connector | SM04B-GHS-TB-LF-SN | 1.25 mm, keyed family connector | Quote/verify current local price | [LCSC example](https://www.lcsc.com/product-detail/Wire-To-Board-Wire-To-Wire-Connector_JST-Sales-America_SM04B-GHS-TB-LF-SN_JST-Sales-America-SM04B-GHS-TB-LF-SN_C189895.html) | Verify mating housing, pin count, current rating, and exact footprint |
+| microSD socket | 1040310811 | Molex 104031 series, right-angle SMT, switch | US$2.04 quantity one; 22,387 in stock in the observed direct-substitute listing | [DigiKey](https://www.digikey.com/en/products/detail/molex/1040310811/9694134) | The closely related 1040310831 listing was obsolete; verify the socket, card-detect switch, and footprint |
+| Green status LED | LTST-C190KGKT | 0603, green, clear lens | US$0.15 quantity one; more than 1.8 million in stock in the observed listing | [DigiKey](https://www.digikey.com/en/products/detail/lite-on-inc/LTST-C190KGKT/386815) | Use an appropriate series resistor and keep LED current within the H743 GPIO limits |
+| Red status LED | LTST-C191KRKT | 0603, red, clear lens | About US$0.15 quantity one in the observed DigiKey LED listing | [DigiKey LED search](https://www.digikey.com/en/products/filter/led-indication-discrete/lite-on-inc/105) | Confirm the exact red part number and forward voltage before finalizing the resistor |
+| Reset pushbutton | B3U-1000P | SMD top-actuated SPST-NO, 3.0 × 2.5 mm | US$1.17 quantity one; 42,102 in stock in the observed listing | [DigiKey](https://www.digikey.com/en/products/detail/omron-electronics-inc-emc-div/B3U-1000P/1859107) | Optional if BOOT0/SWD test pads are sufficient, but useful for bring-up |
+
+The exact examples above deliberately include several “verify” gates. The component should not move from candidate to **approved for fabrication** until its datasheet, package, voltage/current rating, lifecycle, and actual supplier stock have been checked against the final schematic.
+
+### 9.7 Provisional Rev A assembly quantities
+
+This is the quantity skeleton to use when turning the logical design into a KiCad BOM. It assumes one STM32H743VIT6, one populated IMU, one BMP390, one CAN bus, one USB-C port, one microSD socket, one optional SPI flash, eight output channels, three status LEDs, and an external regulated 5 V input.
+
+| Group | Provisional populated quantity | Design rule |
+|---|---:|---|
+| STM32H743VIT6 | 1 | Add one spare for assembly risk |
+| Primary IMU | 1 | Add one spare; second footprint may remain DNP |
+| BMP390 | 1 | Add one spare |
+| 3.3 V buck | 1 | Add one spare if the first board is hand-built |
+| Sensor LDO | 1 | Add one spare |
+| CAN transceiver | 1 | Add one if CAN is in Rev A |
+| USB ESD array | 1 | Add one if USB is in Rev A |
+| SPI flash | 0 or 1 | DNP if microSD is the only logging path |
+| EEPROM | 0 or 1 | DNP unless a defined parameter/calibration use exists |
+| 100 nF local decouplers | Approximately 12–16 | One at every MCU/sensor/regulator IC supply cluster; final count follows datasheets and package pins |
+| 1 µF rail/sensor capacitors | Approximately 3–5 | Regulator input/output and sensor reference requirements |
+| 2.2 µF VCAP capacitor | 1 | Exact H743 datasheet requirement |
+| 4.7 µF bulk capacitors | Approximately 3–5 | MCU/power/sensor rail; check effective capacitance |
+| 10 µF bulk capacitors | Approximately 3–6 | Power input and 3.3 V branches; check DC-bias derating |
+| 22 µF buck output capacitor | 1–2 | Use the final TPS62162 datasheet/reference design; do not rely on the generic 10 µF placeholder alone |
+| 47–100 µF input bulk capacitor | 1–2 | Choose voltage rating for the actual external 5 V or raw-battery architecture |
+| Ferrite beads | 1–3 | Sensor rail, VDDA, and optional USB/power filtering |
+| 0 Ω links | 4–10 | Rail isolation, optional bus paths, and debug configuration |
+| 1 kΩ LED/filter resistors | 3–5 | Three LEDs plus optional RC/filter paths |
+| 2.2 kΩ resistors | 0–4 | I2C pull-ups or optional bias networks |
+| 4.7 kΩ resistors | 2–6 | I2C pull-ups, bus bias, or expansion |
+| 5.1 kΩ resistors | 2 | USB-C CC1/CC2 device pull-downs |
+| 10 kΩ resistors | 3–8 | BOOT0, NRST, enable/bias, and optional failsafe inputs |
+| 20 kΩ resistors | 1 | Example lower leg of battery/5 V ADC divider; recalculate |
+| 100 kΩ resistors | 1–4 | Example upper ADC leg and pulldowns; recalculate |
+| 22 Ω USB resistors | 0–2 | Optional; populate only if the selected STM32 USB design calls for them |
+| 33–100 Ω output resistors | 8 | One per PWM/DShot signal, initially DNP or populated after signal review |
+| CAN termination resistors | 1 × 120 Ω, optional split network | Make selectable if the board may be at an end or in the middle of the bus |
+| HSE crystal + load capacitors | 1 + 2 | Exact capacitance from the selected crystal and H743 oscillator design |
+| LSE crystal + load capacitors | 0–1 + 0–2 | Optional for Rev A |
+| LEDs | 3 | Green/red/blue or project-selected colors |
+| Reset switch | 1 | Add only if the mechanical layout permits |
+| Buzzer MOSFET + gate parts | 0–1 set | Optional external buzzer driver |
+| USB-C connector | 1 | Add mechanical clearance/retention |
+| SWD connector/test pads | 1 | Do not omit, even if test pads are used instead of a header |
+| microSD socket | 0–1 | DNP only if SPI flash is the selected logging path |
+| External GNSS/compass connector | 1 | Keyed; compass should normally be physically remote |
+| Telemetry/receiver connectors | 2–3 | Exact count follows the team’s radio architecture |
+| CAN connector | 1 | Keyed and ground-referenced |
+| Motor-output connector | 1 | Eight signal channels with adjacent grounds where possible |
+| Mounting holes/test points | 4+ / 10+ | Mechanical and electrical verification features, not optional decoration |
+
+The final BOM generator must replace “approximately” with actual designators and exact quantities. The table is intended to prevent the team from forgetting small but essential items such as USB CC resistors, VCAP, BOOT0, SWD, sensor decoupling, output series links, test points, and connector grounds.
+
+---
+
+## 10. Pricing and procurement view
+
+### 10.1 How to interpret the prices
+
+- Prices below are indicative observations on or around **26 August 2026**.
+- They are generally quantity-one or low-quantity web prices.
+- They exclude shipping, tax, customs, marketplace markup, minimum-order charges, and exchange-rate movement.
+- LCSC, DigiKey, Mouser, and local Malaysian distributor prices can differ significantly.
+- A live product page can change without notice; use the linked page to re-check the exact MPN and package before purchase.
+- Where a reliable current price was not visible, the table says **N/A — quote/verify** rather than inventing one.
+- For budgeting, use approximately **RM 4.04 per US$1** as an indicative USD/MYR conversion observed from the [Bank Negara Malaysia exchange-rate page](https://financialmarkets.bnm.gov.my/data-download-exchange-rates); use the actual bank/card rate at purchase.
+
+### 10.2 Indicative electronics cost
+
+| Cost group | Indicative USD | Indicative MYR | What it includes |
+|---|---:|---:|---|
+| H743 + primary IMU + BMP390 + power ICs + CAN/USB parts | 25–55 | 100–222 | Depends heavily on distributor and sensor source |
+| Connectors, passives, protection, storage | 15–35 | 61–141 | Small-order shipping can exceed the component subtotal |
+| One custom PCB run | 10–50+ | 40–202+ | Layer count, board size, finish, shipping, and quantity |
+| Stencil / assembly aids | 3–20+ | 12–81+ | Frameless stencil is useful even for hand assembly |
+| One populated Rev A prototype, excluding ESC/motors/GNSS/radio | **50–120+** | **202–485+** | Conservative range; treat as a planning budget, not a quote |
+| Three-board batch with spares | **120–300+** | **485–1,212+** | More realistic once shipping and failed parts are included |
+
+### 10.3 Fabrication and stencil references
+
+| Item | Public reference | Planning value |
+|---|---|---|
+| JLCPCB PCB assembly | [JLCPCB PCBA price page](https://jlcpcb.com/help/article/pcb-assembly-price) | Public page lists setup, stencil, joint, and labor items; use the uploaded design for a real quote |
+| JLCPCB stencil | [JLCPCB stencil page](https://jlcpcb.com/pcb-stencil) | Frameless stencil starts around the low-US$3 range depending size/spec |
+| Basic PCB run | [JLCPCB ordering guide](https://jlcpcb.com/help/article/how-do-i-place-an-order) | Two-layer small boards can be very cheap; four/six-layer pricing requires an actual quote |
+| PCBWay | [PCBWay online calculator](https://www.pcbway.com/HighQualityOrderOnline.aspx?h=1) | Upload Gerbers for the actual layer/finish/quantity quote |
+
+The lecturer mentioned hand assembly and SMD soldering. A practical compromise is:
+
+1. use a stencil and solder paste;
+2. place components with tweezers;
+3. reflow on an approved hot plate/reflow method or use controlled hot air;
+4. inspect every solder joint under magnification;
+5. hand-solder connectors, large capacitors, and through-hole test headers;
+6. use an external assembly house for a second revision if the team needs repeatability.
+
+### 10.4 Tools and test equipment
+
+| Tool | Example | Indicative local/reference price | Priority |
+|---|---|---:|---|
+| SWD debugger | ST-LINK/V3SET | About **RM172** in a DigiKey Malaysia listing | Essential |
+| Soldering iron | 60 W class | About **RM29** in a Cytron example listing | Essential, but tip quality matters |
+| Solder paste | Small syringe/tub | About **RM11.90** in a Cytron example listing | Useful for stencil/rework |
+| Multimeter | Basic digital meter | About **RM39–65** in Cytron examples | Essential |
+| Helping hands | PCB holder | About **RM22.90** in Cytron examples | Useful |
+| Hot-air tool | Small hot-air gun/rework tool | About **RM27.50** in a basic listing | Check temperature control; a proper rework station is safer |
+| Oscilloscope | University lab scope | N/A | Strongly recommended for clocks, PWM, power transients |
+| Logic analyzer | Saleae Logic 8 class | Saleae page lists around **US$499**; low-cost clones exist but have different trustworthiness | Useful, not essential if lab scope is available |
+| Spectrum analyzer | Borrow/department lab | Malaysia listings show several thousand RM for Rigol units | Do not purchase for Rev A; use university equipment |
+
+---
+
+## 11. Open-source hardware and firmware resources
+
+### 11.1 Highest-value repositories
+
+| Resource | What it provides | How to use it safely |
+|---|---|---|
+| [Pixhawk Hardware repository](https://github.com/pixhawk/Hardware) | Open autopilot hardware designs, schematics, pin maps, BOMs, and reference layouts | Study architecture and license. Do not call an independently designed board “Pixhawk” without the required permission; describe it as Pixhawk-compatible only if it actually follows the relevant standard |
+| [Pixhawk Standards](https://github.com/pixhawk/Pixhawk-Standards) | Mechanical/electrical connector and bus standards such as DS-009, DS-010, DS-012, and DS-018 | Use the standard as an interface reference, then create an original schematic and layout |
+| [PX4 Autopilot](https://github.com/PX4/PX4-Autopilot) | Open flight-control firmware | Read board-support structure, drivers, build targets, and licensing before porting |
+| [PX4 hardware reference design](https://github.com/PX4/PX4-Devguide/blob/master/en/hardware/reference_design.md) | Reference-design explanation and historical Pixhawk context | Use to understand the FMU/IO split and reference-design process |
+| [PX4 porting guide](https://docs.px4.io/main/en/hardware/porting_guide) | Board support, NuttX, drivers, and porting cost | Treat porting as a real software work package, not a pin-name edit |
+| [PX4 manufacturer board support guide](https://docs.px4.io/main/en/hardware/board_support_guide) | Own firmware target and bootloader expectations | A new board should have its own target even if it resembles another board |
+| [ArduPilot](https://github.com/ArduPilot/ardupilot) | Open autopilot firmware for multiple vehicle types | Read licensing and board-port requirements |
+| [ArduPilot Schematics](https://github.com/ArduPilot/Schematics) | Schematics for common autopilot hardware | Useful for power, connector, and sensor comparisons; check each folder’s license |
+| [ArduPilot OEM/custom hardware guide](https://ardupilot.org/dev/docs/common-oem-customizations.html) | Custom hardware definitions and porting context | Use the board hardware-definition route and bootloader documentation rather than copying a commercial target |
+| [ArduPilot ChibiOS hardware definitions](https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_HAL_ChibiOS/hwdef) | Board pin/peripheral definitions | Compare how MCU pins map to firmware functions |
+
+### 11.2 Closest open designs to the proposed board
+
+| Design | Why it matters | Recommended use |
+|---|---|---|
+| [LEVIA-H7](https://github.com/piecol/LEVIA-H7) | Open KiCad STM32H743 FC; six layers; eight motor outputs; dual ICM-42688-P; DPS368; IST8310; microSD; CAN; USB-C ESD; separate regulator rails; up to 6S; complete CAD/BOM/manufacturing files; CERN-OHL-S-2.0 | **Best architecture study** for this project. Inspect every sheet, but do not assume its validation or license permits a direct copy |
+| [Shirley-FC-Dev-Board](https://github.com/Bare-Metal-Foundry/Shirley-FC-Dev-Board) | Community STM32H7 FC with multiple sensors and Pixhawk-style interfaces | Layout/review reference; verify files and license |
+| [pixeagle](https://github.com/mkeyno/pixeagle) | STM32H743VIT6, BMI088, ICM-42688-P, BMP388/BMP390, IST8310 | Compare sensor redundancy and bus arrangement |
+| [FPV Flight Controller PCB](https://github.com/fpv-chicken-nugget/FPV-Flight-Controller-PCB) | STM32 FC/PDB, IMU, INA230 current sense, OSD, PWM outputs, power architecture | Study power and signal partitioning; FPV assumptions differ |
+| [STM32H743 Betaflight devboard](https://github.com/DpooL2000/STM32h743-devboard-betaflight) | Four-layer STM32H743 board and firmware target | Useful for MCU support, target configuration, and practical board iteration |
+| [FPV-Drone-STM32F411 DroneController](https://github.com/FPV-Drone-STM32F411/DroneController) | Custom STM32F411 FC/PDB boards with KiCad and firmware | Simpler historical reference; not a performance target |
+| [Kestrel](https://ahmedbadwy.com/projects/proj-kestrel) | Open FMUv6C-compatible H743 board with a smaller processor and generated design | Good example of a more ambitious custom architecture; too large for first Rev A |
+| [HADES open-source flight-control system](https://www.pcbway.com/project/shareproject/HADES_Open_Source_Flight_Control_System.html) | STM32/FreeRTOS fixed-wing controller project | Compare fixed-wing assumptions and project documentation |
+| [Berkeley HOPE drone controller](https://sites.google.com/berkeley.edu/hope-sp24/drone-controller) | Student custom STM32 controller project | Useful educational process reference |
+| [Ethan Suttor custom drone FC project](https://ethansuttor.com/projects/custom-drone-flight-controller) | Practical write-up including BMI270, TPS5450, and KiCad | Use for design narrative and bring-up lessons |
+
+### 11.3 License and naming rules
+
+- Read the repository license before copying schematic blocks, footprints, CAD, or firmware.
+- Separate “inspired by” from “derived from.”
+- Keep a source file and license record in the project folder.
+- If using Pixhawk standards, say “designed to follow the relevant Pixhawk interface standard” only after checking the exact electrical/mechanical requirements.
+- Do not label an independently designed board as an official Pixhawk product.
+- If the team modifies CERN-OHL or another open-hardware design, preserve the required notices and disclose the required source files.
+
+---
+
+## 12. Tutorials, videos, and practical learning sequence
+
+### 12.1 Recommended sequence
+
+1. Draw a simple STM32H7 power/clock/SWD/USB schematic.
+2. Build and test a minimal STM32H7 board or development-board equivalent.
+3. Read one sensor over SPI.
+4. Generate one PWM output and capture it with a scope/logic analyzer.
+5. Add the barometer and a logging path.
+6. Create the full FC schematic and only then route the PCB.
+
+### 12.2 Resources
+
+| Resource | What to learn |
+|---|---|
+| [Phil’s Lab KiCad STM32 full design tutorial](https://www.youtube.com/watch?v=aVUqaB0IMh4) | STM32 decoupling, clocks, configuration pins, USB, power, ERC, footprints, PCB layout, routing, DRC, Gerbers, BOM, and CPL |
+| [Phil’s Lab six-layer mixed-signal PCB tutorial](https://www.youtube.com/watch?v=AxEL3eESL9I) | Layer stack-up thinking, planes, high-speed/mixed-signal routing, and STM32H7-class layout |
+| [Phil’s Lab flight-control system design / PCB series](https://www.fedevel.com/blog/flight-control-system-design-hardware-and-pcb-design-with-kicad-phils-lab-1) | Flight-control-specific hardware partitioning and KiCad workflow |
+| [Ethan Suttor custom drone FC project](https://ethansuttor.com/projects/custom-drone-flight-controller) | A practical custom-FC design narrative |
+| [LEVIA-H7 repository](https://github.com/piecol/LEVIA-H7) | Inspect a complete KiCad folder, schematic sheets, BOM, manufacturing outputs, and layer strategy |
+| [Pixhawk Hardware](https://github.com/pixhawk/Hardware) | Compare mature autopilot schematics and reference layouts |
+
+### 12.3 Community sources
+
+Reddit reviews and build discussions can reveal practical problems that formal documentation does not show:
+
+- [Custom H7 FC review request](https://www.reddit.com/r/PrintedCircuitBoard/comments/1qci8jg/review_request_drone_flight_controller_with/)
+- [Custom F405 FC review](https://www.reddit.com/r/PrintedCircuitBoard/comments/1vwpzuz/review_request_stm32f405_flight_controller_v11/)
+- [Custom FC built from scratch](https://www.reddit.com/r/diydrones/comments/1q5k508/built_a_custom_flight_controller_from_scratch/)
+- [Flight-controller PCB design review](https://www.reddit.com/r/PCB/comments/1poshof/day-42-of-designing-a-flight-controller-review/)
+- [STM32H743 flight-controller discussion](https://www.reddit.com/r/ardupilot/comments/1o59tul/flight-controller-design-using-stm32h743vit6/)
+- [UAV PCB / ArduPilot schematic review](https://www.reddit.com/r/PrintedCircuitBoard/comments/1un6jmf/schematics_review_uav_flight_controller_that_runs_ardupilot/)
+
+Treat these as **engineering-review material**, not certification evidence. Community claims about flight performance, reliability, or safety require independent verification.
+
+---
+
+## 13. Schematic design requirements
+
+### 13.1 MCU sheet
+
+Include:
+
+- all STM32 power pins;
+- VCAP capacitors;
+- VDDA/VREF filtering;
+- HSE and optional LSE;
+- NRST;
+- BOOT0 selection and recovery pad;
+- SWDIO/SWCLK/NRST/3V3/GND;
+- USB D+/D− and ESD;
+- unused pins tied or marked according to ST recommendations;
+- clearly labeled alternate-function net names;
+- test points for core rails and reset.
+
+### 13.2 Sensor sheet
+
+For each sensor:
+
+- exact voltage rail;
+- local decoupling;
+- SPI/I2C pull-ups if needed;
+- chip-select and interrupt;
+- address-selection pins;
+- orientation arrow and board-axis convention;
+- footprint from the current manufacturer drawing;
+- keepout/placement note;
+- mechanical and airflow note for the barometer.
+
+Do not leave sensor orientation as an informal note. The firmware axis convention and PCB reference orientation must agree.
+
+### 13.3 Power sheet
+
+Show:
+
+- source connector and polarity;
+- fuse/current-limiting element;
+- reverse-polarity stage;
+- TVS;
+- USB/external 5 V power mux;
+- 5 V and 3.3 V rails;
+- sensor rail filter/LDO;
+- test points;
+- maximum current and voltage annotation;
+- thermal dissipation assumptions.
+
+### 13.4 IO and communications
+
+Show:
+
+- all eight motor outputs with exact timer channel;
+- labeled external ports: `GPS1`, `TELEM1`, `RC_IN`, `COMPANION`, `LIDAR_FC`, and `AUX_UART`;
+- exact connector pin order, pin-1 marking, signal voltage, allowable supply voltage/current, and mating cable drawing;
+- CAN transceiver and termination option;
+- `CAN1/CAN2` topology, termination placement, node power budget, and whether the FC is a bus-end node;
+- microSD;
+- external compass/GNSS connector with UART/PPS/I2C/CAN ownership clearly shown;
+- ADC voltage/current scaling;
+- buzzer and status LEDs;
+- safety switch and any external arming input.
+
+The schematic must distinguish **board-mounted devices** (primary IMU and barometer) from **external modular devices** (ESC, receiver, GNSS/compass, CM5 carrier, telemetry and lidar). Do not present a connector as compatible with a Pixhawk standard until the exact standard revision and pinout have been checked.
 
 ---
 
@@ -992,7 +1458,151 @@ Use community reviews to identify common mistakes and practical concerns. Do not
 
 ### Flight-controller standards and firmware
 
-- Pixhawk Hardware repository (historical source reference)**. CM5 is the compute module form of the Raspberry Pi 5 generation, based on BCM2712, with optional RAM/eMMC variants and two 100-pin high-density connectors. It has no normal onboard USB, HDMI, Ethernet or camera sockets. A carrier board supplies those interfaces and the power/control circuitry. [Raspberry Pi’s Compute Module documentation](http[LOCAL_SOURCE] describes CM5IO as a development carrier and reference design for a smaller custom carrier.
+- [Pixhawk Hardware repository](https://github.com/pixhawk/Hardware)
+- [Pixhawk Standards repository](https://github.com/pixhawk/Pixhawk-Standards)
+- [Pixhawk Reference Standards overview](https://pixhawk.org/standards/)
+- [PX4 Autopilot repository](https://github.com/PX4/PX4-Autopilot)
+- [PX4 hardware reference design](https://github.com/PX4/PX4-Devguide/blob/master/en/hardware/reference_design.md)
+- [PX4 porting guide](https://docs.px4.io/main/en/hardware/porting_guide)
+- [PX4 manufacturer board support guide](https://docs.px4.io/main/en/hardware/board_support_guide)
+- [ArduPilot repository](https://github.com/ArduPilot/ardupilot)
+- [ArduPilot schematics](https://github.com/ArduPilot/Schematics)
+- [ArduPilot OEM/custom hardware guide](https://ardupilot.org/dev/docs/common-oem-customizations.html)
+- [PX4 GNSS/GPS setup and external-module connections](https://docs.px4.io/main/en/gps_compass/)
+- [PX4 magnetometer guidance](https://docs.px4.io/main/en/gps_compass/magnetometer)
+- [PX4 DroneCAN ARK CANnode example](https://docs.px4.io/main/en/dronecan/ark_cannode)
+- [PX4 Pixhawk companion-computer serial connection](https://docs.px4.io/main/en/companion_computer/pixhawk_companion)
+- [ArduPilot companion computers](https://ardupilot.org/dev/docs/companion-computers.html)
+- [ArduPilot rangefinder setup](https://ardupilot.org/plane/docs/common-rangefinder-setup.html)
+
+### MCU, sensors, and power
+
+- [STM32H743ZI product page](https://www.st.com/en/microcontrollers-microprocessors/stm32h743zi.html)
+- [STM32H743 datasheet](https://www.st.com/resource/en/datasheet/stm32h743zi.pdf)
+- [STM32H7 documentation](https://www.st.com/en/microcontrollers-microprocessors/stm32h7-series/documentation.html)
+- [Bosch BMI088](https://www.bosch-sensortec.com/en/products/motion-sensors/imus/bmi088)
+- [Bosch BMI088 datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi088-ds001.pdf)
+- [Bosch BMP390](https://www.bosch-sensortec.com/en/products/environmental-sensors/pressure-sensors/bmp390)
+- [TDK ICM-42688-P](https://www.invensense.tdk.com/en-us/products/6-axis/icm-42688-p)
+- [ICM-42688-P datasheet](https://product.tdk.com/system/files/dam/doc/product/sensor/mortion-inertial/imu/data_sheet/ds-000347-icm-42688-p-v1.6.pdf)
+- [ICM-42688-P PCB/MEMS assembly guidelines](https://invensense.tdk.com/wp-content/uploads/2023/05/an-000393_imu-pcb-design-and-mems-assembly-guidelines.pdf)
+- [TI LMR33630](https://www.ti.com/product/LMR33630)
+- [TI TPS62162](https://www.ti.com/product/TPS62162-Q1)
+- [TI LP5907](https://www.ti.com/product/LP5907)
+- [TI TCAN332](https://www.ti.com/product/TCAN332)
+- [TI TPS2116](https://www.ti.com/product/TPS2116)
+- [TI TPS386000](https://www.ti.com/product/TPS386000)
+- [ST USB hardware/PCB guidelines](https://www.st.com/resource/en/application_note/an4879-usb-hardware-and-pcb-guidelines-using-stm32-mcus-stmicroelectronics.pdf)
+- [ST STM32H7 hardware development note](https://www.st.com/resource/en/application_note/an5307-getting-started-with-stm32h7a37b3-line-and-stm32h7b0-value-line-microcontroller-hardware-development-stmicroelectronics.pdf)
+- [NXP UM10204 I2C-bus specification](https://community.nxp.com/pwmxy87654/attachments/pwmxy87654/nxp-designs/931/1/UM10204.pdf)
+- [TI I2C long-cable/extender guidance](https://www.ti.com/kr/lit/pdf/sdaa306)
+- [CAN in Automation high-speed CAN transmission guidance](https://www.can-cia.org/can-knowledge/can-hs-transmission)
+
+### Manufacturing and tools
+
+- [JLCPCB PCBA pricing](https://jlcpcb.com/help/article/pcb-assembly-price)
+- [JLCPCB stencil](https://jlcpcb.com/pcb-stencil)
+- [JLCPCB ordering guide](https://jlcpcb.com/help/article/how-do-i-place-an-order)
+- [PCBWay online calculator](https://www.pcbway.com/HighQualityOrderOnline.aspx?h=1)
+- [ST-LINK/V3 distributor listing](https://www.digikey.my/en/products/filter/programmers-emulators-and-debuggers/799)
+- [Cytron development tools](https://my.cytron.io/c-development-tools/c-tools-and-equipments)
+
+### Open custom-board references
+
+- [LEVIA-H7](https://github.com/piecol/LEVIA-H7)
+- [Shirley-FC-Dev-Board](https://github.com/Bare-Metal-Foundry/Shirley-FC-Dev-Board)
+- [pixeagle](https://github.com/mkeyno/pixeagle)
+- [FPV Flight Controller PCB](https://github.com/fpv-chicken-nugget/FPV-Flight-Controller-PCB)
+- [STM32H743 Betaflight development board](https://github.com/DpooL2000/STM32h743-devboard-betaflight)
+- [STM32F411 DroneController](https://github.com/FPV-Drone-STM32F411/DroneController)
+- [Kestrel custom autopilot](https://ahmedbadwy.com/projects/proj-kestrel)
+- [HADES open-source flight-control system](https://www.pcbway.com/project/shareproject/HADES_Open_Source_Flight_Control_System.html)
+- [Berkeley HOPE drone controller](https://sites.google.com/berkeley.edu/hope-sp24/drone-controller)
+- [Ethan Suttor custom flight controller](https://ethansuttor.com/projects/custom-drone-flight-controller)
+
+### Tutorials and community
+
+- [Phil’s Lab STM32/KiCad tutorial](https://www.youtube.com/watch?v=aVUqaB0IMh4)
+- [Phil’s Lab six-layer mixed-signal tutorial](https://www.youtube.com/watch?v=AxEL3eESL9I)
+- [Phil’s Lab flight-control PCB series](https://www.fedevel.com/blog/flight-control-system-design-hardware-and-pcb-design-with-kicad-phils-lab-1)
+- [Reddit custom H7 FC review](https://www.reddit.com/r/PrintedCircuitBoard/comments/1qci8jg/review_request_drone_flight_controller_with/)
+- [Reddit custom F405 FC review](https://www.reddit.com/r/PrintedCircuitBoard/comments/1vwpzuz/review_request_stm32f405_flight_controller_v11/)
+- [Reddit from-scratch flight controller](https://www.reddit.com/r/diydrones/comments/1q5k508/built_a_custom_flight_controller_from_scratch/)
+
+---
+
+## Final engineering recommendation
+
+Freeze the first prototype around **STM32H743VIT6 + one onboard SPI ICM-42688-P + onboard BMP390 + external compass/GNSS + external regulated 5 V input + 3.3 V rails + SWD/USB/CAN/UART/PWM + logging**, with a **hybrid Pixhawk-style modular port architecture**. The ESC board, receiver, GNSS/compass, telemetry, Raspberry Pi CM5 carrier and applicable lidar must attach through keyed, labeled connectors. Keep the primary IMU and barometer on the FC PCB; use CAN/DroneCAN or a local smart sensor node for future remote high-rate sensors instead of extending raw SPI/I2C arbitrarily.
+
+Build the schematic, logical port map, cable pinout, power budget and power tree first. Use LEVIA-H7, Pixhawk, PX4, and ArduPilot as references, but preserve the project’s own design identity and license trail. The standard connector family can be borrowed only with a verified pinout and firmware mapping; connector appearance alone is not compatibility.
+
+The strongest presentation claim is:
+
+> “We designed and will verify a small custom real-time flight-controller PCB, using an STM32H7 MCU and discrete sensors/power/interface components. The initial milestone is a safe, non-certified bench/rig demonstrator; integration with a full autopilot stack and any flight test will follow only after board and firmware verification.”
+
+That statement is technically credible, achievable, and aligned with the lecturer’s request to move from general autopilot research toward a real prototype.
+
+---
+
+## 23. Integrated-system research addendum — 27 August 2026
+
+This addendum incorporates the user’s latest decisions and the supplied FC, companion-computer, lidar, camera, ESC, motor and battery requirements. The earlier sections remain useful background; where this addendum is more specific, it is the current Rev A direction.
+
+### 23.1 Scope and evidence boundary
+
+The user’s direct request is the controlling requirement. The attached reports and pasted text are reference material. The supplied YouTube videos and Reddit posts are useful for workflow, design-review warnings and project-scope evidence, but their claims are not treated as electrical specifications. Datasheets, official firmware documentation, official Pixhawk standards and complete open-hardware repositories are the evidence used for ratings, protocols, pin functions, connector standards and licensing.
+
+The deliverable remains a **non-certified student prototype**. “Collision avoidance,” “object tracking,” “autonomy” and “UAM” in this report describe intended research functions, not a guarantee of safe autonomous flight or airworthiness.
+
+### 23.2 Complete comparison of the supplied references
+
+| # | Supplied reference | What it contributes | What should be reused or learned | What must not be copied blindly |
+|---:|---|---|---|---|
+| 1 | [OpenFC-Lite-Mini repository](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) and [linked video](https://www.youtube.com/watch?v=XDYZoMRJFeQ) | Compact open Betaflight FC using RP2354A, BMI270, dedicated sensor rail, microSD, multiple UARTs and signal-level external 4-in-1 ESC connection; 3–6S input and six-layer manufacturing approach are documented in the project family | Study the separation of logic from motor power, dedicated IMU rail, local KiCad libraries, production export flow and explicit limitations | RP2354/BMI270/Betaflight is not the selected H743/ArduPilot-or-PX4 path; no onboard barometer and no direct reason to copy its exact pinout |
+| 2 | [HomeGliders FCV2 repository](https://github.com/HomeGliders/FCV2) and [linked video](https://www.youtube.com/watch?v=6n7d8Jn2brQ) | A small KiCad flight-controller project packaged as KiCad files; useful as a schematic/PCB organization example | Inspect the project archive for hierarchy, net naming, connector placement, ERC/DRC and manufacturing workflow | The repository page alone does not establish exact part ratings, flight validation or compatibility with our H743 system; extract and verify every value before reuse |
+| 3 | [Jacob Thornhill DIY FC video](https://www.youtube.com/watch?v=wYC-siMWn70) | Video metadata describes an STM32F405 controller for RC drones/planes, I2C sensor collection, UART GPS/receiver links and a project failure caused by frame flexibility/filtering issues | Learn the end-to-end design narrative, basic system partitioning and the importance of mechanical stiffness and filtering | The I2C-centric F405 sensor approach is not the Rev A high-rate IMU recommendation; a video demonstration is not a flight qualification |
+| 4 | [Official Pixhawk hardware repository](https://github.com/pixhawk/hardware) | Mature open autopilot architecture, FMU/IO history, power/sensor/debug organization and reference hardware | Use it for system partitioning, port naming, power-domain separation, redundancy concepts and design-document structure | Do not copy a board or call the custom PCB an official Pixhawk; check each design’s license and the exact selected standard |
+| 5 | [r/fpv H743 custom-FC discussion](https://www.reddit.com/r/fpv/comments/1r5rvne/build_a_custom_flight_controller/) | Community review raises reverse-current protection, external-shunt/current-sense, regulator capability, magnetometer placement and output-series-resistor issues | Add these items to the design-review checklist; keep current shunts and noisy magnetics off the FC | Reddit comments are not a substitute for regulator calculations, thermal measurements or the actual schematic |
+| 6 | [Udayate build discussion](https://www.reddit.com/r/diydrones/comments/1q5k508/built_a_custom_flight_controller_from_scratch/) | An STM32F411/FreeRTOS/HAL educational build with custom drivers and estimator work; the author reports that schematic/PCB, drivers and EKF each took substantial time | Reuse the project as a learning path for drivers, task structure, estimator testing and serial visualization; use its schedule as a realistic warning | Do not assume its F411 hardware or custom firmware is a drop-in autopilot for this H743 board |
+| 7 | [“Anyone here built their own FC?” discussion](https://www.reddit.com/r/diydrones/comments/1oibb96/anyone_here_built_their_own_flight_controller/) | Discussion of AI-enabled FC concepts and the distinction between board hardware, firmware and companion processing | Reinforces the need to define the application and not confuse an AI computer with a deterministic flight controller | Community claims about AI TOPS or compatibility must be checked against vendor and firmware documentation |
+| 8 | [Custom FC from-scratch feature discussion](https://www.reddit.com/r/Multicopter/comments/1s6r7ht/building_a_custom_flight_controller_from_scratch/) | Community advice strongly favours an STM32 + gyro + basic loop before adding logging, baro, lidar and autonomy; other comments request first-class lidar/camera/avoidance | Use the staged architecture: prove the inner loop, then add perception; keep the modular interfaces on the PCB even if their software is staged | Do not interpret the scope warning as permission to omit required external connectors; make connectors present but bring them up in phases |
+| 9 | [Shirley-FC-Dev-Board](https://github.com/Bare-Metal-Foundry/Shirley-FC-Dev-Board) | H743ZIT6 board with ICM-40609-D, MMC5983MA, BMP390, SD, 5 V MUX, dual 3.3 V rails, four ESC outputs, GPS/RC/telemetry/USB/CAN and GH1.25 connectors | Closest architecture study for a Pixhawk-style H7 board: power tree, connector naming, CAN, debug access and sensor placement | It is not our exact MCU package or sensor set; do not substitute its ICM-40609-D/MMC5983MA choices without a firmware and availability review |
+| 10 | [User-supplied PrintedCircuitBoard review link](https://www.reddit.com/r/PrintedCircuitBoard/comments/1qci8jg/review_request_drone_flight_controller_with/and) | The supplied URL is malformed/unreliably retrievable as written; it cannot be used as a verified design source until the exact post or images are provided | Preserve it as a lead and ask for the corrected link if its schematic/layout is important | No component, layout or design claim is taken from this entry |
+| 11 | [Betaflight manufacturer design guidelines](https://betaflight.com/docs/development/manufacturer/manufacturer-design-guidelines) | Current practical guidance on SPI IMUs, dedicated ICM-42688-P rail, H7 timer/DMA, I2C baro/mag, ADC protection, SWD, blackbox and output grouping | Use its IMU rail, layout, output grouping, resistor, test-point and bring-up rules even if the final firmware is not Betaflight | Betaflight-specific loop-rate and target rules do not automatically define an ArduPilot/PX4 board |
+| 12 | [OpenFC-Lite-Mini readme duplicate](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini?tab=readme-ov-file) | Duplicate entry for reference 1; confirms the project’s documented open-hardware/readme material | Use the repository as the authoritative version of this reference | Do not count the duplicate as a second independent design |
+| 13 | [STM32H743 FC review request](https://www.reddit.com/r/PCB/comments/1q3kh9f/stm32h743_flight_controller_review_request/) | Realistic H743VIT6, ICM-42688-P, BMP388, 9/5/3.3 V, microSD, USB-C and four-UART example; comments identify LQFP/BGA confusion, power-routing, regulator, IMU-LDO and shunt issues | Directly supports our LQFP choice, separated power/sensor placement, dedicated IMU LDO and external current-sense boundary | Community review is a warning list, not evidence that the board is flight-ready; verify every suggested fix against datasheets |
+| 14 | [Udayate](https://github.com/Ozonised/Udayate), [video](https://www.youtube.com/watch?v=pUdvCbNR1gM&t=43s), [Kalman-AHRS](https://github.com/Ozonised/Kalman-AHRS), [LSM6DSL library](https://github.com/Ozonised/LSM6DSL-Platform-Independent-Library), and [Quaternion Visualiser](https://github.com/Ozonised/Quaternion-Visualiser) | Complete educational chain: KiCad hierarchy and STM32F411 hardware, platform-independent driver pattern, quaternion/EKF attitude code and serial visualization | Reuse the software architecture ideas: hardware abstraction, deterministic sensor readout, quaternion representation, logged serial output and offline visualization | Do not treat the F411 firmware, LSM6DSL driver or EKF as production autopilot code; port and validate with the selected ICM-42688-P and vehicle dynamics |
+| 15 | [Pixhawk 2.1 schematics](https://github.com/MRazgunas/pixhawk2.1) | Practical Pixhawk2-era schematic reference and a useful example of subsystem separation | Study power, IMU, IO and connector partitioning | The repository has mixed licenses, including non-commercial restrictions on some boards; licensing and schematic revision must be checked before any reuse |
+| 16 | [Beginner FC build discussion](https://www.reddit.com/r/diydrones/comments/1ts9v3u/building_a_flight_controller/) | Community advice recommends learning on known hardware and identifies control loops, sensor fusion, motor mixing and sensor processing as minimum knowledge | Use it as a risk/schedule reminder while still meeting the user’s custom-PCB requirement | It does not replace the project requirement to build the custom board; it only supports parallel bench validation |
+
+The first two video pages were not consistently machine-readable during the web review. Their linked repositories were therefore treated as the evidence source. The third video has enough indexed description to identify its F405/I2C/UART architecture. This limitation is recorded rather than inventing frame-by-frame claims about video content.
+
+### 23.3 Best-parts reuse map
+
+The strongest combined design is not a literal clone of one reference:
+
+| Design area | Best reference lesson | Rev A implementation |
+|---|---|---|
+| Main MCU | Shirley and the H743 review example | Bare STM32H743VIT6 in LQFP-100 with SWD, USB, boot/reset and a documented pin/timer/DMA map |
+| Primary IMU | Betaflight guidelines, OpenFC, H743 review | ICM-42688-P on local SPI with a dedicated low-noise rail, local interrupt and controlled ground return |
+| Barometer | Shirley/OpenFC comparison | BMP390 onboard under a protected vent, away from prop wash and switching inductors |
+| Compass/GNSS | Pixhawk/PX4 rationale and community warnings | External module on UART+I2C or DroneCAN, physically separated from battery/motor fields |
+| Modular ports | Pixhawk standards, Shirley GH connectors and PX4 companion guidance | Keyed/latching low-current ports with a project-defined pinout; exact Pixhawk compliance only after DS-009 verification |
+| ESC boundary | OpenFC and OpenESC | FC carries signal/ground only; ESC board owns battery current, gate drive, shunts, thermal copper and motors |
+| ESC protocol | Betaflight DShot/AM32/OpenESC | DShot first if the teammate’s ESC supports it; bidirectional DShot only after bench validation; PWM fallback |
+| Power | Betaflight/H743 review warnings | External regulated FC 5 V, dedicated sensor rail, separate CM5 buck and external current shunt/voltage sense |
+| Firmware | PX4/ArduPilot official docs plus Udayate learning code | ArduPilot-first or PX4-first integration; Udayate only for learning/bench estimator patterns, not a drop-in flight stack |
+| CM5 | Official Raspberry Pi CM5/CM5IO docs | Separate CM5 carrier with camera/lidar interfaces and independent 5 V power; no CM5 soldered to FC |
+| Development process | OpenFC production files and Phil’s Lab workflow | KiCad hierarchy, ERC/DRC, explicit pinout, manufacturing exports, current-limited bring-up and evidence logs |
+
+---
+
+## 24. Raspberry Pi Compute Module 5 integration
+
+### 24.1 CM5 versus standard Pi 5 and CM4
+
+The chosen name should be **Raspberry Pi Compute Module 5 (CM5)**. CM5 is the compute module form of the Raspberry Pi 5 generation, based on BCM2712, with optional RAM/eMMC variants and two 100-pin high-density connectors. It has no normal onboard USB, HDMI, Ethernet or camera sockets. A carrier board supplies those interfaces and the power/control circuitry. [Raspberry Pi’s Compute Module documentation](https://www.raspberrypi.com/documentation/computers/compute-module.html) describes CM5IO as a development carrier and reference design for a smaller custom carrier.
 
 CM4 is a Pi 4-generation module. It can be a software fallback if already available, but it is not the preferred new design for this project because CM5 provides more Pi 5-class compute and expanded high-speed I/O. CM5 and CM4 share a similar module form factor, but the carrier interface and exposed capabilities are not identical; a CM4 carrier is not assumed to provide full CM5 functionality.
 
@@ -1009,7 +1619,7 @@ CM4 is a Pi 4-generation module. It can be a software fallback if already availa
 | Power | Separate 5.1 V-class, 5 A-capable buck, with bulk capacitance, fuse/current limit and thermal validation | The CM5 datasheet specifies a single +5 V supply; camera/USB/perception loads create transient demand |
 | Cooling | Carrier-level passive/active cooling as required by measured workload | YOLO and image processing are sustained loads, not just idle Linux operation |
 
-Do not attach the CM5 module directly to the FC through an improvised daughterboard, and do not mount a CM5IO on the flight-control PCB. If a custom carrier is required, use the official [CM5 design files](http[LOCAL_SOURCE] as a reference and treat it as its own PCB workstream.
+Do not attach the CM5 module directly to the FC through an improvised daughterboard, and do not mount a CM5IO on the flight-control PCB. If a custom carrier is required, use the official [CM5 design files](https://www.raspberrypi.com/documentation/computers/compute-module.html) as a reference and treat it as its own PCB workstream.
 
 ### 24.3 CM5-to-FC data ownership
 
@@ -1033,7 +1643,7 @@ The CM5 may perform:
 
 The CM5 must not perform the only copy of the inner rate loop, the only arming decision, direct motor PWM/DShot generation, or the only RC-loss failsafe. A CM5 message must carry a timestamp/sequence, frame definition, validity/confidence and timeout policy. The FC rejects stale, malformed, out-of-range or frame-inconsistent commands.
 
-PX4 documents companion-computer collision prevention using offboard sensor data and `OBSTACLE_DISTANCE`; ArduPilot documents MAVLink companion computers and rangefinder/proximity paths. Those interfaces are the correct integration direction, but a single camera or single-point lidar does not guarantee all-direction collision avoidance. See [PX4 collision prevention](http[LOCAL_SOURCE] [PX4 companion connection](http[LOCAL_SOURCE] [ArduPilot companion computers](http[LOCAL_SOURCE] and [ArduPilot object avoidance](http[LOCAL_SOURCE]
+PX4 documents companion-computer collision prevention using offboard sensor data and `OBSTACLE_DISTANCE`; ArduPilot documents MAVLink companion computers and rangefinder/proximity paths. Those interfaces are the correct integration direction, but a single camera or single-point lidar does not guarantee all-direction collision avoidance. See [PX4 collision prevention](https://docs.px4.io/main/en/computer_vision/collision_prevention), [PX4 companion connection](https://docs.px4.io/main/en/companion_computer/pixhawk_companion), [ArduPilot companion computers](https://ardupilot.org/dev/docs/companion-computers.html), and [ArduPilot object avoidance](https://ardupilot.org/copter/docs/common-object-avoidance-landing-page.html).
 
 ---
 
@@ -1086,7 +1696,7 @@ The primary ICM-42688-P and BMP390 stay on the FC PCB. The external compass/GNSS
 
 ### 25.3 Connector family and proposed pin contract
 
-The preferred FC low-current connector family is **JST GH 1.25 mm, keyed and latching**, or an equivalent locking family. This is a mechanical and harness recommendation, not a claim of Pixhawk compatibility. Exact Pixhawk compliance requires the selected DS-009/related standard revision and its full pinout/mechanical rules. Use the [Pixhawk standards overview](http[LOCAL_SOURCE] and [Pixhawk Standards repository](http[LOCAL_SOURCE] as the governing reference if that route is selected.
+The preferred FC low-current connector family is **JST GH 1.25 mm, keyed and latching**, or an equivalent locking family. This is a mechanical and harness recommendation, not a claim of Pixhawk compatibility. Exact Pixhawk compliance requires the selected DS-009/related standard revision and its full pinout/mechanical rules. Use the [Pixhawk standards overview](https://pixhawk.org/standards/) and [Pixhawk Standards repository](https://github.com/pixhawk/Pixhawk-Standards) as the governing reference if that route is selected.
 
 | Port label | Logical signals | Connector guidance | Notes |
 |---|---|---|---|
@@ -1109,7 +1719,7 @@ Do not use the OpenESC 8-pin battery-inclusive harness pinout on this FC. OpenES
 
 ### 26.1 FC-to-ESC protocol decision
 
-Use four signal-level DShot channels as the first digital interface if the selected ESC supports them. DShot provides a defined digital command frame and can use the same line for bidirectional telemetry on supported firmware. [Betaflight’s DShot documentation](http[LOCAL_SOURCE] describes the bidirectional line and rate trade-offs.
+Use four signal-level DShot channels as the first digital interface if the selected ESC supports them. DShot provides a defined digital command frame and can use the same line for bidirectional telemetry on supported firmware. [Betaflight’s DShot documentation](https://github.com/betaflight/betaflight.com/blob/master/docs/development/API/Dshot.mdx) describes the bidirectional line and rate trade-offs.
 
 | Option | Benefits | Cost/risk | Rev A position |
 |---|---|---|---|
@@ -1133,10 +1743,10 @@ The ESC/motor team must provide:
 6. whether bidirectional DShot/EDT/separate telemetry is supported;
 7. current/voltage shunt location and output scaling for FC ADCs;
 8. BEC/5 V output rating and whether it may power FC, receiver, lidar or CM5;
-9. firmware, bootloader and programming method; [AM32](http[LOCAL_SOURCE] is an open ESC-firmware reference, not an automatic compatibility guarantee;
+9. firmware, bootloader and programming method; [AM32](https://github.com/am32-firmware/AM32) is an open ESC-firmware reference, not an automatic compatibility guarantee;
 10. a propeller-off bench test procedure and current limit.
 
-The [OpenESC-20x20 project](http[LOCAL_SOURCE] is a valuable reference because it documents a 4-in-1 AM32 ESC, 2–6S operation, 40 A/channel class, current sensing and a separate high-current board. Its exact MOSFET/gate-driver/shunt/regulator design should be treated as that board’s design, not a generic recipe for the teammate’s ESC.
+The [OpenESC-20x20 project](https://github.com/OpenDrone-hw/OpenESC-20x20) is a valuable reference because it documents a 4-in-1 AM32 ESC, 2–6S operation, 40 A/channel class, current sensing and a separate high-current board. Its exact MOSFET/gate-driver/shunt/regulator design should be treated as that board’s design, not a generic recipe for the teammate’s ESC.
 
 ### 26.3 Motor and propeller selection
 
@@ -1175,7 +1785,7 @@ Candidate classes:
 | Payload/sensor 7–10 inch quad | EMAX ECO II 2810/2814 or comparable lower-KV motor | More plausible for CM5 + camera + lidar; exact KV/prop depends on MTOW and desired endurance |
 | Larger UAS/UAM-style demonstrator | Larger low-KV propulsion system | Cannot be responsibly selected until frame, MTOW, prop diameter and battery voltage are supplied |
 
-Reference pages: [T-Motor F60 Pro V](http[LOCAL_SOURCE] [EMAX ECO II 2207](http[LOCAL_SOURCE] and [EMAX ECO II 2814](http[LOCAL_SOURCE] These are sourcing references, not a final order list.
+Reference pages: [T-Motor F60 Pro V](https://tmotorhobby.com/goods.php?id=1183), [EMAX ECO II 2207](https://emaxmodel.com/products/emax-eco-ii-series-2207-3-6s-1700kv-1900kv-2400kv-2750kv-brushless-motor), and [EMAX ECO II 2814](https://shop.emaxmodel.com/products/emax-ecoii-2814-730kv-830kv-brushless-motor-for-rc-drone). These are sourcing references, not a final order list.
 
 ### 26.4 LiPo and power tree
 
@@ -1196,7 +1806,7 @@ External PDB/shunt ──> scaled VBAT/CURR outputs ──> FC ADCs
 
 For planning, a 25 W CM5 output at 90% efficiency is approximately 27.8 W from the battery: about 1.9 A at 4S nominal or 1.25 A at 6S nominal. The actual current changes with workload and conversion efficiency. The CM5 carrier regulator must be checked for input transients, thermal dissipation, cable drop, USB/camera load and brownout behavior.
 
-Tattu’s published battery tables illustrate the mass trade-off: small high-C 6S 1200/1400 mAh packs are around 200–222 g in the cited FPV range, while a 6S 5000 mAh 60C pack is listed around 755 g. See the [Tattu FPV battery brochure](http[LOCAL_SOURCE] and [current R-Line listings](http[LOCAL_SOURCE] Do not order a “big” battery until the selected motor/prop/ESC set can lift its mass with the required margin.
+Tattu’s published battery tables illustrate the mass trade-off: small high-C 6S 1200/1400 mAh packs are around 200–222 g in the cited FPV range, while a 6S 5000 mAh 60C pack is listed around 755 g. See the [Tattu FPV battery brochure](https://www.genstattu.com/content/instock/rc_product_brochure.pdf) and [current R-Line listings](https://genstattu.com/tattu-r-line-version-5-0-batteries/?page=2). Do not order a “big” battery until the selected motor/prop/ESC set can lift its mass with the required margin.
 
 ---
 
@@ -1210,15 +1820,15 @@ A downward or forward single-point time-of-flight sensor returns one range along
 
 | Module | Published capability | Interface | Approx. mass/form factor | Best use here | Main limitation |
 |---|---|---|---|---|---|
-| [Benewake TF-Luna](http[LOCAL_SOURCE] | 0.2–8 m, up to 250 Hz, ≤0.35 W | UART/I2C/I/O | Small, under 5 g class | Downward altitude/landing on `LIDAR_FC` | Single beam, surface/lighting limits, verify signal level |
-| [Benewake TFmini-S](http[LOCAL_SOURCE] | 0.1–12 m, configurable up to 1 kHz | UART/I2C/I/O | 42×15×16 mm, about 5 g | Downward or one-direction range | Not a surrounding obstacle sensor |
-| [Benewake TF02-i](http[LOCAL_SOURCE] | 0.1–40 m, up to 100 Hz conservative design value | CAN/RS-485 | 69×40.5×31.25 mm, about 60 g | Robust external forward/downward range node | Heavier and higher-power than TF-Luna/TFmini-S |
-| [LightWare SF20/C](http[LOCAL_SOURCE] | 0.2–100 m, up to thousands of readings/s depending mode | USB/UART/I2C | About 7.5 g | High-quality single-beam range/altitude | Cost; one beam still is not a map |
-| [LightWare SF45/B](http[LOCAL_SOURCE] | 320° scan, 0.2–50 m, high-rate scan modes | USB/UART/I2C | About 59 g | A single scanning lidar for obstacle sectors | Expensive; mounting/scan geometry and sunlight tests required |
-| [RPLIDAR A1](http[LOCAL_SOURCE] | 360° planar, about 0.15–12 m, about 5.5 Hz | UART, 3.3 V logic | About 170 g | Indoor mapping/large prototype demonstration | Heavy, power-hungry for a small CM5 quad; planar only |
-| [RPLIDAR S2](http[LOCAL_SOURCE] | 360° planar, longer-range variants, about 10 Hz | High-speed UART/Ethernet | Larger/heavier class | Larger platform mapping | Cost, mass, power and planar coverage |
-| [Livox Mid-360](http[LOCAL_SOURCE] | 3-D 360° scan, 40–70 m depending reflectivity, 200 kpts/s | Ethernet | About 265 g, 6.5 W | 3-D mapping/SLAM research | Too heavy/power-hungry for a small first airborne prototype |
-| [ARK DIST SR/MR via PX4](http[LOCAL_SOURCE] | 8 cm to roughly 30/50 m | DroneCAN/UART | Compact smart-node class | Robust FC-connected range node | Availability/cost and exact integration need checking |
+| [Benewake TF-Luna](https://en.benewake.com/TFLuna/index_proid_328.html?proid=329) | 0.2–8 m, up to 250 Hz, ≤0.35 W | UART/I2C/I/O | Small, under 5 g class | Downward altitude/landing on `LIDAR_FC` | Single beam, surface/lighting limits, verify signal level |
+| [Benewake TFmini-S](https://en.benewake.com/TFminiS/index.html?proid=325) | 0.1–12 m, configurable up to 1 kHz | UART/I2C/I/O | 42×15×16 mm, about 5 g | Downward or one-direction range | Not a surrounding obstacle sensor |
+| [Benewake TF02-i](https://en.benewake.com/TF02i/index.html?proid=861) | 0.1–40 m, up to 100 Hz conservative design value | CAN/RS-485 | 69×40.5×31.25 mm, about 60 g | Robust external forward/downward range node | Heavier and higher-power than TF-Luna/TFmini-S |
+| [LightWare SF20/C](https://lightwarelidar.com/shop/sf20-c-100-m/) | 0.2–100 m, up to thousands of readings/s depending mode | USB/UART/I2C | About 7.5 g | High-quality single-beam range/altitude | Cost; one beam still is not a map |
+| [LightWare SF45/B](https://lightwarelidar.com/shop/sf45-b-50-m/) | 320° scan, 0.2–50 m, high-rate scan modes | USB/UART/I2C | About 59 g | A single scanning lidar for obstacle sectors | Expensive; mounting/scan geometry and sunlight tests required |
+| [RPLIDAR A1](https://www.slamtec.com/en/lidar/a1spec) | 360° planar, about 0.15–12 m, about 5.5 Hz | UART, 3.3 V logic | About 170 g | Indoor mapping/large prototype demonstration | Heavy, power-hungry for a small CM5 quad; planar only |
+| [RPLIDAR S2](https://www.slamtec.com/en/s2/spec) | 360° planar, longer-range variants, about 10 Hz | High-speed UART/Ethernet | Larger/heavier class | Larger platform mapping | Cost, mass, power and planar coverage |
+| [Livox Mid-360](https://www.livoxtech.com/de/mid-360/specs) | 3-D 360° scan, 40–70 m depending reflectivity, 200 kpts/s | Ethernet | About 265 g, 6.5 W | 3-D mapping/SLAM research | Too heavy/power-hungry for a small first airborne prototype |
+| [ARK DIST SR/MR via PX4](https://docs.px4.io/main/en/sensor/rangefinders) | 8 cm to roughly 30/50 m | DroneCAN/UART | Compact smart-node class | Robust FC-connected range node | Availability/cost and exact integration need checking |
 
 ### 27.3 Decision for the team
 
@@ -1228,7 +1838,7 @@ Choose one explicit purpose before buying:
 - **Collision/obstacle perception:** SF45/B, RPLIDAR or a CM5-compatible depth/scan device connected to CM5. The CM5 converts raw measurements into obstacle sectors, distance messages or high-level avoidance data.
 - **Longer industrial range:** TF02-i or an equivalent CAN/RS-485 module when its mass and mounting are acceptable.
 
-PX4’s [distance-sensor documentation](http[LOCAL_SOURCE] and ArduPilot’s [rangefinder setup](http[LOCAL_SOURCE] confirm UART/I2C/CAN connection patterns. ArduPilot distinguishes a single rangefinder from a proximity sensor in its [proximity documentation](http[LOCAL_SOURCE] that distinction should be preserved in the project report and presentation.
+PX4’s [distance-sensor documentation](https://docs.px4.io/main/en/sensor/rangefinders) and ArduPilot’s [rangefinder setup](https://en.ardupilot.org/copter/docs/common-rangefinder-setup.html) confirm UART/I2C/CAN connection patterns. ArduPilot distinguishes a single rangefinder from a proximity sensor in its [proximity documentation](https://en.ardupilot.org/copter/docs/common-proximity-landingpage.html); that distinction should be preserved in the project report and presentation.
 
 ---
 
@@ -1247,13 +1857,13 @@ One device may not satisfy both roles without an explicitly supported video-inge
 
 | Camera | Key capability | Interface/role | Recommendation |
 |---|---|---|---|
-| [Raspberry Pi Camera Module 3 Wide](http[LOCAL_SOURCE] | 12 MP Sony IMX708, autofocus/HDR, 120° wide variant, 1080p50/720p120 modes | CSI-2 to CM5 | Default first YOLO/detection/recording camera; calibrate wide-angle distortion |
-| [Raspberry Pi Global Shutter Camera](http[LOCAL_SOURCE] | Sony IMX296, 1456×1088 up to 60 Hz, global shutter | CSI-2 to CM5 | Prefer for fast motion, optical flow or visual odometry; lower resolution |
-| [Raspberry Pi HQ Camera](http[LOCAL_SOURCE] | 12.3 MP IMX477, C/CS or M12 lens options | CSI-2 to CM5 | Use when lens/optical selection matters; heavier and more mechanical work |
-| [Raspberry Pi AI Camera](http[LOCAL_SOURCE] | IMX500 with on-module neural accelerator | CSI-2 to CM5 | Optional lower-load inference path without an AI HAT; model packaging/software adds scope |
-| [RunCam Phoenix 2](http[LOCAL_SOURCE] | Analog CVBS, 1000 TVL, low-latency FPV, 5–36 V, about 9 g | Separate analog VTX | Pilot FPV camera only; good if the team has an analog VTX/goggles path |
-| [HDZero Nano90 V2](http[LOCAL_SOURCE] | Digital FPV camera, 720×540/90 or 960×720/60, low-latency HDZero system | HDZero VTX/goggles ecosystem | Pilot FPV option; proprietary system and rolling shutter |
-| [Caddx digital FPV comparison](http[LOCAL_SOURCE] | Digital FPV camera/VTX options, higher-resolution video | Proprietary VTX/goggles ecosystem | Pilot FPV option; not automatically a CM5 CSI input |
+| [Raspberry Pi Camera Module 3 Wide](https://www.raspberrypi.com/products/camera-module-3/) | 12 MP Sony IMX708, autofocus/HDR, 120° wide variant, 1080p50/720p120 modes | CSI-2 to CM5 | Default first YOLO/detection/recording camera; calibrate wide-angle distortion |
+| [Raspberry Pi Global Shutter Camera](https://www.raspberrypi.com/products/raspberry-pi-global-shutter-camera/) | Sony IMX296, 1456×1088 up to 60 Hz, global shutter | CSI-2 to CM5 | Prefer for fast motion, optical flow or visual odometry; lower resolution |
+| [Raspberry Pi HQ Camera](https://www.raspberrypi.com/products/raspberry-pi-high-quality-camera/) | 12.3 MP IMX477, C/CS or M12 lens options | CSI-2 to CM5 | Use when lens/optical selection matters; heavier and more mechanical work |
+| [Raspberry Pi AI Camera](https://www.raspberrypi.com/products/ai-camera/) | IMX500 with on-module neural accelerator | CSI-2 to CM5 | Optional lower-load inference path without an AI HAT; model packaging/software adds scope |
+| [RunCam Phoenix 2](https://shop.runcam.com/runcam-phoenix-2/) | Analog CVBS, 1000 TVL, low-latency FPV, 5–36 V, about 9 g | Separate analog VTX | Pilot FPV camera only; good if the team has an analog VTX/goggles path |
+| [HDZero Nano90 V2](https://docs.hd-zero.com/camera-nano90-v2) | Digital FPV camera, 720×540/90 or 960×720/60, low-latency HDZero system | HDZero VTX/goggles ecosystem | Pilot FPV option; proprietary system and rolling shutter |
+| [Caddx digital FPV comparison](https://www.caddxfpv.com/pages/product-comparison) | Digital FPV camera/VTX options, higher-resolution video | Proprietary VTX/goggles ecosystem | Pilot FPV option; not automatically a CM5 CSI input |
 
 ### 28.3 Decision for the project
 
@@ -1268,7 +1878,7 @@ The camera team must provide the CM5 team with:
 - whether output is detection, tracking, visual odometry, recording or pilot video;
 - test scenes for blur, sunlight, vibration and propeller/arm occlusion.
 
-The [Raspberry Pi camera documentation](http[LOCAL_SOURCE] should be used for FFC orientation, software configuration and supported modes.
+The [Raspberry Pi camera documentation](https://www.raspberrypi.com/documentation/accessories/camera.html) should be used for FFC orientation, software configuration and supported modes.
 
 ---
 
@@ -1469,54 +2079,54 @@ This schedule preserves the user’s required scope while making the first board
 
 ### Compute and companion integration
 
-- [Raspberry Pi Compute Module hardware](http[LOCAL_SOURCE]
-- [Raspberry Pi CM5 datasheet](http[LOCAL_SOURCE]
-- [Raspberry Pi CM5IO](http[LOCAL_SOURCE]
-- [PX4 companion computers](http[LOCAL_SOURCE]
-- [PX4 companion Raspberry Pi connection](http[LOCAL_SOURCE]
-- [PX4 collision prevention](http[LOCAL_SOURCE]
-- [ArduPilot companion computers](http[LOCAL_SOURCE]
-- [ArduPilot object avoidance](http[LOCAL_SOURCE]
+- [Raspberry Pi Compute Module hardware](https://www.raspberrypi.com/documentation/computers/compute-module.html)
+- [Raspberry Pi CM5 datasheet](https://datasheets.raspberrypi.com/cm5/cm5-datasheet.pdf)
+- [Raspberry Pi CM5IO](https://www.raspberrypi.com/products/compute-module-5-io-board/)
+- [PX4 companion computers](https://docs.px4.io/main/en/companion_computer/pixhawk_companion)
+- [PX4 companion Raspberry Pi connection](https://docs.px4.io/main/en/companion_computer/pixhawk_rpi)
+- [PX4 collision prevention](https://docs.px4.io/main/en/computer_vision/collision_prevention)
+- [ArduPilot companion computers](https://ardupilot.org/dev/docs/companion-computers.html)
+- [ArduPilot object avoidance](https://ardupilot.org/copter/docs/common-object-avoidance-landing-page.html)
 
 ### Lidar and camera
 
-- [Benewake TF-Luna](http[LOCAL_SOURCE]
-- [Benewake TFmini-S](http[LOCAL_SOURCE]
-- [Benewake TF02-i](http[LOCAL_SOURCE]
-- [LightWare SF20/C](http[LOCAL_SOURCE]
-- [LightWare SF45/B](http[LOCAL_SOURCE]
-- [PX4 supported rangefinders](http[LOCAL_SOURCE]
-- [ArduPilot rangefinder setup](http[LOCAL_SOURCE]
-- [ArduPilot proximity sensors](http[LOCAL_SOURCE]
-- [Raspberry Pi Camera Module 3](http[LOCAL_SOURCE]
-- [Raspberry Pi Global Shutter Camera](http[LOCAL_SOURCE]
-- [Raspberry Pi HQ Camera](http[LOCAL_SOURCE]
-- [Raspberry Pi AI Camera](http[LOCAL_SOURCE]
-- [RunCam Phoenix 2](http[LOCAL_SOURCE]
+- [Benewake TF-Luna](https://en.benewake.com/TFLuna/index_proid_328.html?proid=329)
+- [Benewake TFmini-S](https://en.benewake.com/TFminiS/index.html?proid=325)
+- [Benewake TF02-i](https://en.benewake.com/TF02i/index.html?proid=861)
+- [LightWare SF20/C](https://lightwarelidar.com/shop/sf20-c-100-m/)
+- [LightWare SF45/B](https://lightwarelidar.com/shop/sf45-b-50-m/)
+- [PX4 supported rangefinders](https://docs.px4.io/main/en/sensor/rangefinders)
+- [ArduPilot rangefinder setup](https://en.ardupilot.org/copter/docs/common-rangefinder-setup.html)
+- [ArduPilot proximity sensors](https://en.ardupilot.org/copter/docs/common-proximity-landingpage.html)
+- [Raspberry Pi Camera Module 3](https://www.raspberrypi.com/products/camera-module-3/)
+- [Raspberry Pi Global Shutter Camera](https://www.raspberrypi.com/products/raspberry-pi-global-shutter-camera/)
+- [Raspberry Pi HQ Camera](https://www.raspberrypi.com/products/raspberry-pi-high-quality-camera/)
+- [Raspberry Pi AI Camera](https://www.raspberrypi.com/products/ai-camera/)
+- [RunCam Phoenix 2](https://shop.runcam.com/runcam-phoenix-2/)
 
 ### ESC, motor and battery
 
-- [Betaflight DShot API](http[LOCAL_SOURCE]
-- [AM32 firmware](http[LOCAL_SOURCE]
-- [OpenESC-20x20](http[LOCAL_SOURCE]
-- [T-Motor F60 Pro V](http[LOCAL_SOURCE]
-- [EMAX ECO II 2207](http[LOCAL_SOURCE]
-- [EMAX ECO II 2814](http[LOCAL_SOURCE]
-- [Tattu FPV battery brochure](http[LOCAL_SOURCE]
-- [Tattu R-Line listings](http[LOCAL_SOURCE]
+- [Betaflight DShot API](https://github.com/betaflight/betaflight.com/blob/master/docs/development/API/Dshot.mdx)
+- [AM32 firmware](https://github.com/am32-firmware/AM32)
+- [OpenESC-20x20](https://github.com/OpenDrone-hw/OpenESC-20x20)
+- [T-Motor F60 Pro V](https://tmotorhobby.com/goods.php?id=1183)
+- [EMAX ECO II 2207](https://emaxmodel.com/products/emax-eco-ii-series-2207-3-6s-1700kv-1900kv-2400kv-2750kv-brushless-motor)
+- [EMAX ECO II 2814](https://shop.emaxmodel.com/products/emax-ecoii-2814-730kv-830kv-brushless-motor-for-rc-drone)
+- [Tattu FPV battery brochure](https://www.genstattu.com/content/instock/rc_product_brochure.pdf)
+- [Tattu R-Line listings](https://genstattu.com/tattu-r-line-version-5-0-batteries/?page=2)
 
 ### Standards and open references
 
-- [Pixhawk Reference Standards](http[LOCAL_SOURCE]
-- [Pixhawk Standards repository](http[LOCAL_SOURCE]
-- [OpenFC-Lite-Mini](http[LOCAL_SOURCE]
-- [HomeGliders FCV2](http[LOCAL_SOURCE]
-- [Shirley-FC-Dev-Board](http[LOCAL_SOURCE]
-- [Udayate](http[LOCAL_SOURCE]
-- [Udayate Kalman-AHRS](http[LOCAL_SOURCE]
-- [Udayate LSM6DSL library](http[LOCAL_SOURCE]
-- [Udayate Quaternion Visualiser](http[LOCAL_SOURCE]
-- [Pixhawk2.1 schematics](http[LOCAL_SOURCE]
+- [Pixhawk Reference Standards](https://pixhawk.org/standards/)
+- [Pixhawk Standards repository](https://github.com/pixhawk/Pixhawk-Standards)
+- [OpenFC-Lite-Mini](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini)
+- [HomeGliders FCV2](https://github.com/HomeGliders/FCV2)
+- [Shirley-FC-Dev-Board](https://github.com/Bare-Metal-Foundry/Shirley-FC-Dev-Board)
+- [Udayate](https://github.com/Ozonised/Udayate)
+- [Udayate Kalman-AHRS](https://github.com/Ozonised/Kalman-AHRS)
+- [Udayate LSM6DSL library](https://github.com/Ozonised/LSM6DSL-Platform-Independent-Library)
+- [Udayate Quaternion Visualiser](https://github.com/Ozonised/Quaternion-Visualiser)
+- [Pixhawk2.1 schematics](https://github.com/MRazgunas/pixhawk2.1)
 
 ---
 

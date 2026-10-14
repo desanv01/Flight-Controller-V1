@@ -391,9 +391,9 @@
   },
   "sheets": [],
   "text_variables": {
-    "RELEASE_STATUS": "RECOMMENDATION - NOT FOR FABRICATION",
-    "REVISION": "A-S09-STUDY",
-    "STAGE": "09 PLACEMENT ONLY"
+    "RELEASE_STATUS": "ENGINEERING PROTOTYPE - PHYSICAL VALIDATION PENDING",
+    "REVISION": "EVT1-PUBLIC",
+    "STAGE": "PUBLICATION"
   },
   "tuning_profiles": {
     "meta": {

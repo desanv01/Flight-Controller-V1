@@ -1,0 +1,29 @@
+[
+  {
+    "file": "FC_REV_A-BOM-JLCPCB.csv",
+    "rows": 77,
+    "references": 273,
+    "duplicate_references": [],
+    "unknown_board_references": [],
+    "dnp_references_present": [],
+    "bom_excluded_references_present": []
+  },
+  {
+    "file": "FC_REV_A-CPL-JLCPCB.csv",
+    "rows": 272,
+    "references": 272,
+    "duplicate_references": [],
+    "unknown_board_references": [],
+    "dnp_references_present": [],
+    "bom_excluded_references_present": []
+  },
+  {
+    "file": "FC_REV_A-JLCPCB-TO-SELECT.csv",
+    "rows": 19,
+    "references": 28,
+    "duplicate_references": [],
+    "unknown_board_references": [],
+    "dnp_references_present": [],
+    "bom_excluded_references_present": []
+  }
+]

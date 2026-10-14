@@ -1121,65 +1121,65 @@ The master record is not a final schematic/BOM until these are answered:
 
 ### 21.1 Official/primary technical sources
 
-- [Raspberry Pi Compute Module documentation](http[LOCAL_SOURCE]
-- [Raspberry Pi CM5 datasheet](http[LOCAL_SOURCE]
-- [Pixhawk standards](http[LOCAL_SOURCE]
-- [PX4 companion computers](http[LOCAL_SOURCE]
-- [PX4 collision prevention](http[LOCAL_SOURCE]
-- [PX4 rangefinders](http[LOCAL_SOURCE]
-- [ArduPilot companion computers](http[LOCAL_SOURCE]
-- [ArduPilot rangefinder setup](http[LOCAL_SOURCE]
-- [Betaflight manufacturer design guidelines](http[LOCAL_SOURCE]
-- [Betaflight DShot documentation](http[LOCAL_SOURCE]
-- [OpenDrone-hw OpenFC-Lite-Mini](http[LOCAL_SOURCE]
-- [OpenDrone-hw OpenESC-20x20](http[LOCAL_SOURCE]
-- [AM32 firmware](http[LOCAL_SOURCE]
-- [HomeGliders FCV2](http[LOCAL_SOURCE]
-- [Bare-Metal-Foundry Shirley-FC-Dev-Board](http[LOCAL_SOURCE]
-- [Raspberry Pi Camera Module 3](http[LOCAL_SOURCE]
-- [Raspberry Pi Global Shutter Camera](http[LOCAL_SOURCE]
-- [Raspberry Pi High Quality Camera](http[LOCAL_SOURCE]
-- [Raspberry Pi AI Camera](http[LOCAL_SOURCE]
-- [Benewake TF-Luna](http[LOCAL_SOURCE]
-- [Benewake TFmini-S](http[LOCAL_SOURCE]
-- [Benewake TF02-i](http[LOCAL_SOURCE]
-- [LightWare SF20/C](http[LOCAL_SOURCE]
-- [LightWare SF45/B](http[LOCAL_SOURCE]
-- [Slamtec RPLIDAR A1 specifications](http[LOCAL_SOURCE]
-- [Slamtec RPLIDAR S2 specifications](http[LOCAL_SOURCE]
-- [Livox Mid-360 specifications](http[LOCAL_SOURCE]
-- [T-Motor motor reference](http[LOCAL_SOURCE]
-- [EMAX ECO II 2207 motor reference](http[LOCAL_SOURCE]
-- [EMAX ECO II 2814 motor reference](http[LOCAL_SOURCE]
-- [Tattu battery brochure](http[LOCAL_SOURCE]
-- [Tattu R-Line battery range](http[LOCAL_SOURCE]
+- [Raspberry Pi Compute Module documentation](https://www.raspberrypi.com/documentation/computers/compute-module.html)
+- [Raspberry Pi CM5 datasheet](https://datasheets.raspberrypi.com/cm5/cm5-datasheet.pdf)
+- [Pixhawk standards](https://pixhawk.org/standards/)
+- [PX4 companion computers](https://docs.px4.io/main/en/companion_computer/pixhawk_companion)
+- [PX4 collision prevention](https://docs.px4.io/main/en/computer_vision/collision_prevention)
+- [PX4 rangefinders](https://docs.px4.io/main/en/sensor/rangefinders)
+- [ArduPilot companion computers](https://ardupilot.org/dev/docs/companion-computers.html)
+- [ArduPilot rangefinder setup](https://ardupilot.org/copter/docs/common-rangefinder-setup.html)
+- [Betaflight manufacturer design guidelines](https://betaflight.com/docs/development/manufacturer/manufacturer-design-guidelines)
+- [Betaflight DShot documentation](https://github.com/betaflight/betaflight.com/blob/master/docs/development/API/Dshot.mdx)
+- [OpenDrone-hw OpenFC-Lite-Mini](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini)
+- [OpenDrone-hw OpenESC-20x20](https://github.com/OpenDrone-hw/OpenESC-20x20)
+- [AM32 firmware](https://github.com/am32-firmware/AM32)
+- [HomeGliders FCV2](https://github.com/HomeGliders/FCV2)
+- [Bare-Metal-Foundry Shirley-FC-Dev-Board](https://github.com/Bare-Metal-Foundry/Shirley-FC-Dev-Board)
+- [Raspberry Pi Camera Module 3](https://www.raspberrypi.com/products/camera-module-3/)
+- [Raspberry Pi Global Shutter Camera](https://www.raspberrypi.com/products/raspberry-pi-global-shutter-camera/)
+- [Raspberry Pi High Quality Camera](https://www.raspberrypi.com/products/raspberry-pi-high-quality-camera/)
+- [Raspberry Pi AI Camera](https://www.raspberrypi.com/products/ai-camera/)
+- [Benewake TF-Luna](https://en.benewake.com/TFLuna/index_proid_328.html?proid=329)
+- [Benewake TFmini-S](https://en.benewake.com/TFminiS/index.html?proid=325)
+- [Benewake TF02-i](https://en.benewake.com/TF02i/index.html?proid=861)
+- [LightWare SF20/C](https://lightwarelidar.com/shop/sf20-c-100-m/)
+- [LightWare SF45/B](https://lightwarelidar.com/shop/sf45-b-50-m/)
+- [Slamtec RPLIDAR A1 specifications](https://www.slamtec.com/en/lidar/a1spec)
+- [Slamtec RPLIDAR S2 specifications](https://www.slamtec.com/en/s2/spec)
+- [Livox Mid-360 specifications](https://www.livoxtech.com/de/mid-360/specs)
+- [T-Motor motor reference](https://tmotorhobby.com/goods.php?id=1183)
+- [EMAX ECO II 2207 motor reference](https://emaxmodel.com/products/emax-eco-ii-series-2207-3-6s-1700kv-1900kv-2400kv-2750kv-brushless-motor)
+- [EMAX ECO II 2814 motor reference](https://shop.emaxmodel.com/products/emax-ecoii-2814-730kv-830kv-brushless-motor-for-rc-drone)
+- [Tattu battery brochure](https://www.genstattu.com/content/instock/rc_product_brochure.pdf)
+- [Tattu R-Line battery range](https://genstattu.com/tattu-r-line-version-5-0-batteries/?page=2)
 
 ### 21.2 Supplied repositories and educational references
 
-- [Udayate](http[LOCAL_SOURCE]
-- [Kalman-AHRS](http[LOCAL_SOURCE]
-- [LSM6DSL platform-independent library](http[LOCAL_SOURCE]
-- [Quaternion Visualiser](http[LOCAL_SOURCE]
-- [Pixhawk 2.1 reference repository](http[LOCAL_SOURCE]
+- [Udayate](https://github.com/Ozonised/Udayate)
+- [Kalman-AHRS](https://github.com/Ozonised/Kalman-AHRS)
+- [LSM6DSL platform-independent library](https://github.com/Ozonised/LSM6DSL-Platform-Independent-Library)
+- [Quaternion Visualiser](https://github.com/Ozonised/Quaternion-Visualiser)
+- [Pixhawk 2.1 reference repository](https://github.com/MRazgunas/pixhawk2.1)
 
 ### 21.3 User-supplied videos
 
-- [DIY FC video/reference 1](http[LOCAL_SOURCE]
-- [DIY FC video/reference 2](http[LOCAL_SOURCE]
-- [DIY FC video/reference 3](http[LOCAL_SOURCE]
-- [Udayate-related video](http[LOCAL_SOURCE]
+- [DIY FC video/reference 1](https://www.youtube.com/watch?v=XDYZoMRJFeQ)
+- [DIY FC video/reference 2](https://www.youtube.com/watch?v=6n7d8Jn2brQ)
+- [DIY FC video/reference 3](https://www.youtube.com/watch?v=wYC-siMWn70)
+- [Udayate-related video](https://www.youtube.com/watch?v=pUdvCbNR1gM&t=43s)
 
 The first two video pages were not reliably machine-readable in the previous review. Their associated repositories were analyzed where available; no unsupported claims were made from inaccessible video content.
 
 ### 21.4 User-supplied Reddit references
 
-- [Custom flight controller, r/fpv](http[LOCAL_SOURCE]
-- [Custom flight controller from scratch, r/diydrones](http[LOCAL_SOURCE]
-- [Anyone built their own flight controller, r/diydrones](http[LOCAL_SOURCE]
-- [Custom flight controller, r/Multicopter](http[LOCAL_SOURCE]
-- [User-supplied PCB review link, normalized](http[LOCAL_SOURCE]
-- [STM32H743 flight-controller review, r/PCB](http[LOCAL_SOURCE]
-- [Flight-controller build, r/diydrones](http[LOCAL_SOURCE]
+- [Custom flight controller, r/fpv](https://www.reddit.com/r/fpv/comments/1r5rvne/build_a_custom_flight_controller/)
+- [Custom flight controller from scratch, r/diydrones](https://www.reddit.com/r/diydrones/comments/1q5k508/built_a_custom_flight_controller_from_scratch/)
+- [Anyone built their own flight controller, r/diydrones](https://www.reddit.com/r/diydrones/comments/1oibb96/anyone_here_built_their_own_flight_controller/)
+- [Custom flight controller, r/Multicopter](https://www.reddit.com/r/Multicopter/comments/1s6r7ht/building_a_custom_flight_controller_from_scratch/)
+- [User-supplied PCB review link, normalized](https://www.reddit.com/r/PCB/comments/1qci8jg/review_request_drone_flight_controller_with/)
+- [STM32H743 flight-controller review, r/PCB](https://www.reddit.com/r/PCB/comments/1q3kh9f/stm32h743_flight_controller_review_request/)
+- [Flight-controller build, r/diydrones](https://www.reddit.com/r/diydrones/comments/1ts9v3u/building_a_flight_controller/)
 
 The normalized PCB-review link above reflects the malformed path supplied in the original list. It must be rechecked before relying on that post for a specific claim.
 

@@ -1,0 +1,11 @@
+[
+  {
+    "file": "FC_REV_A-BOM-PCBWay.csv",
+    "rows": 77,
+    "references": 273,
+    "duplicate_references": [],
+    "unknown_board_references": [],
+    "dnp_references_present": [],
+    "bom_excluded_references_present": []
+  }
+]

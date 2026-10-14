@@ -1,7 +1,7 @@
 {
-    "$schema": "http[LOCAL_SOURCE]",
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
     "coordinate_units": "mm",
-    "date": "2026-10-14T18:01:31",
+    "date": "2026-10-14T18:18:07",
     "ignored_checks": [
         {
             "description": "Global label only appears once in the schematic",
@@ -140,10 +140,10 @@
                         {
                             "description": "Label '3V3_MAIN'",
                             "pos": {
-                                "x": 0.635,
-                                "y": 0.381
+                                "x": 1.9558,
+                                "y": 0.4826
                             },
-                            "uuid": "2a447e41-f5d1-566d-8437-599f9606b015"
+                            "uuid": "7b07679c-07f1-5cd7-bd5b-3b385d470120"
                         }
                     ],
                     "severity": "warning",
@@ -247,10 +247,10 @@
                         {
                             "description": "Label '3V3_MAIN'",
                             "pos": {
-                                "x": 0.2794,
+                                "x": 0.9271,
                                 "y": 3.9243
                             },
-                            "uuid": "f6b00dd2-0ee1-56de-afef-4b753d2aaf22"
+                            "uuid": "68211be1-3098-5a9e-9290-22e6429d775c"
                         },
                         {
                             "description": "Hierarchical Label '3V3_REF'",

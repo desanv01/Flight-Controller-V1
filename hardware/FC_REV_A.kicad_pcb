@@ -11,7 +11,7 @@
 		(title "FC_REV_A Flight Controller")
 		(date "2026-09-14")
 		(rev "A")
-		(company "FC DRONE PROJECT")
+		(company "Desan Vasu")
 		(comment 2 "ENGINEERING VALIDATION EVT1")
 		(comment 3 "6-layer 1.60 mm - fabrication release")
 		(comment 4 "NOT FLIGHT RELEASED until the validation worksheet passes")

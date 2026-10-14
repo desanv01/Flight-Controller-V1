@@ -94,10 +94,38 @@ Retrieved/reviewed 2026-09-10. File hashes, sizes and page counts are in `hardwa
 
 | Subject | Controlling evidence | Disposition |
 |---|---|---|
-| POWER1 header | Molex 43045-0600, SD-43045-001 PSD001 (historical source reference)(SN): 1 +BATT, 2 GND, 3 /CURR, 4 NC, 5–8 M1–M4. Only 2 and 5–8 enter the five-wire FC harness. Native eSR link is a family mismatch; eSH controls connector-family geometry. |
+| POWER1 header | Molex 43045-0600, [SD-43045-001 PSD001](https://www.molex.com/content/dam/molex/molex-dot-com/products/automated/en-us/salesdrawingpdf/430/43045/430450600_sd.pdf), H1, 2024-09-27 | Six factory tails, 3 mm pitch, 1.02 ±0.05 mm PCB holes, 3 mm locator. First row 9.6 mm from board edge satisfies drawing's 10.16 mm maximum. Recommended 1.57 mm board versus nominal 1.6 mm requires physical fit verification. |
+| POWER1 performance | [PS-43045](https://www.molex.com/content/dam/molex/molex-dot-com/products/automated/en-us/productspecificationpdf/430/43045/PS-43045-001.pdf), Rev R, 2025-11-14 | Current depends on wire, populated circuits, PCB and thermal conditions. Product maximum is not board ampacity approval. |
+| POWER1 cable | [43030-0038 terminal](https://www.molex.com/en-us/products/part-detail/430300038); [43025 housing series](https://www.molex.com/en-us/products/series-chart/43025) | 43025-0600 housing; 43030-0038 18 AWG terminals only in cavities 1–4. Cavities 5/6 empty. |
+| ESC connector family | [JST eSH](https://www.jst-mfg.com/product/pdf/eng/eSH.pdf), current undated four-page family sheet | FC SM05B-SRSS-TB five-way. Supplied eight-way PDF supports family geometry but does not replace native part identity. |
+| ESC board identity and pin map | Untouched supplied OpenESC archive, native `OpenESC-30x30-rev3.4/hardware/4in1.kicad_pcb` | Native board identifies Rev 3.3 despite archive name. Native J1 MPN SM08B-SRSS-TB(LF)(SN): 1 +BATT, 2 GND, 3 /CURR, 4 NC, 5–8 M1–M4. Only 2 and 5–8 enter the five-wire FC harness. Native eSR link is a family mismatch; eSH controls connector-family geometry. |
 | USB | Supplied USB4105 B3 2023-02-24; retained Stage 09 official B4 2023-12-18 | Controlled Stage 09 J9 geometry and S1–S4 remain. Supplied older revision does not supersede B4. |
 | microSD | Supplied MEM2075 specification; retained Stage 09 drawing A1 2020-09-10 | Controlled J12 geometry and models preserved. |
-| Battery/BEC architecture | Dogcom 6S battery (historical source reference)(SN).pdf | 152648 | `f1ae56031598bddeca94cae278a3807cfd90ba330e9f835f8e277df8cd10878a` |
+| Battery/BEC architecture | [Dogcom 6S battery](https://www.dogcombattery.com/products/mck-v2-dogcom-1380mah-160c-6s-222v), [Matek BEC12S-PRO](https://www.mateksys.com/?portfolio=bec12s-pro) | 6S reaches 25.2 V; FC receives regulated 5 V class power only. External fuse, correct polarity, strain relief and BEC configuration remain mandatory assembly/bench gates. |
+
+The FC local Molex footprint derives from the installed official KiCad footprint, with physical 5/6 changed to unnumbered, unnetted 1.02 mm NPTH and all-layer copper exclusions. The header still has six metal tails. The model is a **simplified source-dimensional CadQuery envelope**, not a manufacturer STEP or mating/latch simulation. Its body, tail and locator envelope can support collision review only. The JST footprint and STEP derive from installed official KiCad libraries. `connector_footprint_audit.json` records source geometry hashes.
+
+POWER1 physical map: 1 +5V A; 2 GND A; 3 +5V B; 4 GND B; 5/6 no cable terminals and no electrical PCB copper. FC ESC map: 1 GND; 2 M1; 3 M2; 4 M3; 5 M4. Signal ground remains common with power ground. No ESC battery or current contact is introduced.
+
+FC mounting remains 20×20 mm with Ø2.2 mm holes. ESC README mounting is 30.5×30.5 mm with Ø4 mm holes: direct stacking is **not qualified**. A separately reviewed frame/bracket and harness strain relief are required. No fabrication or procurement output is authorized by this evidence index.
+
+ESC cable housing recommendation is SHR-05V-S-B on the FC end. The archive calls the contact SSH-003T-P0.2; the official SH catalog calls it SSH-003T-P0.2-H. This suffix discrepancy remains **OPEN for exact contact procurement and crimp-tool qualification**; the supplied G-variant is not adopted as an exact substitute. POWER1 equal-length positive branches and equal-length ground branches are recommended at ≤100 mm one-way; 150 mm is a bench fallback only after voltage-drop testing. Design basis remains 3 A continuous and 4 A for 100 ms.
+
+Routing-tool references: [Freerouting v2.4.1 router settings](https://raw.githubusercontent.com/freerouting/freerouting/v2.4.1/src/main/java/app/freerouting/settings/RouterSettings.java), [fanout settings](https://raw.githubusercontent.com/freerouting/freerouting/v2.4.1/src/main/java/app/freerouting/settings/FanoutSettings.java), and [optimizer settings](https://raw.githubusercontent.com/freerouting/freerouting/v2.4.1/src/main/java/app/freerouting/settings/OptimizerSettings.java). Router output is always imported into an isolated native KiCad board and checked; its own routing score is not design acceptance.
+
+Retained controlling Stage 09 drawings: [GCT USB4105 B4, 2023-12-18](https://gct.co/files/drawings/usb4105.pdf), 164,547 bytes, SHA-256 `fb331fbabee8392ed2937ed757c1610cb0f174b84625147c0b580a18eea8c0e5`; [GCT MEM2075 A1, 2020-09-10](https://gct.co/files/drawings/mem2075.pdf), 144,177 bytes, SHA-256 `9f1a621a3f7c649fd51f8ea49189e91ab2a4345eefcf7024382a072b782e90a3`. Their retained source files, not current URL contents, define these hashes.
+
+
+
+### Retained PDF sizes and SHA-256
+
+| File | Bytes | SHA-256 |
+|---|---:|---|
+| 430450600_sd.pdf | 237283 | `571c8a381be263cf8f92b064fe18dbc6ce6161e8cb2e931d186e8280b9f8338a` |
+| eSH.pdf | 84427 | `ea3071ca5ee5a6069eba534fa39a10f34c9fb742ee42135a69ab4156bfa0f5de` |
+| MEM2075-00-140-01A.pdf | 262654 | `95ffcfa42a69fc6326429e06df6e4bc60b5b3413c5f192b6d11889af2cd1f828` |
+| PS-43045-001.pdf | 1262037 | `b5f03865599a0576c43ab82828960d874a12bcc9564eda619750ff9e26a81204` |
+| SM08B-SRSS-G-TB(LF)(SN).pdf | 152648 | `f1ae56031598bddeca94cae278a3807cfd90ba330e9f835f8e277df8cd10878a` |
 | USB4105 - Product Drawing.pdf | 452595 | `aff194b6a5926126b9ec863396f0540dfc0aa908907bb5e646e59777f103541f` |
 
 OpenESC archive: 19,212,394 bytes; SHA-256 `a9cf0e3f0e84c78ac6b60a68b79d761cf84910aecb76184da6f00a3a22fd7ef8`. Native board member SHA-256 `683125806b93f808d9c5cc2e10956f470e8ec7e537db047b83ab7524e60463e2`. Originals were preserved.

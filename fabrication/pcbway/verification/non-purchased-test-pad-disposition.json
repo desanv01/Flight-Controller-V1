@@ -1,0 +1,19 @@
+{
+  "removed_from_supplier_BOM": [
+    "TP2",
+    "TP8",
+    "TP9",
+    "TP10",
+    "TP11",
+    "TP12",
+    "TP13",
+    "TP14",
+    "TP15",
+    "TP7",
+    "TP3",
+    "TP1",
+    "TP6",
+    "TP4"
+  ],
+  "reason": "PCB test pads are artwork, not separately purchased components. Original supplier-format BOM retained in assembly/reference. No electrical or placement source changed."
+}

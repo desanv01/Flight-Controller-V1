@@ -54,7 +54,7 @@ The OpenDrone FC and ESC are electrically related, but adopting both unchanged w
 | Mounting | 20 × 20 mm |
 | Board size | Approximately 31.2 × 33.0 mm |
 
-Sources: [OpenESC repository](http[LOCAL_SOURCE] [OpenESC README](http[LOCAL_SOURCE] [OpenESC technical notes](http[LOCAL_SOURCE]
+Sources: [OpenESC repository](https://github.com/OpenDrone-hw/OpenESC-20x20), [OpenESC README](https://github.com/OpenDrone-hw/OpenESC-20x20/blob/main/README.md), [OpenESC technical notes](https://raw.githubusercontent.com/OpenDrone-hw/OpenESC-20x20/refs/heads/main/AGENTS.md).
 
 Its connector is not signal/ground-only:
 
@@ -94,9 +94,9 @@ The ESC’s pin 1 is raw battery voltage, not a regulated 5 V output. Therefore,
 | Board size | Approximately 37.9 × 37.9 mm |
 | PCB | 6-layer, 1.6 mm |
 
-Sources: [OpenFC-Lite repository](http[LOCAL_SOURCE] [OpenFC-Lite README](http[LOCAL_SOURCE] [OpenFC-Lite technical notes](http[LOCAL_SOURCE] [30×30 product page](http[LOCAL_SOURCE]
+Sources: [OpenFC-Lite repository](https://github.com/OpenDrone-hw/OpenFC-Lite), [OpenFC-Lite README](https://raw.githubusercontent.com/OpenDrone-hw/OpenFC-Lite/refs/heads/main/README.md), [OpenFC-Lite technical notes](https://raw.githubusercontent.com/OpenDrone-hw/OpenFC-Lite/refs/heads/main/AGENTS.md), [30×30 product page](https://opendrone.be/products/openfc-lite?Model=30%C3%9730).
 
-The RP2350 datasheet confirms that RP2354B is a QFN-80 device with 48 GPIO, 520 kB SRAM, 2 MB stacked flash, dual Cortex-M33 processors, and an internal switched-mode core supply. [Raspberry Pi RP2350 datasheet](http[LOCAL_SOURCE]
+The RP2350 datasheet confirms that RP2354B is a QFN-80 device with 48 GPIO, 520 kB SRAM, 2 MB stacked flash, dual Cortex-M33 processors, and an internal switched-mode core supply. [Raspberry Pi RP2350 datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)
 
 Its power architecture is approximately:
 
@@ -125,13 +125,13 @@ The earlier OpenFC-Lite-Mini design is the smaller RP2354A version:
 - no barometer
 - Betaflight firmware
 
-Source: [OpenFC-Lite-Mini repository](http[LOCAL_SOURCE]
+Source: [OpenFC-Lite-Mini repository](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini).
 
 The Mini is mechanically closer to the OpenESC-20x20, but it is even less suitable as the FC FC because of the RP2354A, limited port capacity, Betaflight architecture, and absence of BMP390.
 
 ## OpenDrone project status
 
-`[VERIFIED]` The OpenDrone organization lists OpenESC and OpenFC-Lite as open-hardware projects under CERN-OHL-S-2.0. The current roadmap still classifies the products under alpha/early-stage development, while the 30×30 OpenFC product is marked as coming soon. Sources: [OpenDrone organization](http[LOCAL_SOURCE] [OpenDrone roadmap](http[LOCAL_SOURCE]
+`[VERIFIED]` The OpenDrone organization lists OpenESC and OpenFC-Lite as open-hardware projects under CERN-OHL-S-2.0. The current roadmap still classifies the products under alpha/early-stage development, while the 30×30 OpenFC product is marked as coming soon. Sources: [OpenDrone organization](https://github.com/OpenDrone-hw), [OpenDrone roadmap](https://opendrone.be/roadmap).
 
 Therefore:
 
@@ -147,25 +147,25 @@ The earlier reference set was not intended to be copied wholesale. Its purpose w
 
 | Reference | Useful contribution | What must not be copied blindly |
 |---|---|---|
-| [OpenFC-Lite-Mini](http[LOCAL_SOURCE] | Quiet IMU rail, compact six-layer layout, microSD, external ESC concept | RP2354A, BMI270, PIO UARTs, no barometer, raw-battery assumptions |
-| [OpenFC-Lite](http[LOCAL_SOURCE] | Larger OpenDrone FC architecture, modular connectors, sensor separation | RP2354B pinout, Betaflight target, analog OSD chain, no reverse-polarity protection |
-| [Shirley-FC-Dev-Board](http[LOCAL_SOURCE] | Closest H743 architecture, separated power domains, SDMMC, USB ESD, CAN, SWD, modular ports | H743ZIT6 pinout, sensor selection, exact firmware mapping |
-| [Shirley hardware overview](http[LOCAL_SOURCE] | H743 system organization and bring-up structure | Exact component values without rechecking datasheets |
-| [Shirley design decisions](http[LOCAL_SOURCE] | Power and interface rationale | Direct schematic reuse without package/pin verification |
-| [Pixhawk hardware](http[LOCAL_SOURCE] | Modular interface philosophy, power monitoring, serviceability | Pixhawk-compatible claims, connector pinouts, firmware identity |
-| [Pixhawk standards](http[LOCAL_SOURCE] | Functional port naming and documentation discipline | Assuming our board is electrically Pixhawk-compatible |
-| [HomeGliders FCV2](http[LOCAL_SOURCE] | Hierarchical schematic organization and workflow | Exact circuit values and validation claims |
-| [HomeGliders video](http[LOCAL_SOURCE] | Educational build process | Electrical authority |
-| [STM32F405 educational build](http[LOCAL_SOURCE] | MCU/sensor bring-up sequencing | Production autopilot architecture |
-| [Betaflight manufacturer guidelines](http[LOCAL_SOURCE] | SPI IMU, interrupt, timer/DMA, ADC and layout review prompts | Betaflight-specific firmware assumptions |
-| [H743 community review](http[LOCAL_SOURCE] | Review checklist for H743/IMU/barometer boards | Community claims without primary verification |
-| [Custom FC discussion](http[LOCAL_SOURCE] | Current-sense and regulator review prompts | Part ratings and layout claims |
-| [Custom FC discussion](http[LOCAL_SOURCE] | Scope and risk awareness | Validated circuit basis |
-| [Custom FC discussion](http[LOCAL_SOURCE] | Failure-mode questions | Safety evidence |
-| [Custom FC discussion](http[LOCAL_SOURCE] | Bench-first development sequence | Complete design reference |
-| [Udayate](http[LOCAL_SOURCE] and [Kalman-AHRS](http[LOCAL_SOURCE] | Driver and estimator learning | Drop-in autopilot firmware |
-| [LSM6DSL library](http[LOCAL_SOURCE] | Sensor abstraction ideas | Selected IMU implementation |
-| [Pixhawk 2.1 repository](http[LOCAL_SOURCE] | Documentation and redundancy concepts | Old pinout, licensing, and hardware assumptions |
+| [OpenFC-Lite-Mini](https://github.com/OpenDrone-hw/OpenFC-Lite-Mini) | Quiet IMU rail, compact six-layer layout, microSD, external ESC concept | RP2354A, BMI270, PIO UARTs, no barometer, raw-battery assumptions |
+| [OpenFC-Lite](https://github.com/OpenDrone-hw/OpenFC-Lite) | Larger OpenDrone FC architecture, modular connectors, sensor separation | RP2354B pinout, Betaflight target, analog OSD chain, no reverse-polarity protection |
+| [Shirley-FC-Dev-Board](https://github.com/Bare-Metal-Foundry/Shirley-FC-Dev-Board) | Closest H743 architecture, separated power domains, SDMMC, USB ESD, CAN, SWD, modular ports | H743ZIT6 pinout, sensor selection, exact firmware mapping |
+| [Shirley hardware overview](https://github.com/Bare-Metal-Foundry/Shirley-FC-Dev-Board/blob/main/docs/hardware/overview.md) | H743 system organization and bring-up structure | Exact component values without rechecking datasheets |
+| [Shirley design decisions](https://github.com/Bare-Metal-Foundry/Shirley-FC-Dev-Board/blob/main/docs/hardware/design-decisions.md) | Power and interface rationale | Direct schematic reuse without package/pin verification |
+| [Pixhawk hardware](https://github.com/pixhawk/hardware) | Modular interface philosophy, power monitoring, serviceability | Pixhawk-compatible claims, connector pinouts, firmware identity |
+| [Pixhawk standards](https://pixhawk.org/standards/) | Functional port naming and documentation discipline | Assuming our board is electrically Pixhawk-compatible |
+| [HomeGliders FCV2](https://github.com/HomeGliders/FCV2) | Hierarchical schematic organization and workflow | Exact circuit values and validation claims |
+| [HomeGliders video](https://www.youtube.com/watch?v=6n7d8Jn2brQ) | Educational build process | Electrical authority |
+| [STM32F405 educational build](https://www.youtube.com/watch?v=wYC-siMWn70) | MCU/sensor bring-up sequencing | Production autopilot architecture |
+| [Betaflight manufacturer guidelines](https://betaflight.com/docs/development/manufacturer/manufacturer-design-guidelines) | SPI IMU, interrupt, timer/DMA, ADC and layout review prompts | Betaflight-specific firmware assumptions |
+| [H743 community review](https://www.reddit.com/r/PCB/comments/1q3kh9f/stm32h743_flight_controller_review_request/) | Review checklist for H743/IMU/barometer boards | Community claims without primary verification |
+| [Custom FC discussion](https://www.reddit.com/r/fpv/comments/1r5rvne/build_a_custom_flight_controller/) | Current-sense and regulator review prompts | Part ratings and layout claims |
+| [Custom FC discussion](https://www.reddit.com/r/diydrones/comments/1q5k508/built_a_custom_flight_controller_from_scratch/) | Scope and risk awareness | Validated circuit basis |
+| [Custom FC discussion](https://www.reddit.com/r/diydrones/comments/1oibb96/anyone_here_built_their_own_flight_controller/) | Failure-mode questions | Safety evidence |
+| [Custom FC discussion](https://www.reddit.com/r/Multicopter/comments/1s6r7ht/building_a_custom_flight_controller_from_scratch/) | Bench-first development sequence | Complete design reference |
+| [Udayate](https://github.com/Ozonised/Udayate) and [Kalman-AHRS](https://github.com/Ozonised/Kalman-AHRS) | Driver and estimator learning | Drop-in autopilot firmware |
+| [LSM6DSL library](https://github.com/Ozonised/LSM6DSL-Platform-Independent-Library) | Sensor abstraction ideas | Selected IMU implementation |
+| [Pixhawk 2.1 repository](https://github.com/MRazgunas/pixhawk2.1) | Documentation and redundancy concepts | Old pinout, licensing, and hardware assumptions |
 
 The earlier recommended hybrid was:
 
@@ -279,7 +279,7 @@ Separate external CM5 supply
 
 ## H743 core
 
-The STM32H743VI family provides a 480 MHz Cortex-M7, up to 2 MB flash and up to 1 MB RAM. [ST STM32H743VI product page](http[LOCAL_SOURCE] [ST H743 datasheet](http[LOCAL_SOURCE]
+The STM32H743VI family provides a 480 MHz Cortex-M7, up to 2 MB flash and up to 1 MB RAM. [ST STM32H743VI product page](https://www.st.com/en/microcontrollers-microprocessors/stm32h743vi.html), [ST H743 datasheet](https://www.st.com/resource/en/datasheet/stm32h743vi.pdf)
 
 `[VERIFIED]` The minimum H743 support circuit must include:
 
@@ -326,7 +326,7 @@ TDK specifies:
 - Dedicated interrupt capability
 - High-performance gyro/accelerometer noise characteristics
 
-Sources: [TDK ICM-42688-P product page](http[LOCAL_SOURCE] [official ICM-42688-P datasheet](http[LOCAL_SOURCE]
+Sources: [TDK ICM-42688-P product page](https://www.invensense.tdk.com/en-us/products/6-axis/icm-42688-p), [official ICM-42688-P datasheet](https://invensense.tdk.com/wp-content/uploads/2020/04/ds-000347_icm-42688-p-datasheet.pdf).
 
 `[RECOMMENDATION]`
 
@@ -353,7 +353,7 @@ Bosch specifies:
 - Small 10-pin LGA package
 - Protected venting requirements
 
-Source: [Bosch BMP390 product page](http[LOCAL_SOURCE]
+Source: [Bosch BMP390 product page](https://www.bosch-sensortec.com/en/products/environmental-sensors/pressure-sensors/pressure-sensors-bmp390.html).
 
 `[RECOMMENDATION]`
 
@@ -375,7 +375,7 @@ Source: [Bosch BMP390 product page](http[LOCAL_SOURCE]
 - Compact synchronous buck
 - Suitable for a protected 5 V input
 
-Source: [TI TPS62162](http[LOCAL_SOURCE]
+Source: [TI TPS62162](https://www.ti.com/product/TPS62162-Q1).
 
 `[CANDIDATE] LMR33630-class buck`
 
@@ -384,7 +384,7 @@ Source: [TI TPS62162](http[LOCAL_SOURCE]
 - More suitable for a conditional raw-battery or higher-load branch
 - Greater switching-node, thermal and EMI burden
 
-Source: [TI LMR33630](http[LOCAL_SOURCE]
+Source: [TI LMR33630](https://www.ti.com/product/LMR33630).
 
 `[RECOMMENDATION]` Use a TPS62162-class device for `5V_FC_PROT → 3V3_MAIN` if the measured FC load is comfortably below the 1 A design envelope. Retain an LMR33630-class alternative if the power architecture changes to raw-battery entry.
 
@@ -401,7 +401,7 @@ TI specifies the LP5912 family for:
 - 1 µF ceramic input/output capacitors
 - Enable, power-good and output-discharge features
 
-Source: [TI LP5912 datasheet](http[LOCAL_SOURCE]
+Source: [TI LP5912 datasheet](https://www.ti.com/lit/ds/symlink/lp5912.pdf).
 
 `[CANDIDATE] LP5907`
 
@@ -410,7 +410,7 @@ Source: [TI LP5912 datasheet](http[LOCAL_SOURCE]
 - High PSRR
 - Smaller current margin
 
-Source: [TI LP5907](http[LOCAL_SOURCE]
+Source: [TI LP5907](https://www.ti.com/product/LP5907).
 
 The final LDO depends on measured sensor/peripheral loading, thermal dissipation and supply availability.
 
@@ -428,7 +428,7 @@ The final LDO depends on measured sensor/peripheral loading, thermal dissipation
 - SOT-23 or SOIC package options
 - Integrated protection features
 
-Source: [TI TCAN332 datasheet](http[LOCAL_SOURCE]
+Source: [TI TCAN332 datasheet](https://www.ti.com/lit/ds/symlink/tcan332.pdf).
 
 `[CANDIDATE] SN65HVD230`
 
@@ -462,11 +462,11 @@ The OpenFC USB-C implementation is useful as a mechanical/connector reference, b
 
 `[CANDIDATE] USBLC6-2`
 
-ST specifies two USB data-line protection channels, VBUS protection, low capacitance and IEC 61000-4-2 level 4 device protection. [ST USBLC6-2](http[LOCAL_SOURCE]
+ST specifies two USB data-line protection channels, VBUS protection, low capacitance and IEC 61000-4-2 level 4 device protection. [ST USBLC6-2](https://www.st.com/en/protections-and-emi-filters/usblc6-2.html)
 
 `[CANDIDATE] TPD4EUSB30`
 
-TI specifies a low-capacitance multi-channel USB protection array. [TI TPD4EUSB30 datasheet](http[LOCAL_SOURCE]
+TI specifies a low-capacitance multi-channel USB protection array. [TI TPD4EUSB30 datasheet](https://www.ti.com/lit/ds/symlink/tpd4eusb30.pdf)
 
 `[DNP]` USB-only recovery. The custom H743 FC should not depend solely on USB recovery.
 
@@ -495,7 +495,7 @@ Disadvantages:
 - Compact
 - Simpler mechanically than microSD
 
-Source: [Winbond W25Q128JV documentation](http[LOCAL_SOURCE]
+Source: [Winbond W25Q128JV documentation](https://www.winbond.com/hq/support/documentation/).
 
 `[OPEN]` Final storage choice must be coordinated with ArduPilot’s board definition and parameter-storage policy.
 
@@ -613,7 +613,7 @@ Do not use this approach unless the architecture is explicitly changed and the p
 
 # 6. DShot and firmware implications
 
-`[VERIFIED]` OpenESC uses AM32 and bidirectional/extended DShot. AM32 also supports DShot and PWM-related operation. [AM32 firmware](http[LOCAL_SOURCE]
+`[VERIFIED]` OpenESC uses AM32 and bidirectional/extended DShot. AM32 also supports DShot and PWM-related operation. [AM32 firmware](https://github.com/am32-firmware/AM32)
 
 ArduPilot’s documentation states:
 
@@ -624,7 +624,7 @@ ArduPilot’s documentation states:
 - A new board requires an explicit firmware hardware definition
 - Bdshot-capable outputs should be tested with an AM32 or BLHelI32 ESC
 
-Sources: [ArduPilot DShot documentation](http[LOCAL_SOURCE] [ArduPilot new-board porting](http[LOCAL_SOURCE]
+Sources: [ArduPilot DShot documentation](https://ardupilot.org/copter/docs/common-dshot-escs.html), [ArduPilot new-board porting](https://ardupilot.org/dev/docs/porting.html).
 
 Therefore:
 

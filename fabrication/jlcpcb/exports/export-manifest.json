@@ -1,0 +1,16 @@
+{
+  "source_pcb_sha256": "cf9431f0e9dd3cbfa5536bcb038dd3e51f6ab2a9922462f30576b8c4006f4720",
+  "source_schematic_sha256": "a25af31a7f7c1d4874024172159c8fb86f85de9086d3d9d54f9e880f08f271a0",
+  "date": "2026-10-14",
+  "kicad": "10.0.6",
+  "commands": [
+    "sch export pdf --black-and-white --output [LOCAL_SOURCE] DRONE PROJECT\\PUBLICATION_WORK\\Flight-Controller-V1\\fabrication\\jlcpcb\\exports\\schematic.pdf [LOCAL_SOURCE] DRONE PROJECT\\PUBLICATION_WORK\\Flight-Controller-V1\\fabrication\\jlcpcb\\source\\hardware\\FC_REV_A.kicad_sch",
+    "pcb export pdf --mode-multipage --layers F.Fab,B.Fab --common-layers Edge.Cuts --sketch-pads-on-fab-layers --hide-DNP-footprints-on-fab-layers --black-and-white --no-property-popups --output [LOCAL_SOURCE] DRONE PROJECT\\PUBLICATION_WORK\\Flight-Controller-V1\\fabrication\\jlcpcb\\exports\\assembly.pdf [LOCAL_SOURCE] DRONE PROJECT\\PUBLICATION_WORK\\Flight-Controller-V1\\fabrication\\jlcpcb\\source\\hardware\\FC_REV_A.kicad_pcb",
+    "pcb export pdf --mode-single --layers Edge.Cuts,F.Fab --sketch-pads-on-fab-layers --hide-DNP-footprints-on-fab-layers --black-and-white --no-property-popups --output [LOCAL_SOURCE] DRONE PROJECT\\PUBLICATION_WORK\\Flight-Controller-V1\\fabrication\\jlcpcb\\exports\\fabrication.pdf [LOCAL_SOURCE] DRONE PROJECT\\PUBLICATION_WORK\\Flight-Controller-V1\\fabrication\\jlcpcb\\source\\hardware\\FC_REV_A.kicad_pcb",
+    "pcb export gerbers --subtract-soldermask --layers F.Cu,In1.Cu,In2.Cu,In3.Cu,In4.Cu,B.Cu,F.Paste,B.Paste,F.SilkS,B.SilkS,F.Mask,B.Mask,Edge.Cuts --output [LOCAL_SOURCE] DRONE PROJECT\\PUBLICATION_WORK\\Flight-Controller-V1\\fabrication\\jlcpcb\\fabrication\\gerbers [LOCAL_SOURCE] DRONE PROJECT\\PUBLICATION_WORK\\Flight-Controller-V1\\fabrication\\jlcpcb\\source\\hardware\\FC_REV_A.kicad_pcb",
+    "pcb export drill --format excellon --drill-origin absolute --excellon-separate-th --generate-report --report-path [LOCAL_SOURCE] DRONE PROJECT\\PUBLICATION_WORK\\Flight-Controller-V1\\fabrication\\jlcpcb\\fabrication\\drill-report.txt --output [LOCAL_SOURCE] DRONE PROJECT\\PUBLICATION_WORK\\Flight-Controller-V1\\fabrication\\jlcpcb\\fabrication\\drill [LOCAL_SOURCE] DRONE PROJECT\\PUBLICATION_WORK\\Flight-Controller-V1\\fabrication\\jlcpcb\\source\\hardware\\FC_REV_A.kicad_pcb",
+    "pcb export ipcd356 --output [LOCAL_SOURCE] DRONE PROJECT\\PUBLICATION_WORK\\Flight-Controller-V1\\fabrication\\jlcpcb\\fabrication\\netlist.ipc [LOCAL_SOURCE] DRONE PROJECT\\PUBLICATION_WORK\\Flight-Controller-V1\\fabrication\\jlcpcb\\source\\hardware\\FC_REV_A.kicad_pcb",
+    "pcb export step --force --subst-models --no-dnp --define-var KICAD10_3DMODEL_DIR=[LOCAL_SOURCE] Files\\KiCad\\10.0\\share\\kicad\\3dmodels --output [LOCAL_SOURCE] DRONE PROJECT\\PUBLICATION_WORK\\Flight-Controller-V1\\fabrication\\jlcpcb\\exports\\board.step [LOCAL_SOURCE] DRONE PROJECT\\PUBLICATION_WORK\\Flight-Controller-V1\\fabrication\\jlcpcb\\source\\hardware\\FC_REV_A.kicad_pcb"
+  ],
+  "note": "Neutral engineering export; preserve documented checker exceptions and physical qualification status."
+}

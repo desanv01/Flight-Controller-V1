@@ -24,11 +24,11 @@ Runtime/bench behavior: OPEN
 
 Source URLs:
 
-- http[LOCAL_SOURCE]
-- http[LOCAL_SOURCE]
-- http[LOCAL_SOURCE]
-- http[LOCAL_SOURCE]
-- http[LOCAL_SOURCE]
+- https://www.st.com/resource/en/datasheet/stm32h743vi.pdf
+- https://www.st.com/resource/en/reference_manual/rm0433-stm32h743-753-and-stm32h750-value-line-advanced-arm-based-32-bit-mcus-stmicroelectronics.pdf
+- https://github.com/ArduPilot/ardupilot/tree/12f1c264f2536c4c9565eec910fa028579845d36/libraries/AP_HAL_ChibiOS/hwdef
+- https://www.invensense.tdk.com/en-us/products/6-axis/icm-42688-p
+- https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp390-ds002.pdf
 
 ## 2. Mandatory core/package pins
 

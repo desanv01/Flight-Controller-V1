@@ -58,7 +58,7 @@ Key locally retained primary evidence includes:
 | GCT MEM2075 | official drawing A1 | 2020-09-10 | 144,177 | `9f1a621a3f7c649fd51f8ea49189e91ab2a4345eefcf7024382a072b782e90a3` | VERIFIED drawing; footprint OPEN |
 | TI TPD4E05U06 | official datasheet | retained Stage 07 source | 2,801,466 | `c167cf1e72a5473a4d2c59b6a3c0251498701da05b7785919b9ceaae3b3e02c6` | VERIFIED source |
 
-Current official product records were also checked: the [TDK ICM-42688-P product record](http[LOCAL_SOURCE] [Bosch BMP390 product record](http[LOCAL_SOURCE] [GCT USB4105 product record](http[LOCAL_SOURCE] [GCT USB4105 drawing](http[LOCAL_SOURCE] [GCT MEM2075 product record](http[LOCAL_SOURCE] [GCT MEM2075 drawing](http[LOCAL_SOURCE] and [TI TPD1E05U06 package record](http[LOCAL_SOURCE] These checks support package/drawing status only; they do not close sourcing, lifecycle, assembly or physical-test gates.
+Current official product records were also checked: the [TDK ICM-42688-P product record](https://www.invensense.tdk.com/en-us/products/6-axis/icm-42688-p/), [Bosch BMP390 product record](https://www.bosch-sensortec.com/en/products/environmental-sensors/pressure-sensors/bmp390/), [GCT USB4105 product record](https://gct.co/connector/usb4105), [GCT USB4105 drawing](https://gct.co/files/drawings/usb4105.pdf), [GCT MEM2075 product record](https://gct.co/connector/mem2075), [GCT MEM2075 drawing](https://gct.co/files/drawings/mem2075.pdf), and [TI TPD1E05U06 package record](https://www.ti.com/product/TPD1E05U06/part-details/TPD1E05U06DYAR). These checks support package/drawing status only; they do not close sourcing, lifecycle, assembly or physical-test gates.
 
 ## 5. Controlled symbol audit
 

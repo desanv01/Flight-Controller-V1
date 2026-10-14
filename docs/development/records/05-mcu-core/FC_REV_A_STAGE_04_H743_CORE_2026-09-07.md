@@ -27,7 +27,7 @@ All six retrieved 2026-09-08. Exact official URLs, dates, revisions, byte sizes 
 | AN2606 | 70 | February 2026 | 553 | 7560428 | `25b466e39ecc61671dcb988d8ca538462d6452d85f68140cb981ed728f57e654` |
 | ES0392 | 15 | September 2025 | 73 | 3278533 | `effe23b2b79ec4ee33a8ab42b1b934cdd34100775cd6ca6b8dc8f3f2f01a1f9e` |
 
-Abracon official ABM3B datasheet, Rev U 2024-08-27, 6 pages, 735461 bytes, SHA-256 `17b7417ea2fa9bdde04c2dd11db78dea61bf362fbbf2009aa94b340d74ecc210`, retained as `abm3b.pdf`; URL `http[LOCAL_SOURCE]`. Crystal calculation records its provenance separately.
+Abracon official ABM3B datasheet, Rev U 2024-08-27, 6 pages, 735461 bytes, SHA-256 `17b7417ea2fa9bdde04c2dd11db78dea61bf362fbbf2009aa94b340d74ecc210`, retained as `abm3b.pdf`; URL `https://abracon.com/Resonators/abm3b.pdf`. Crystal calculation records its provenance separately.
 
 ## Symbol audit and provenance
 

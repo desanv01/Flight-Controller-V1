@@ -1,0 +1,212 @@
+{
+  "slug": "flight-controller-v1",
+  "title": "Flight Controller V1",
+  "summary": "Custom STM32H743VIT6 controller developed through staged schematic capture, resource allocation, placement and a six-layer PCB routing rework. The repository preserves its engineering design, manufacturing data and development record.",
+  "contributor": "Desan Vasu",
+  "role": "Project engineering contributor; activities self-confirmed",
+  "developmentPeriod": {
+    "from": "2026-08-26",
+    "to": "2026-09-14",
+    "basis": "technical-document dates, not employment dates"
+  },
+  "status": "engineering-prototype",
+  "technologies": [
+    "STM32H743",
+    "KiCad",
+    "PCB design"
+  ],
+  "upstream": [],
+  "verification": {
+    "erc": {
+      "errors": 0,
+      "warnings": 12,
+      "types": {
+        "isolated_pin_label": 6,
+        "multiple_net_names": 4,
+        "pin_to_pin": 2
+      },
+      "unconnected": 0,
+      "parity": 0,
+      "ignored_checks": [
+        {
+          "description": "Global label only appears once in the schematic",
+          "key": "single_global_label"
+        },
+        {
+          "description": "Four connection points are joined together",
+          "key": "four_way_junction"
+        },
+        {
+          "description": "SPICE model issue",
+          "key": "simulation_model_issue"
+        },
+        {
+          "description": "Assigned footprint doesn't match footprint filters",
+          "key": "footprint_filter"
+        }
+      ]
+    },
+    "drc": {
+      "errors": 0,
+      "warnings": 3,
+      "types": {
+        "track_dangling": 2,
+        "via_dangling": 1
+      },
+      "unconnected": 16,
+      "parity": 0,
+      "ignored_checks": [
+        {
+          "description": "Footprint has no courtyard defined",
+          "key": "missing_courtyard"
+        },
+        {
+          "description": "Track endpoint not centered on via",
+          "key": "track_not_centered_on_via"
+        },
+        {
+          "description": "Tuning profile track geometries",
+          "key": "tuning_profile_track_geometries"
+        },
+        {
+          "description": "Footprint doesn't match symbol's footprint filters",
+          "key": "footprint_filters_mismatch"
+        },
+        {
+          "description": "Footprint component type doesn't match footprint pads",
+          "key": "footprint_type_mismatch"
+        }
+      ]
+    },
+    "dnp_exception": {
+      "items": [
+        {
+          "references": [
+            "U22",
+            "R71"
+          ],
+          "all_dnp": true
+        },
+        {
+          "references": [
+            "J11",
+            "R116"
+          ],
+          "all_dnp": true
+        },
+        {
+          "references": [
+            "U51",
+            "U51"
+          ],
+          "all_dnp": true
+        },
+        {
+          "references": [
+            "U51",
+            "U52"
+          ],
+          "all_dnp": true
+        },
+        {
+          "references": [
+            "U52",
+            "C94"
+          ],
+          "all_dnp": true
+        },
+        {
+          "references": [
+            "C94",
+            "J8"
+          ],
+          "all_dnp": true
+        },
+        {
+          "references": [
+            "R106",
+            "U50"
+          ],
+          "all_dnp": true
+        },
+        {
+          "references": [
+            "R105",
+            "U50"
+          ],
+          "all_dnp": true
+        },
+        {
+          "references": [
+            "U23",
+            "R69"
+          ],
+          "all_dnp": true
+        },
+        {
+          "references": [
+            "U22",
+            "R69"
+          ],
+          "all_dnp": true
+        },
+        {
+          "references": [
+            "R69",
+            "R70"
+          ],
+          "all_dnp": true
+        },
+        {
+          "references": [
+            "R105",
+            "R107"
+          ],
+          "all_dnp": true
+        },
+        {
+          "references": [
+            "R107",
+            "J8"
+          ],
+          "all_dnp": true
+        },
+        {
+          "references": [
+            "R106",
+            "R107"
+          ],
+          "all_dnp": true
+        },
+        {
+          "references": [
+            "R107",
+            "J8"
+          ],
+          "all_dnp": true
+        },
+        {
+          "references": [
+            "R130",
+            "D1"
+          ],
+          "all_dnp": true
+        }
+      ],
+      "all_endpoints_dnp": true
+    },
+    "source": {
+      "pcb": "86a649ae843c21d22842af43f9897ba59f213162cbe787bdf53f668a2c369a29",
+      "schematic": "be8e3e44e0063444eb72dd41c6a317fab9792e956c72bbf93ad6a36b1af6a11c",
+      "project": "ff1d49df94869451c9b3db1e1fa84258d181cc5f2e883f1464098caf13a69bdb"
+    },
+    "date": "2026-10-14",
+    "kicad": "10.0.6"
+  },
+  "physicalQualification": "pending",
+  "repositoryUrl": "https://github.com/desanv01/Flight-Controller-V1",
+  "images": [
+    "media/hero-top.png",
+    "media/hero-bottom.png"
+  ]
+}

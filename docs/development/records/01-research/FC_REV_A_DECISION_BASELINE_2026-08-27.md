@@ -221,7 +221,117 @@ CM5 is optional for manual/stabilized flight. It may send high-level position/ve
 
 ## Research references added for the modularity decision
 
-- Pixhawk Reference Standards (historical source reference)**. CM5 contains the Raspberry Pi 5-class BCM2712 computer, memory and optional eMMC, but it does not provide the normal Pi USB, HDMI, Ethernet or camera connectors. It uses two 100-pin high-density connectors and needs a carrier board. The official Compute Module documentation (historical source reference)
+- [Pixhawk Reference Standards](https://pixhawk.org/standards/) — standards scope, connector specifications and architecture guidance.
+- [PX4 GNSS/GPS and compass setup](https://docs.px4.io/main/en/gps_compass/) — external GPS/compass connector patterns, UART/I2C/CAN choices and placement guidance.
+- [PX4 magnetometer guidance](https://docs.px4.io/main/en/gps_compass/magnetometer) — external compass rationale and calibration considerations.
+- [PX4 ARK CANnode](https://docs.px4.io/main/en/dronecan/ark_cannode) — example of a local sensor MCU/CAN-node approach for modular sensors.
+- [PX4 companion-computer serial connection](https://docs.px4.io/main/en/companion_computer/pixhawk_companion) — serial electrical/interface considerations for Pixhawk-to-companion links.
+- [ArduPilot companion computers](https://ardupilot.org/dev/docs/companion-computers.html) and [rangefinder setup](https://ardupilot.org/plane/docs/common-rangefinder-setup.html) — companion processing and direct external rangefinder roles.
+- [NXP UM10204 I2C specification](https://community.nxp.com/pwmxy87654/attachments/pwmxy87654/nxp-designs/931/1/UM10204.pdf) and [TI long-cable I2C guidance](https://www.ti.com/kr/lit/pdf/sdaa306) — bus capacitance, rise time and extender boundaries.
+- [CAN in Automation high-speed CAN guidance](https://www.can-cia.org/can-knowledge/can-hs-transmission) — line topology, bus length and 120 Ω termination guidance.
+
+---
+
+## Addendum — CM5, sensors, propulsion and modular-system decisions
+
+This addendum is the current engineering interpretation of the user’s request. The linked reports and community projects remain reference material; they do not override these decisions or authorize copying a design without checking its license, electrical assumptions and measured evidence.
+
+### Companion computer: use CM5 as a separate subsystem
+
+“Raspberry Pi 5 computer module” should be written precisely as **Raspberry Pi Compute Module 5 (CM5)**. CM5 contains the Raspberry Pi 5-class BCM2712 computer, memory and optional eMMC, but it does not provide the normal Pi USB, HDMI, Ethernet or camera connectors. It uses two 100-pin high-density connectors and needs a carrier board. The official [Compute Module documentation](https://www.raspberrypi.com/documentation/computers/compute-module.html) describes CM5IO as both a development carrier and a reference for a smaller custom carrier.
+
+The Rev A implementation is:
+
+```text
+Main LiPo
+   ├── high-current PDB/ESC wiring ──> ESC board ──> motors
+   ├── external filtered 5 V FC module ──> FC POWER1
+   └── separate 5 V, 5 A-capable buck ──> CM5 carrier ──> CM5
+                                            ├── CSI-2 camera
+                                            ├── USB/UART/Ethernet lidar as selected
+                                            └── cooling and storage
+
+FC COMPANION UART <── MAVLink or versioned packet link ──> CM5 carrier UART
+```
+
+Do not solder the CM5 directly onto the FC. Do not use the FC telemetry header as the CM5 power source. Use CM5IO for a bench proof-of-concept if it is available, then make a separate custom CM5 carrier only if the final airborne packaging requires it. The CM5IO is a large development board, not the airborne carrier itself.
+
+For the first perception experiment, a **4 GB CM5** is sufficient for a lightweight YOLO model, camera capture and a small tracking pipeline; select 8 GB if the team will run several models, ROS 2, large image buffers or simultaneous mapping. Prefer an eMMC variant for a fixed embedded installation, or a Lite variant with a properly retained microSD for the fastest prototype procurement. This is a procurement choice, not an FC schematic decision.
+
+The CM5 carrier power target is a regulated 5 V rail with enough transient margin for the chosen workload. The CM5 datasheet gives a single +5 V input and typical operating consumption around 900 mA, while Raspberry Pi’s CM5IO guidance supports a 5 V / 5 A input for full peripheral use. Therefore the power tree should be designed around a **separate 5.1 V-class, 5 A-capable regulator**, verified against the exact carrier, cable drop, camera, USB load and thermal conditions. The regulator input must tolerate the fully charged LiPo and switching transients; a 6S pack reaches 25.2 V before transients.
+
+The FC-to-CM5 link should be a dedicated 3.3 V UART with TX/RX, common ground and optional CTS/RTS. Start at a conservative tested baud rate, then increase to 921600 only after signal integrity and packet-loss testing. MAVLink is the preferred protocol when using PX4 or ArduPilot. The carrier’s UART must be mapped explicitly, the Linux serial console must be disabled or moved, and no 5 V signal may enter CM5 GPIO. A physical UART link is simpler and more predictable than making the FC depend on Ethernet or Wi-Fi.
+
+### What CM5 does in this vehicle
+
+The CM5 is appropriate for work that is computationally heavy, Linux-dependent or not required for immediate stabilization:
+
+| CM5 function | Inputs | Output to FC | FC safety rule |
+|---|---|---|---|
+| YOLO object detection | CSI-2/USB camera frames | Object class, confidence, image position and timestamp | Informational until validated; never directly drives motor PWM |
+| Object tracking | Camera detections plus motion model | Target bearing/relative motion or target ID | Reject stale detections and out-of-range commands |
+| Lidar processing | USB/UART/Ethernet/serial scan or point data | Obstacle sectors, nearest obstacle or `OBSTACLE_DISTANCE`-type data | Require timestamp, frame orientation and timeout |
+| Sensor fusion/perception | Camera, lidar, FC attitude/GNSS over MAVLink | Relative pose, obstacle map or landing cue | FC validates message age, frame and bounds |
+| Mission/path logic | GPS, map, operator commands and perception | High-level position/velocity/setpoint requests | FC remains the authority for arming, attitude/rate control and failsafe |
+| Recording/telemetry gateway | Camera, FC logs and network | Stored evidence or ground link | Logging failure must not stop the inner loop |
+
+The FC continues to own IMU sampling, state estimation needed for stabilization, attitude/rate control, mixer/control allocation, motor outputs, RC loss, arming and emergency disarm. The CM5 may be powered off and the vehicle must still enter a safe non-autonomous/manual state.
+
+PX4 documents companion-computer collision prevention through offboard sensor data and `OBSTACLE_DISTANCE`; ArduPilot documents companion computers using MAVLink and supports rangefinders/proximity sensors for avoidance. These interfaces make the CM5 useful, but they do not make a single camera or single-point lidar a complete collision-avoidance system. See [PX4 collision prevention](https://docs.px4.io/main/en/computer_vision/collision_prevention), [ArduPilot companion computers](https://ardupilot.org/dev/docs/companion-computers.html), and [ArduPilot rangefinder/proximity documentation](https://ardupilot.org/copter/docs/common-rangefinder-setup.html).
+
+### Rev A connector recommendation
+
+Use a keyed/latching **JST-GH 1.25 mm family** for low-current FC external ports, or an equivalent locking connector with the same documented mechanical and electrical properties. The connector family is recommended because it is compact and commonly used in Pixhawk-style avionics harnesses; it does not by itself make this board Pixhawk-compatible. If the team claims exact compliance, follow the selected [Pixhawk connector standard](https://pixhawk.org/standards/) pin-for-pin and record the standard revision.
+
+The following is the proposed project pin contract. It is a logical proposal until every team provides its mating-board schematic:
+
+| Port | Proposed logical pins | Use and restriction |
+|---|---|---|
+| `POWER1` | `5V_FC`, `GND`, `VBAT_SENSE`, `CURR_SENSE`, `PWR_STATUS`, `SPARE` | Regulated 5 V and measurement only; no motor current and no raw battery on FC traces |
+| `ESC_SIG` | `M1`, `GND`, `M2`, `GND`, `M3`, `GND`, `M4`, `GND` | Signal-only DShot/PWM harness; never copy an ESC battery pinout onto this FC connector |
+| `RC_IN` | `5V_AUX`, `GND`, `FC_RX`, `FC_TX` | External CRSF/ELRS/S.Bus receiver after protocol and voltage are frozen |
+| `GPS1` | `5V_AUX`, `GND`, `FC_TX`, `FC_RX`, `SCL`, `SDA` | GNSS plus compass; add PPS on a larger connector only if firmware uses it |
+| `CAN1/CAN2` | `5V_AUX`, `CANH`, `CANL`, `GND` | DroneCAN sensors/power nodes; switchable 120 ohm termination on the correct bus end |
+| `TELEM1` | `5V_AUX`, `GND`, `TX`, `RX`, `CTS`, `RTS` | Telemetry radio; 5 V accessory current must be budgeted separately |
+| `COMPANION` | `3V3_REF`, `GND`, `FC_TX`, `FC_RX`, `CTS`, `RTS` | Data-only CM5 link; CM5 carrier has its own 5 V regulator |
+| `LIDAR_FC` | `5V_AUX`, `GND`, `TX`, `RX` | Downward scalar rangefinder; verify whether the sensor I/O is 3.3 V or 5 V before mating |
+| `AUX_UART` | `3V3/5V as explicitly specified`, `GND`, `TX`, `RX` | Future sensor; one labeled function, not an unowned spare header |
+| `SWD/DEBUG` | `SWDIO`, `SWCLK`, `NRST`, `3V3_REF`, `GND`, optional `SWO` | Accessible test pads or Tag-Connect; BOOT0 remains available |
+
+`ESC_SIG` is intentionally different from the high-current ESC battery connector. A reference such as [OpenESC-20x20](https://github.com/OpenDrone-hw/OpenESC-20x20) uses an 8-pin JST-SH harness that includes battery positive, current and four motor lines for its own 4-in-1 board. That is an ESC-board power interface, not a safe reason to route battery positive through this FC. The ESC team must provide its own final harness drawing.
+
+### ESC and motor integration contract
+
+The first choice should be **four signal-level DShot outputs plus ground returns** if the ESC firmware supports DShot. Bidirectional DShot is useful for eRPM/telemetry and filtering, but only enable it after confirming that the exact flight stack, timer/DMA mapping, ESC firmware and signal wiring support it. Ordinary PWM is an acceptable bring-up fallback. CAN/DroneCAN ESC control is a separate architecture and should not be mixed into Rev A casually.
+
+The ESC workstream must return these items before FC pinout freeze:
+
+- battery cell-count range and absolute input voltage;
+- continuous and burst current per channel, with thermal test evidence;
+- motor-signal protocol, logic level, update rate and reset state;
+- exact connector part number, pin order, mating cable and ground arrangement;
+- whether bidirectional DShot, EDT, separate telemetry or CAN is used;
+- location and rating of current/voltage shunts and the FC ADC scaling;
+- BEC/5 V output capability, if any, and whether it is allowed to power the FC or CM5;
+- ESC firmware and boot/programming method, such as AM32 where applicable.
+
+The FC output must remain disabled until arming and must go to a defined safe state during reset, brownout, RC timeout and CM5 link loss. The CM5 must never connect directly to an ESC gate, motor phase or raw battery line.
+
+Motor selection cannot be frozen from KV alone. Use measured manufacturer thrust/current tables for the chosen propeller, cell count and all-up mass. The initial classes are:
+
+| Vehicle class | Motor/prop direction | Battery/ESC starting direction | Status |
+|---|---|---|---|
+| 5-inch light FPV demonstrator | 2207/2207.5 class, roughly 1750–1950 KV for 6S or 2400–2550 KV for 4S | 4-in-1 ESC roughly 35–45 A after test-table check | Only if the CM5/lidar payload is very light |
+| 7–10 inch sensor/payload quad | 2810/2814 or similar lower-KV class with larger prop | 4S/6S and roughly 40–60 A ESC class, confirmed from data | More plausible for CM5 plus camera/lidar |
+| Larger UAS/UAM-like demonstrator | Larger low-KV motors and propellers | Possibly separate high-current ESC/PDB and higher-voltage battery | Cannot be selected without MTOW, prop diameter and flight-time target |
+
+Use the manufacturer pages for [T-Motor F60 Pro V 2207.5](https://tmotorhobby.com/goods.php?id=1183) and [EMAX ECO II 2207](https://emaxmodel.com/products/emax-eco-ii-series-2207-3-6s-1700kv-1900kv-2400kv-2750kv-brushless-motor) as examples of the 5-inch class, and the [EMAX ECO II 2814 family](https://shop.emaxmodel.com/products/emax-ecoii-2814-730kv-830kv-brushless-motor-for-rc-drone) as an example of a larger-prop class. These pages are candidate references, not a final motor order.
+
+Use these sizing checks:
+
+```text
+T_hover_each = MTOW × g / 4
+T_total_max target >= 2 × vehicle weight   (engineering margin target, not certification)
 I_ESC_continuous >= measured motor current with thermal margin
 I_battery_peak >= sum of four motor peak currents with wiring/regulator margin
 flight time ≈ usable battery energy / measured average propulsion power
@@ -247,7 +357,7 @@ FC ADCs <── scaled VBAT and external current-sense output
 
 At 25 W of CM5-carrier output, a 90% efficient converter dissipates approximately 2.8 W and draws approximately 1.9 A from a 4S nominal pack or 1.25 A from a 6S nominal pack. These are planning calculations; measure the actual workload and converter temperature. Keep the CM5 buck physically and electrically away from the IMU and barometer, provide bulk capacitance and a fuse/current limit, and test brownout behavior.
 
-Candidate battery scale examples show why MTOW matters: Tattu lists 6S 1200/1400 mAh high-C packs in the roughly 200–222 g class for small FPV vehicles, while its 6S 5000 mAh 60C pack is listed at about 755 g. The [Tattu FPV battery brochure](http[LOCAL_SOURCE] and [current R-Line listings](http[LOCAL_SOURCE] are useful sourcing references, not permission to order before thrust and flight-time calculations.
+Candidate battery scale examples show why MTOW matters: Tattu lists 6S 1200/1400 mAh high-C packs in the roughly 200–222 g class for small FPV vehicles, while its 6S 5000 mAh 60C pack is listed at about 755 g. The [Tattu FPV battery brochure](https://www.genstattu.com/content/instock/rc_product_brochure.pdf) and [current R-Line listings](https://genstattu.com/tattu-r-line-version-5-0-batteries/?page=2) are useful sourcing references, not permission to order before thrust and flight-time calculations.
 
 ### Lidar selection and placement
 
@@ -270,7 +380,7 @@ For the under-one-month milestone, choose one of two explicit paths:
 1. **Altitude/landing path:** TF-Luna or TFmini-S pointed down, connected to `LIDAR_FC` UART, and configured as an FC rangefinder.
 2. **Perception/avoidance path:** scanning lidar or a camera/depth pipeline connected to CM5; CM5 publishes obstacle sectors or high-level avoidance data over MAVLink/DroneCAN. Do not label a forward TF-Luna as “collision avoidance” without stating its one-beam limitation.
 
-Relevant driver and interface references are [PX4 distance sensors](http[LOCAL_SOURCE] [ArduPilot rangefinders](http[LOCAL_SOURCE] and [ArduPilot proximity sensors](http[LOCAL_SOURCE]
+Relevant driver and interface references are [PX4 distance sensors](https://docs.px4.io/main/en/sensor/rangefinders), [ArduPilot rangefinders](https://en.ardupilot.org/copter/docs/common-rangefinder-setup.html), and [ArduPilot proximity sensors](https://en.ardupilot.org/copter/docs/common-proximity-landingpage.html).
 
 ### Camera selection and placement
 
@@ -285,7 +395,7 @@ The camera team must distinguish the pilot’s FPV camera from the CM5 perceptio
 | RunCam Phoenix 2 | Analog CVBS, 1000 TVL, low-latency FPV, 5–36 V | Dedicated analog VTX | Pilot FPV only; not a CSI/YOLO input without a capture path |
 | HDZero/Caddx digital FPV camera | Low-latency digital FPV ecosystem | Proprietary VTX/goggles link | Pilot FPV only unless a separate supported ingest path is engineered |
 
-Use a CM5 CSI camera for YOLO, tracking, mapping and recording. Use a dedicated analog/digital FPV camera and VTX if the pilot needs low-latency live video. Do not assume that one FPV camera can simultaneously provide safe pilot video and a clean CM5 inference stream. The official references are [Camera Module 3](http[LOCAL_SOURCE] [Global Shutter Camera](http[LOCAL_SOURCE] [HQ Camera](http[LOCAL_SOURCE] and [RunCam Phoenix 2](http[LOCAL_SOURCE]
+Use a CM5 CSI camera for YOLO, tracking, mapping and recording. Use a dedicated analog/digital FPV camera and VTX if the pilot needs low-latency live video. Do not assume that one FPV camera can simultaneously provide safe pilot video and a clean CM5 inference stream. The official references are [Camera Module 3](https://www.raspberrypi.com/products/camera-module-3/), [Global Shutter Camera](https://www.raspberrypi.com/products/raspberry-pi-global-shutter-camera/), [HQ Camera](https://www.raspberrypi.com/products/raspberry-pi-high-quality-camera/), and [RunCam Phoenix 2](https://shop.runcam.com/runcam-phoenix-2/).
 
 ### Firmware recommendation for this system
 

@@ -48,22 +48,22 @@ The following reproduces the comparison from the project master record and hando
 
 | # | Full link(s) supplied earlier | Circuit/design contribution | Reuse for Rev A | Incompatibility or authority limit | Stage label |
 |---:|---|---|---|---|---|
-| 1 | `http[LOCAL_SOURCE]`<br>`http[LOCAL_SOURCE]`<br>`http[LOCAL_SOURCE]` | OpenFC-Lite-Mini shows a compact open FC with separate buck/LDO domains, dedicated IMU rail, microSD, multiple UARTs, USB-C, current sense, and an external 4-in-1 ESC concept. The repository notes also show that its ESC connector carries more than signal/GND. | Separate sensor supply, serviceable port thinking, staged manufacturing review, six-layer reference discipline, and the signal-level portion of the ESC boundary. | RP2354A, BMI270, no barometer, PIO/Betaflight-oriented implementation, no SWD, no reverse-polarity protection, and raw battery on its ESC connector do not transfer to this baseline. | `[VERIFIED]` source reviewed; reuse remains `[CANDIDATE]` |
-| 2 | `http[LOCAL_SOURCE]`<br>`http[LOCAL_SOURCE]` | A small DIY FC repository containing KiCad project material. Its primary value is schematic/page organization and workflow inspection. | Net naming, hierarchical schematic organization, footprint/documentation workflow after exact files are inspected. | Exact circuit values, revision status, validation, MCU/sensor compatibility, and video details are not sufficiently verified from the accessible material. | `[VERIFIED]` repository link; circuit reuse `[OPEN]` |
-| 3 | `http[LOCAL_SOURCE]` | Educational STM32F405 FC build with a basic sensor/control-loop signal flow. | Bring-up order: prove MCU, sensor communication, timing, and a minimal loop before adding every payload feature. | Educational implementation is not enough evidence for estimator timing, filtering, frame conventions, failsafe, power integrity, or aircraft safety. | `[VERIFIED]` link; process reuse `[CANDIDATE]` |
-| 4 | `http[LOCAL_SOURCE]`<br>`http[LOCAL_SOURCE]` | Mature Pixhawk open hardware and current standards: modular port categories, power monitoring, serviceability, debug conventions, and documented interfaces. | Port/function partitioning, documentation discipline, redundant/robust interface thinking, and power-monitor concepts. | Pixhawk-inspired does not mean Pixhawk-compatible. Exact connector standard, pin mapping, mechanical interface, electrical levels, licensing, and firmware board identity must be separately met and verified. | `[VERIFIED]` reference; Rev A compatibility claim `[OPEN]` |
-| 5 | `http[LOCAL_SOURCE]` | Community H743 custom-FC discussion with lessons about current measurement, external shunt, regulators, and compass placement. | Review prompts for current-sense placement, magnetics, regulator heat, and bench testing. | Reddit is anecdotal; no part rating, footprint, layout, or electrical claim is accepted without a primary datasheet or measurement. | `[VERIFIED]` link; technical reuse `[CANDIDATE]` |
-| 6 | `http[LOCAL_SOURCE]` | Community account of the complexity of building an FC from scratch. | Scope and risk awareness; staged test planning. | Not a validated electrical reference. | `[VERIFIED]` link; process reuse `[CANDIDATE]` |
-| 7 | `http[LOCAL_SOURCE]` | Community architecture and failure-mode discussion, including more advanced/AI-oriented ideas. | Awareness of failure modes and system-boundary questions. | Low authority; not a circuit basis and not evidence for CM5/FC safety behavior. | `[VERIFIED]` link; design reuse `[CANDIDATE]` |
-| 8 | `http[LOCAL_SOURCE]` | Community recommendation to prove STM32 + gyro + basic loop before adding logging, baro, or lidar. | Bring-up sequencing and scope control. | Does not replace the required modular ports, power protection, or firmware validation. | `[VERIFIED]` link; process reuse `[CANDIDATE]` |
-| 9 | `http[LOCAL_SOURCE]`<br>`http[LOCAL_SOURCE]`<br>`http[LOCAL_SOURCE]` | Closest architecture reference: H743ZIT6, onboard IMU/magnetometer/barometer, SDMMC, 5 V MUX, separate digital/analog 3.3 V domains, USB ESD, four ESC outputs, GPS/RC/telemetry/USB/FDCAN, and Tag-Connect SWD. | Hierarchical power domains, external 5 V power-module concept, separate analog/sensor treatment, port partition, SD/debug provision, and H7 implementation review. | Different H743 package, sensor set, pin map, and firmware assumptions. Repository design claims remain reference-only; ST/Bosch/TDK/TI datasheets control Rev A. | `[VERIFIED]` source and documents; architecture reuse `[RECOMMENDATION]` |
-| 10 | `http[LOCAL_SOURCE]` | Intended as a PCB review reference. | Only after the original URL/post is resolved. | The path supplied earlier appears malformed/uncertain. No technical conclusion is assigned to it until rechecked. | `[OPEN]` |
-| 11 | `http[LOCAL_SOURCE]` | Practical FC guidance: SPI IMU with CS/interrupt, dedicated IMU regulator, H7 timer/DMA/DMAMUX awareness, I2C baro/mag, ADC, SD/blackbox, and layout review points. | IMU interrupt/bus discipline, power-noise target as a design recommendation, timer/DMA collision review, and bring-up checklist. | Betaflight-specific guidance must be adapted to ArduPilot/PX4 and the Rev A modular architecture; it is not a substitute for sensor or MCU datasheets. | `[VERIFIED]` guideline; adapted reuse `[RECOMMENDATION]` |
-| 12 | `http[LOCAL_SOURCE]` | Duplicate of item 1. | Same reuse map as item 1. | Not independent evidence. | `[VERIFIED]` duplicate; no new weight |
-| 13 | `http[LOCAL_SOURCE]` | Community H743VIT6/ICM-42688-P/BMP388 FC review with 9/5/3.3 V domains, USB-C, microSD, UARTs, and four-layer style. | Closest part-family comparison for checking common schematic omissions and review questions. | Community post; all pin, regulator, footprint, shunt, and layout claims must be rechecked against official documents. | `[VERIFIED]` link; technical reuse `[CANDIDATE]` |
-| 14 | `http[LOCAL_SOURCE]`<br>`http[LOCAL_SOURCE]`<br>`http[LOCAL_SOURCE]`<br>`http[LOCAL_SOURCE]`<br>`http[LOCAL_SOURCE]` | Educational STM32 drivers, AHRS/EKF concepts, sensor abstraction, quaternion visualization, and test scaffolding. | Driver/test structure and estimator-learning material. | Not a drop-in autopilot, not the selected sensor, and not a replacement for ArduPilot/PX4 flight validation. | `[VERIFIED]` links; learning reuse `[CANDIDATE]` |
-| 15 | `http[LOCAL_SOURCE]` | Pixhawk 2.1 schematic/architecture reference with port, power, and redundancy ideas. | Documentation style, port/power concepts, and interface review prompts. | Older assumptions and mixed licensing; each file must be reviewed before any reuse. | `[VERIFIED]` link; reuse `[CANDIDATE]` |
-| 16 | `http[LOCAL_SOURCE]` | Beginner custom-FC discussion emphasizing known-good hardware and hardware-first testing. | Bench-first process and risk control. | Not a validated circuit or firmware reference. | `[VERIFIED]` link; process reuse `[CANDIDATE]` |
+| 1 | `https://github.com/OpenDrone-hw/OpenFC-Lite-Mini`<br>`https://www.youtube.com/watch?v=XDYZoMRJFeQ`<br>`https://github.com/OpenDrone-hw/OpenFC-Lite-Mini/blob/main/AGENTS.md` | OpenFC-Lite-Mini shows a compact open FC with separate buck/LDO domains, dedicated IMU rail, microSD, multiple UARTs, USB-C, current sense, and an external 4-in-1 ESC concept. The repository notes also show that its ESC connector carries more than signal/GND. | Separate sensor supply, serviceable port thinking, staged manufacturing review, six-layer reference discipline, and the signal-level portion of the ESC boundary. | RP2354A, BMI270, no barometer, PIO/Betaflight-oriented implementation, no SWD, no reverse-polarity protection, and raw battery on its ESC connector do not transfer to this baseline. | `[VERIFIED]` source reviewed; reuse remains `[CANDIDATE]` |
+| 2 | `https://github.com/HomeGliders/FCV2`<br>`https://www.youtube.com/watch?v=6n7d8Jn2brQ` | A small DIY FC repository containing KiCad project material. Its primary value is schematic/page organization and workflow inspection. | Net naming, hierarchical schematic organization, footprint/documentation workflow after exact files are inspected. | Exact circuit values, revision status, validation, MCU/sensor compatibility, and video details are not sufficiently verified from the accessible material. | `[VERIFIED]` repository link; circuit reuse `[OPEN]` |
+| 3 | `https://www.youtube.com/watch?v=wYC-siMWn70` | Educational STM32F405 FC build with a basic sensor/control-loop signal flow. | Bring-up order: prove MCU, sensor communication, timing, and a minimal loop before adding every payload feature. | Educational implementation is not enough evidence for estimator timing, filtering, frame conventions, failsafe, power integrity, or aircraft safety. | `[VERIFIED]` link; process reuse `[CANDIDATE]` |
+| 4 | `https://github.com/pixhawk/hardware`<br>`https://pixhawk.org/standards/` | Mature Pixhawk open hardware and current standards: modular port categories, power monitoring, serviceability, debug conventions, and documented interfaces. | Port/function partitioning, documentation discipline, redundant/robust interface thinking, and power-monitor concepts. | Pixhawk-inspired does not mean Pixhawk-compatible. Exact connector standard, pin mapping, mechanical interface, electrical levels, licensing, and firmware board identity must be separately met and verified. | `[VERIFIED]` reference; Rev A compatibility claim `[OPEN]` |
+| 5 | `https://www.reddit.com/r/fpv/comments/1r5rvne/build_a_custom_flight_controller/` | Community H743 custom-FC discussion with lessons about current measurement, external shunt, regulators, and compass placement. | Review prompts for current-sense placement, magnetics, regulator heat, and bench testing. | Reddit is anecdotal; no part rating, footprint, layout, or electrical claim is accepted without a primary datasheet or measurement. | `[VERIFIED]` link; technical reuse `[CANDIDATE]` |
+| 6 | `https://www.reddit.com/r/diydrones/comments/1q5k508/built_a_custom_flight_controller_from_scratch/` | Community account of the complexity of building an FC from scratch. | Scope and risk awareness; staged test planning. | Not a validated electrical reference. | `[VERIFIED]` link; process reuse `[CANDIDATE]` |
+| 7 | `https://www.reddit.com/r/diydrones/comments/1oibb96/anyone_here_built_their_own_flight_controller/` | Community architecture and failure-mode discussion, including more advanced/AI-oriented ideas. | Awareness of failure modes and system-boundary questions. | Low authority; not a circuit basis and not evidence for CM5/FC safety behavior. | `[VERIFIED]` link; design reuse `[CANDIDATE]` |
+| 8 | `https://www.reddit.com/r/Multicopter/comments/1s6r7ht/building_a_custom_flight_controller_from_scratch/` | Community recommendation to prove STM32 + gyro + basic loop before adding logging, baro, or lidar. | Bring-up sequencing and scope control. | Does not replace the required modular ports, power protection, or firmware validation. | `[VERIFIED]` link; process reuse `[CANDIDATE]` |
+| 9 | `https://github.com/Bare-Metal-Foundry/Shirley-FC-Dev-Board`<br>`https://github.com/Bare-Metal-Foundry/Shirley-FC-Dev-Board/blob/main/docs/hardware/overview.md`<br>`https://github.com/Bare-Metal-Foundry/Shirley-FC-Dev-Board/blob/main/docs/hardware/design-decisions.md` | Closest architecture reference: H743ZIT6, onboard IMU/magnetometer/barometer, SDMMC, 5 V MUX, separate digital/analog 3.3 V domains, USB ESD, four ESC outputs, GPS/RC/telemetry/USB/FDCAN, and Tag-Connect SWD. | Hierarchical power domains, external 5 V power-module concept, separate analog/sensor treatment, port partition, SD/debug provision, and H7 implementation review. | Different H743 package, sensor set, pin map, and firmware assumptions. Repository design claims remain reference-only; ST/Bosch/TDK/TI datasheets control Rev A. | `[VERIFIED]` source and documents; architecture reuse `[RECOMMENDATION]` |
+| 10 | `https://www.reddit.com/r/PCB/comments/1qci8jg/review_request_drone_flight_controller_with/` | Intended as a PCB review reference. | Only after the original URL/post is resolved. | The path supplied earlier appears malformed/uncertain. No technical conclusion is assigned to it until rechecked. | `[OPEN]` |
+| 11 | `https://betaflight.com/docs/development/manufacturer/manufacturer-design-guidelines` | Practical FC guidance: SPI IMU with CS/interrupt, dedicated IMU regulator, H7 timer/DMA/DMAMUX awareness, I2C baro/mag, ADC, SD/blackbox, and layout review points. | IMU interrupt/bus discipline, power-noise target as a design recommendation, timer/DMA collision review, and bring-up checklist. | Betaflight-specific guidance must be adapted to ArduPilot/PX4 and the Rev A modular architecture; it is not a substitute for sensor or MCU datasheets. | `[VERIFIED]` guideline; adapted reuse `[RECOMMENDATION]` |
+| 12 | `https://github.com/OpenDrone-hw/OpenFC-Lite-Mini` | Duplicate of item 1. | Same reuse map as item 1. | Not independent evidence. | `[VERIFIED]` duplicate; no new weight |
+| 13 | `https://www.reddit.com/r/PCB/comments/1q3kh9f/stm32h743_flight_controller_review_request/` | Community H743VIT6/ICM-42688-P/BMP388 FC review with 9/5/3.3 V domains, USB-C, microSD, UARTs, and four-layer style. | Closest part-family comparison for checking common schematic omissions and review questions. | Community post; all pin, regulator, footprint, shunt, and layout claims must be rechecked against official documents. | `[VERIFIED]` link; technical reuse `[CANDIDATE]` |
+| 14 | `https://github.com/Ozonised/Udayate`<br>`https://github.com/Ozonised/Kalman-AHRS`<br>`https://github.com/Ozonised/LSM6DSL-Platform-Independent-Library`<br>`https://github.com/Ozonised/Quaternion-Visualiser`<br>`https://www.youtube.com/watch?v=pUdvCbNR1gM&t=43s` | Educational STM32 drivers, AHRS/EKF concepts, sensor abstraction, quaternion visualization, and test scaffolding. | Driver/test structure and estimator-learning material. | Not a drop-in autopilot, not the selected sensor, and not a replacement for ArduPilot/PX4 flight validation. | `[VERIFIED]` links; learning reuse `[CANDIDATE]` |
+| 15 | `https://github.com/MRazgunas/pixhawk2.1` | Pixhawk 2.1 schematic/architecture reference with port, power, and redundancy ideas. | Documentation style, port/power concepts, and interface review prompts. | Older assumptions and mixed licensing; each file must be reviewed before any reuse. | `[VERIFIED]` link; reuse `[CANDIDATE]` |
+| 16 | `https://www.reddit.com/r/diydrones/comments/1ts9v3u/building_a_flight_controller/` | Beginner custom-FC discussion emphasizing known-good hardware and hardware-first testing. | Bench-first process and risk control. | Not a validated circuit or firmware reference. | `[VERIFIED]` link; process reuse `[CANDIDATE]` |
 
 ### 1.2 Cross-design circuit comparison
 
@@ -84,49 +84,49 @@ The following direct links were checked or retained as the primary control sourc
 
 ### 2.1 MCU and sensor datasheets
 
-- **[VERIFIED]** ST `STM32H743VI` datasheet, DS12110 Rev 11: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** ST product page for `STM32H743VIT6`: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** TDK/InvenSense `ICM-42688-P` product page: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** TDK/InvenSense `ICM-42688-P` official datasheet used for supply/interface/circuit checks: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** Bosch `BMP390` product page: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** Bosch `BMP390` datasheet: `http[LOCAL_SOURCE]`
+- **[VERIFIED]** ST `STM32H743VI` datasheet, DS12110 Rev 11: `https://www.st.com/resource/en/datasheet/stm32h743vi.pdf`
+- **[VERIFIED]** ST product page for `STM32H743VIT6`: `https://www.st.com/en/microcontrollers-microprocessors/stm32h743vi.html`
+- **[VERIFIED]** TDK/InvenSense `ICM-42688-P` product page: `https://invensense.tdk.com/en-us/products/6-axis/icm-42688-p`
+- **[VERIFIED]** TDK/InvenSense `ICM-42688-P` official datasheet used for supply/interface/circuit checks: `https://invensense.tdk.com/wp-content/uploads/2020/04/ds-000347_icm-42688-p-datasheet.pdf`
+- **[VERIFIED]** Bosch `BMP390` product page: `https://www.bosch-sensortec.com/en/products/environmental-sensors/pressure-sensors/pressure-sensors-bmp390.html`
+- **[VERIFIED]** Bosch `BMP390` datasheet: `https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp390-ds002.pdf`
 
 ### 2.2 Regulators, power mux, CAN, USB ESD, and storage
 
-- **[VERIFIED]** TI `LMR33630` datasheet: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** TI `TPS62162` datasheet: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** TI `LM5163` datasheet: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** TI `LP5907` product page: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** TI `LP5907` datasheet: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** TI `LP5912` product page: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** TI `LP5912` datasheet: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** TI `TPS2116` product/datasheet entry: `http[LOCAL_SOURCE]` and `http[LOCAL_SOURCE]`
-- **[VERIFIED]** TI `TPS2113A` datasheet: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** TI `TCAN332` product page: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** TI `TCAN33x` datasheet: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** TI `SN65HVD230` datasheet: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** ST `USBLC6-2` product page: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** ST `USBLC6-2` datasheet page: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** TI `TPD4EUSB30` product page: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** TI `TPD4EUSB30` datasheet: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** Winbond `W25Q128JV` documentation page: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** Winbond `W25Q128JV` datasheet mirror at the manufacturer domain: `http[LOCAL_SOURCE]`
+- **[VERIFIED]** TI `LMR33630` datasheet: `https://www.ti.com/lit/ds/symlink/lmr33630.pdf`
+- **[VERIFIED]** TI `TPS62162` datasheet: `https://www.ti.com/lit/ds/symlink/tps62162.pdf`
+- **[VERIFIED]** TI `LM5163` datasheet: `https://www.ti.com/lit/ds/symlink/lm5163.pdf`
+- **[VERIFIED]** TI `LP5907` product page: `https://www.ti.com/product/LP5907`
+- **[VERIFIED]** TI `LP5907` datasheet: `https://www.ti.com/lit/ds/symlink/lp5907.pdf`
+- **[VERIFIED]** TI `LP5912` product page: `https://www.ti.com/product/LP5912`
+- **[VERIFIED]** TI `LP5912` datasheet: `https://www.ti.com/lit/ds/symlink/lp5912.pdf`
+- **[VERIFIED]** TI `TPS2116` product/datasheet entry: `https://www.ti.com/product/TPS2116?qgpn=tps2116` and `https://www.ti.com/lit/ds/symlink/tps2116.pdf`
+- **[VERIFIED]** TI `TPS2113A` datasheet: `https://www.ti.com/lit/ds/symlink/tps2113a.pdf`
+- **[VERIFIED]** TI `TCAN332` product page: `https://www.ti.com/product/TCAN332/part-details/TCAN332DCNR`
+- **[VERIFIED]** TI `TCAN33x` datasheet: `https://www.ti.com/lit/ds/symlink/tcan332.pdf`
+- **[VERIFIED]** TI `SN65HVD230` datasheet: `https://www.ti.com/lit/ds/symlink/sn65hvd230.pdf`
+- **[VERIFIED]** ST `USBLC6-2` product page: `https://www.st.com/en/protections-and-emi-filters/usblc6-2.html`
+- **[VERIFIED]** ST `USBLC6-2` datasheet page: `https://www.st.com/content/st_com/en/technical-documents/DS4260.html`
+- **[VERIFIED]** TI `TPD4EUSB30` product page: `https://www.ti.com/product/TPD4EUSB30/part-details/TPD4EUSB30DQAR`
+- **[VERIFIED]** TI `TPD4EUSB30` datasheet: `https://www.ti.com/lit/ds/symlink/tpd4eusb30.pdf`
+- **[VERIFIED]** Winbond `W25Q128JV` documentation page: `https://www.winbond.com/hq/support/documentation/?__locale=en&category=%2F.categories%2Fresources%2Fdatasheet%2F&family=%2Fproduct%2Fcode-storage-flash-memory%2Fserial-nor-flash%2Findex.html&line=%2Fproduct%2Fcode-storage-flash-memory%2Findex.html&pno=W25Q128JV`
+- **[VERIFIED]** Winbond `W25Q128JV` datasheet mirror at the manufacturer domain: `https://www.winbond-electronics.com/pdf-7d/w25q128jvsjq.pdf`
 
 ### 2.3 USB-C and firmware documentation
 
-- **[VERIFIED]** USB-IF USB Type-C specification page: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** USB-IF document library: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** TI USB Type-C guide (sink-only CC and power-path discussion): `http[LOCAL_SOURCE]`
-- **[VERIFIED]** ArduPilot custom-board porting: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** ArduPilot flight-controller I/O/UART guidance: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** ArduPilot DShot guidance: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** ArduPilot companion-computer documentation: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** ArduPilot rangefinder setup: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** PX4 companion-computer documentation: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** PX4 collision prevention: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** PX4 rangefinder documentation: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** Betaflight manufacturer design guidelines: `http[LOCAL_SOURCE]`
-- **[VERIFIED]** Betaflight DShot documentation: `http[LOCAL_SOURCE]`
+- **[VERIFIED]** USB-IF USB Type-C specification page: `https://www.usb.org/usb-type-cr-cable-and-connector-specification`
+- **[VERIFIED]** USB-IF document library: `https://www.usb.org/documents`
+- **[VERIFIED]** TI USB Type-C guide (sink-only CC and power-path discussion): `https://www.ti.com/lit/pdf/slyy228`
+- **[VERIFIED]** ArduPilot custom-board porting: `https://ardupilot.org/dev/docs/porting.html`
+- **[VERIFIED]** ArduPilot flight-controller I/O/UART guidance: `https://ardupilot.org/copter/docs/common-flight-controller-io.html?highlight=uart`
+- **[VERIFIED]** ArduPilot DShot guidance: `https://ardupilot.org/copter/docs/common-dshot-escs.html`
+- **[VERIFIED]** ArduPilot companion-computer documentation: `https://ardupilot.org/dev/docs/companion-computers.html`
+- **[VERIFIED]** ArduPilot rangefinder setup: `https://ardupilot.org/copter/docs/common-rangefinder-setup.html`
+- **[VERIFIED]** PX4 companion-computer documentation: `https://docs.px4.io/main/en/companion_computer/pixhawk_companion`
+- **[VERIFIED]** PX4 collision prevention: `https://docs.px4.io/main/en/computer_vision/collision_prevention`
+- **[VERIFIED]** PX4 rangefinder documentation: `https://docs.px4.io/main/en/sensor/rangefinders`
+- **[VERIFIED]** Betaflight manufacturer design guidelines: `https://betaflight.com/docs/development/manufacturer/manufacturer-design-guidelines`
+- **[VERIFIED]** Betaflight DShot documentation: `https://github.com/betaflight/betaflight.com/blob/master/docs/development/API/Dshot.mdx`
 
 ## 3. Required circuit blocks and power-tree branches
 
@@ -211,9 +211,9 @@ These are schematic planning groups, not a final connector pinout or PCB route:
 
 | Option | Official electrical data | Advantages | Limitations/dependencies | Stage recommendation |
 |---|---|---|---|---|
-| `TPS62162`-class buck | TI datasheet: 3–17 V input, up to 1 A, adjustable output range includes 3.3 V, compact synchronous converter. `http[LOCAL_SOURCE]` | Fits a protected 5 V input, compact, likely adequate for bare H743 plus sensors and logic. | Not a raw 6S-input part; 1 A requires a real total-load and transient budget; exact package/MPN/inductor/layout open. | **[RECOMMENDATION]** for `5V_FC_PROT -> 3V3_MAIN` if the measured FC load is below the verified 1 A design envelope. |
-| `LMR33630`-class buck | TI datasheet: 3.8–36 V input, 1–24 V adjustable output, 3 A, 400 kHz/1.4 MHz/2.1 MHz options, PGOOD/EN, thermal/current/short protection. `http[LOCAL_SOURCE]` | More input and current headroom; can serve a raw 4S/6S conditional front end or a higher-load 5 V/3.3 V branch. | Larger switching/thermal/layout burden; 36 V maximum can have little transient margin above a 6S pack without a specified TVS/front end; switching node must be kept away from sensors. | **[CANDIDATE]** retained as the robust/high-voltage alternative, not automatically selected. |
-| `LM5163`-class buck | TI datasheet: 100 V input and 0.5 A synchronous buck family. `http[LOCAL_SOURCE]` | High input-transient headroom for a conditional raw-battery branch. | 0.5 A output limit; may not cover all FC/auxiliary loads; more design work and no need under the current external-5-V assumption. | **[CANDIDATE]** only if raw-battery entry is forced by PDB data. |
+| `TPS62162`-class buck | TI datasheet: 3–17 V input, up to 1 A, adjustable output range includes 3.3 V, compact synchronous converter. `https://www.ti.com/lit/ds/symlink/tps62162.pdf` | Fits a protected 5 V input, compact, likely adequate for bare H743 plus sensors and logic. | Not a raw 6S-input part; 1 A requires a real total-load and transient budget; exact package/MPN/inductor/layout open. | **[RECOMMENDATION]** for `5V_FC_PROT -> 3V3_MAIN` if the measured FC load is below the verified 1 A design envelope. |
+| `LMR33630`-class buck | TI datasheet: 3.8–36 V input, 1–24 V adjustable output, 3 A, 400 kHz/1.4 MHz/2.1 MHz options, PGOOD/EN, thermal/current/short protection. `https://www.ti.com/lit/ds/symlink/lmr33630.pdf` | More input and current headroom; can serve a raw 4S/6S conditional front end or a higher-load 5 V/3.3 V branch. | Larger switching/thermal/layout burden; 36 V maximum can have little transient margin above a 6S pack without a specified TVS/front end; switching node must be kept away from sensors. | **[CANDIDATE]** retained as the robust/high-voltage alternative, not automatically selected. |
+| `LM5163`-class buck | TI datasheet: 100 V input and 0.5 A synchronous buck family. `https://www.ti.com/lit/ds/symlink/lm5163.pdf` | High input-transient headroom for a conditional raw-battery branch. | 0.5 A output limit; may not cover all FC/auxiliary loads; more design work and no need under the current external-5-V assumption. | **[CANDIDATE]** only if raw-battery entry is forced by PDB data. |
 | Separate 5 V and 3.3 V bucks | Two conversion stages with an explicit `5V_FC` branch and `3V3_MAIN` branch. | Clear power budgeting and can support external 5 V peripherals. | More area/parts; should not be added without load data. | **[OPEN]** until PDB/auxiliary-load data. |
 
 **Selection:** `[RECOMMENDATION]` use a protected external `5V_FC` as the Stage 01 input contract, then a `TPS62162`-class 3.3 V main buck if the load budget permits. Preserve an `LMR33630`-class alternative for raw-battery or higher-load cases. Exact MPN, package, inductor, switching frequency, compensation/layout, and thermal result remain `[OPEN]`.
@@ -222,8 +222,8 @@ These are schematic planning groups, not a final connector pinout or PCB route:
 
 | Option | Official electrical data / design behavior | Advantages | Limitations | Stage recommendation |
 |---|---|---|---|---|
-| `LP5912` 3.3 V low-noise LDO | TI specifies 1.6–6.5 V input, up to 500 mA, 12 µV RMS typical output noise, 75 dB typical PSRR at 1 kHz, 1 µF ceramic input/output, enable/power-good/output discharge. `http[LOCAL_SOURCE]` | Meets the 500 mA class of margin suggested by Betaflight’s ICM-42688-P guidance; good 5 V-to-3.3 V sensor branch. | 3.3 V fixed-output variant and exact orderable/package must be checked; dissipates `(5 V - 3.3 V) × sensor current`. | **[RECOMMENDATION]** feed from `5V_FC_PROT`, not from nominal `3V3_MAIN`. |
-| `LP5907` 3.3 V low-noise LDO | TI specifies 2.2–5.5 V input, up to 250 mA, low noise and high PSRR class; `http[LOCAL_SOURCE]` and `http[LOCAL_SOURCE]` | Electrically ample for the very low sensor load and compact. | 250 mA is below the Betaflight guideline’s suggested 500 mA LDO class for ICM-42xxx designs; exact output/input capacitance and orderable remain to be checked. | **[CANDIDATE]** if current/noise/availability and the team accepts the lower margin. |
+| `LP5912` 3.3 V low-noise LDO | TI specifies 1.6–6.5 V input, up to 500 mA, 12 µV RMS typical output noise, 75 dB typical PSRR at 1 kHz, 1 µF ceramic input/output, enable/power-good/output discharge. `https://www.ti.com/lit/ds/symlink/lp5912.pdf` | Meets the 500 mA class of margin suggested by Betaflight’s ICM-42688-P guidance; good 5 V-to-3.3 V sensor branch. | 3.3 V fixed-output variant and exact orderable/package must be checked; dissipates `(5 V - 3.3 V) × sensor current`. | **[RECOMMENDATION]** feed from `5V_FC_PROT`, not from nominal `3V3_MAIN`. |
+| `LP5907` 3.3 V low-noise LDO | TI specifies 2.2–5.5 V input, up to 250 mA, low noise and high PSRR class; `https://www.ti.com/product/LP5907` and `https://www.ti.com/lit/ds/symlink/lp5907.pdf` | Electrically ample for the very low sensor load and compact. | 250 mA is below the Betaflight guideline’s suggested 500 mA LDO class for ICM-42xxx designs; exact output/input capacitance and orderable remain to be checked. | **[CANDIDATE]** if current/noise/availability and the team accepts the lower margin. |
 | Ferrite/RC only | Passive isolation from `3V3_MAIN`. | Small and inexpensive. | Does not regulate or guarantee the rail under load; cannot substitute for a dedicated low-noise LDO for the primary IMU. | **[CANDIDATE/DNP]** footprint option for measurement, not the default. |
 | LDO after nominal 3.3 V buck | 3.3 V output LDO requires input headroom above 3.3 V according to its dropout. | Can isolate buck ripple if the buck is deliberately set above 3.3 V. | Incorrect if `3V3_MAIN` is exactly 3.3 V; output may fall out of regulation. | **[OPEN]** only if a 3.5–4 V intermediate rail is deliberately designed and thermal-checked. |
 
@@ -233,7 +233,7 @@ These are schematic planning groups, not a final connector pinout or PCB route:
 
 | Topology | Verified facts and dependencies | Stage status |
 |---|---|---|
-| SPI on dedicated local bus | TDK specifies separate `VDD` and `VDDIO`, each 1.71–3.6 V; SPI host rate up to 24 MHz; the official application circuit shows 0.1 µF + 2.2 µF at `VDD` and 10 nF at `VDDIO`. The package is 2.5 × 3.0 × 0.91 mm LGA-14. Official links: `http[LOCAL_SOURCE]` and `http[LOCAL_SOURCE]`. | **[DECISION]** fixed baseline. Use `3V3_SENS` for both supplies unless a later firmware/rail analysis requires another valid voltage. Provide dedicated CS and INT1; keep INT2/FSYNC/CLKIN optional. |
+| SPI on dedicated local bus | TDK specifies separate `VDD` and `VDDIO`, each 1.71–3.6 V; SPI host rate up to 24 MHz; the official application circuit shows 0.1 µF + 2.2 µF at `VDD` and 10 nF at `VDDIO`. The package is 2.5 × 3.0 × 0.91 mm LGA-14. Official links: `https://invensense.tdk.com/en-us/products/6-axis/icm-42688-p` and `https://invensense.tdk.com/wp-content/uploads/2020/04/ds-000347_icm-42688-p-datasheet.pdf`. | **[DECISION]** fixed baseline. Use `3V3_SENS` for both supplies unless a later firmware/rail analysis requires another valid voltage. Provide dedicated CS and INT1; keep INT2/FSYNC/CLKIN optional. |
 | I2C for IMU | Supported by the part, but slower and less aligned with the high-rate primary-stabilization role. | **[CANDIDATE/DNP]** not recommended for Rev A primary IMU. |
 | External clock on `INT2/FSYNC/CLKIN` | Part supports an external clock input, but its use depends on firmware timing requirements and clock architecture. | **[OPEN]** leave per the official connection guidance; do not silently add an oscillator or tie the pin incorrectly. |
 | Sensor power switching | The sensor’s host interface must not be driven into an unpowered I/O domain; independent rail switching needs isolation/firmware sequencing. | **[RECOMMENDATION]** keep `3V3_SENS` always present while H743 I/O is active, unless a reviewed power-isolation circuit is added. |
@@ -243,7 +243,7 @@ These are schematic planning groups, not a final connector pinout or PCB route:
 
 | Topology | Verified facts and dependencies | Stage status |
 |---|---|---|
-| Local I2C | Bosch specifies `VDD` 1.65–3.6 V, `VDDIO` 1.2–3.6 V, I2C/SPI interfaces, 100 nF recommended at each supply in the I2C diagram, and 4.7 kΩ I2C pull-ups in the same diagram. `CSB` high at power-on selects I2C; `SDO` selects address 0x76/0x77. Official datasheet: `http[LOCAL_SOURCE]`. | **[RECOMMENDATION]** short local I2C bus on `3V3_SENS`, with documented pull-up ownership and a deterministic CSB/SDO strap. This preserves the primary SPI bus for the IMU. |
+| Local I2C | Bosch specifies `VDD` 1.65–3.6 V, `VDDIO` 1.2–3.6 V, I2C/SPI interfaces, 100 nF recommended at each supply in the I2C diagram, and 4.7 kΩ I2C pull-ups in the same diagram. `CSB` high at power-on selects I2C; `SDO` selects address 0x76/0x77. Official datasheet: `https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp390-ds002.pdf`. | **[RECOMMENDATION]** short local I2C bus on `3V3_SENS`, with documented pull-up ownership and a deterministic CSB/SDO strap. This preserves the primary SPI bus for the IMU. |
 | Local SPI | Bosch supports 3-/4-wire SPI up to 10 MHz; `CSB` low selects SPI. | **[CANDIDATE]** retain only if the chosen firmware/driver or bus-integrity plan needs SPI. It consumes another CS and does not automatically improve a short onboard barometer link. |
 | Protected vent | Bosch requires appropriate venting for ambient pressure and gives mounting cautions including clearance, liquid/light exposure, and no vapor-phase soldering. | **[DECISION]** protected vent and mechanical keep-out; exact opening, enclosure, coating, and prop-wash treatment `[OPEN]`. |
 | Barometer interrupt | The device has an interrupt function, but the FC firmware may poll or use data-ready depending on driver. | **[CANDIDATE]** provide an optional INT net/test pad without consuming the final pinout until firmware mapping is known. |
@@ -252,9 +252,9 @@ These are schematic planning groups, not a final connector pinout or PCB route:
 
 | Candidate/topology | Verified facts | Stage status |
 |---|---|---|
-| `TCAN332` / `TCAN332DCN` | TI specifies a single 3.3 V supply, ISO 11898-2 compatibility, standard-device data rate up to 1 Mbps, ±12 V common-mode range, ±14 V bus-fault protection, SOT-23/SOIC options, and high ESD/protection features. Official links: `http[LOCAL_SOURCE]` and `http[LOCAL_SOURCE]`. | **[RECOMMENDATION]** for classic 1 Mbps DroneCAN/CAN-style use if the bus contract is supplied. Exact package/MPN and availability `[OPEN]`. |
+| `TCAN332` / `TCAN332DCN` | TI specifies a single 3.3 V supply, ISO 11898-2 compatibility, standard-device data rate up to 1 Mbps, ±12 V common-mode range, ±14 V bus-fault protection, SOT-23/SOIC options, and high ESD/protection features. Official links: `https://www.ti.com/product/TCAN332/part-details/TCAN332DCNR` and `https://www.ti.com/lit/ds/symlink/tcan332.pdf`. | **[RECOMMENDATION]** for classic 1 Mbps DroneCAN/CAN-style use if the bus contract is supplied. Exact package/MPN and availability `[OPEN]`. |
 | `TCAN332G` class | TI identifies the G variants for CAN FD timing/data-rate capability up to the 5 Mbps class. | **[CANDIDATE]** if the external system explicitly requires CAN FD; do not pay the pin/firmware/EMC complexity cost without that requirement. |
-| `SN65HVD230` | TI specifies 3.3 V operation, ISO 11898-2 compatibility, up to 1 Mbps, SOIC-8, and older protection characteristics. Official datasheet: `http[LOCAL_SOURCE]`. | **[CANDIDATE]** alternate if procurement or footprint favors it; TCAN332 has the stronger current integrated protection story. |
+| `SN65HVD230` | TI specifies 3.3 V operation, ISO 11898-2 compatibility, up to 1 Mbps, SOIC-8, and older protection characteristics. Official datasheet: `https://www.ti.com/lit/ds/symlink/sn65hvd230.pdf`. | **[CANDIDATE]** alternate if procurement or footprint favors it; TCAN332 has the stronger current integrated protection story. |
 | Termination | A CAN transceiver is not the bus termination. A nominal 120 Ω termination is normally enabled only at each physical bus end; split termination/common-mode filtering depends on cable/EMC data. | **[RECOMMENDATION]** selectable 120 Ω provision at the FC port; exact switch/jumper and whether the FC is always an endpoint `[OPEN]`. |
 | Protection | CAN cable exposure may justify TVS/common-mode choke; the choice depends on cable length, environment, and transceiver protection. | **[CANDIDATE]** TVS and choke footprints; exact parts and placement `[OPEN]`. |
 
@@ -264,8 +264,8 @@ These are schematic planning groups, not a final connector pinout or PCB route:
 |---|---|---|
 | USB-C USB 2.0 FS, device/configuration only | Uses H743 PA11/PA12 FS data pins and PA9 VBUS sense; no HS ULPI PHY. Lowest pin/EMI/firmware complexity consistent with configuration/debug. | **[RECOMMENDATION]** |
 | USB-C sink-only CC network | USB-IF controls the connector standard. TI’s guide describes the simple sink-only case using 5.1 kΩ `Rd` on CC1/CC2, but VBUS capacitance and power-path behavior can require isolation/load switching. | **[RECOMMENDATION]** use only after deciding whether USB may power the FC; exact CC/power path `[OPEN]`. |
-| `USBLC6-2` class | ST lists two data-line protection, VBUS protection, 3.5 pF max line capacitance, SOT-666/SOT23-6L options, and IEC 61000-4-2 level 4 device compliance. Official links: `http[LOCAL_SOURCE]` and `http[LOCAL_SOURCE]`. | **[RECOMMENDATION]** for USB 2.0 FS if the package/land pattern is accepted. |
-| `TPD4EUSB30DQAR` class | TI specifies four channels, 0.8 pF typical I/O capacitance in the DQA package, USB 3.0 suitability, ±8 kV IEC contact rating, and 5 A 8/20 µs surge rating. Official datasheet: `http[LOCAL_SOURCE]`. | **[CANDIDATE]** low-capacitance alternative; its data-line device does not by itself define the VBUS power protection path, and the USON package/assembly must be checked. |
+| `USBLC6-2` class | ST lists two data-line protection, VBUS protection, 3.5 pF max line capacitance, SOT-666/SOT23-6L options, and IEC 61000-4-2 level 4 device compliance. Official links: `https://www.st.com/en/protections-and-emi-filters/usblc6-2.html` and `https://www.st.com/content/st_com/en/technical-documents/DS4260.html`. | **[RECOMMENDATION]** for USB 2.0 FS if the package/land pattern is accepted. |
+| `TPD4EUSB30DQAR` class | TI specifies four channels, 0.8 pF typical I/O capacitance in the DQA package, USB 3.0 suitability, ±8 kV IEC contact rating, and 5 A 8/20 µs surge rating. Official datasheet: `https://www.ti.com/lit/ds/symlink/tpd4eusb30.pdf`. | **[CANDIDATE]** low-capacitance alternative; its data-line device does not by itself define the VBUS power protection path, and the USON package/assembly must be checked. |
 | USB VBUS powers `5V_FC` directly | Simple but risks back-feed, uncontrolled inrush, and interaction with aircraft 5 V. | **[OPEN/DNP]** not accepted without a reviewed source-OR/load-switch design. |
 | USB VBUS only for detection/USB domain | Avoids back-feed and aircraft-rail interaction; requires an explicit USB-domain implementation consistent with the LQFP100 supply arrangement. | **[RECOMMENDATION]** leading policy, pending firmware/service requirements. |
 | Example receptacle `USB4105-GF-A` | Earlier project notes listed it only as an example candidate. | **[CANDIDATE]** exact footprint, mating plug, shell/grounding, retention, current rating, and supplier availability must be verified before use. |
@@ -309,7 +309,7 @@ OpenFC’s `100 kΩ/10 kΩ` battery-divider and `1 kΩ + 100 nF` current-filter 
 |---|---|---|---|
 | microSD via SDMMC1 4-bit | Removable logs, high capacity, convenient for ArduPilot/PX4 development; H743 has SDMMC resources and the LQFP100 exposes a usable candidate pin group. | Consumes several pins, has connector/ESD/EMI/mechanical concerns, and needs final firmware mapping and card-power policy. | **[RECOMMENDATION]** if integrated autopilot logging is required for Rev A. |
 | microSD via SPI | Fewer dedicated SDMMC signals and can share an SPI controller with careful CS discipline. | Lower/less deterministic throughput and bus-sharing/EMI decisions; firmware support still required. | **[CANDIDATE]** |
-| `W25Q128JV` SPI/Quad-SPI NOR | Winbond specifies a 128 Mbit/16 Mbyte device, 2.7–3.6 V supply, standard/Dual/Quad SPI, and up to 133 MHz clock class. Official links: `http[LOCAL_SOURCE]` and `http[LOCAL_SOURCE]`. | Requires firmware storage integration, reserved flash region/parameter policy, and exact package/land-pattern verification. | **[CANDIDATE]** simpler compact option; can be DNP when microSD is populated. |
+| `W25Q128JV` SPI/Quad-SPI NOR | Winbond specifies a 128 Mbit/16 Mbyte device, 2.7–3.6 V supply, standard/Dual/Quad SPI, and up to 133 MHz clock class. Official links: `https://www.winbond.com/hq/support/documentation/?__locale=en&category=%2F.categories%2Fresources%2Fdatasheet%2F&family=%2Fproduct%2Fcode-storage-flash-memory%2Fserial-nor-flash%2Findex.html&line=%2Fproduct%2Fcode-storage-flash-memory%2Findex.html&pno=W25Q128JV` and `https://www.winbond-electronics.com/pdf-7d/w25q128jvsjq.pdf`. | Requires firmware storage integration, reserved flash region/parameter policy, and exact package/land-pattern verification. | **[CANDIDATE]** simpler compact option; can be DNP when microSD is populated. |
 | No storage | Simplest motor/sensor proof-of-life and lowest pin/EMI risk. | Weakens estimator/flight-log debugging and integrated-autopilot development. | **[CANDIDATE/DNP]** for the first electrical bring-up build only. |
 
 ArduPilot’s custom-board porting guidance requires the storage method and flash reservation to be represented in the board definition; it also allows a no-storage build. Therefore, storage cannot be frozen from a reference PCB alone.
@@ -466,7 +466,42 @@ This is a circuit-selection recommendation, not a final BOM or routed design. Th
 ## 11. OpenESC-20x20 ESC integration addendum
 
 **Analysis date:** 2026-08-28  
-**Source reviewed:** OpenDrone-hw/OpenESC-20x20 (historical source reference)
+**Source reviewed:** [OpenDrone-hw/OpenESC-20x20](https://github.com/OpenDrone-hw/OpenESC-20x20) and the complete checkout at the current `main` commit inspected on this date.  
+**Scope:** system-level accommodation only. This addendum does not approve the ESC as final, change the FC baseline, route a PCB, or release a purchase BOM.
+
+### 11.1 Repository audit result
+
+- **[VERIFIED]** The repository contains the KiCad project, root schematic, repeated one-channel schematic, PCB, project rules, local symbol/footprint/3-D libraries, fabrication configuration, flashing script, thermal-analysis script, images, contribution note and CERN-OHL-S-2.0 licence.
+- **[VERIFIED]** The inspected commit was `67566cae93e759feee9c88021e81e2f38440956f`, with PCB title-block revision `rev3.3`.
+- **[VERIFIED]** The source tree does not contain the production AM32 binary, bootloader binary, QC/flashing fixture project, external test logs, Gerbers, assembly outputs or a final machine-generated BOM.
+- **[OPEN]** The repository’s stated measurements and revision notes cannot be independently reproduced from this checkout because the referenced `OpenDrone-Testing` logs are external paths, not repository files.
+- **[OPEN]** `kicad-cli` was not available in the analysis environment, so repository ERC/DRC results were not independently rerun here.
+
+Primary source files:
+
+- [README.md](https://github.com/OpenDrone-hw/OpenESC-20x20/blob/main/README.md)
+- [AGENTS.md](https://github.com/OpenDrone-hw/OpenESC-20x20/blob/main/AGENTS.md)
+- [Root schematic](https://github.com/OpenDrone-hw/OpenESC-20x20/blob/main/hardware/4in1-mini.kicad_sch)
+- [Repeated channel schematic](https://github.com/OpenDrone-hw/OpenESC-20x20/blob/main/hardware/ESC.kicad_sch)
+- [PCB](https://github.com/OpenDrone-hw/OpenESC-20x20/blob/main/hardware/4in1-mini.kicad_pcb)
+- [Project file](https://github.com/OpenDrone-hw/OpenESC-20x20/blob/main/hardware/4in1-mini.kicad_pro)
+- [Design rules](https://github.com/OpenDrone-hw/OpenESC-20x20/blob/main/hardware/4in1-mini.kicad_dru)
+- [Flash script](https://github.com/OpenDrone-hw/OpenESC-20x20/blob/main/hardware/flash_openesc20.sh)
+- [Thermal script](https://github.com/OpenDrone-hw/OpenESC-20x20/blob/main/hardware/tools/esc_thermal.py)
+- [Licence](https://github.com/OpenDrone-hw/OpenESC-20x20/blob/main/LICENSE)
+
+### 11.2 Reconstructed ESC architecture
+
+**[VERIFIED]** The board is a four-in-one BLDC ESC, but each motor channel is independent:
+
+```text
+Motor command / DShot input
+          |
+          v
+AT32F421G8U7 MCU  ->  NSG2065Q 3-phase gate driver
+          |                       |
+          +-----------------------+--> 6 x DOY180N03T MOSFETs
+                                      (2 MOSFETs per motor phase)
 
 Four independent copies share the battery input, current monitor and FC connector.
 ```
@@ -501,7 +536,30 @@ This is the key conflict with the earlier conceptual FC `ESC_SIG` grouping of `M
 
 ### 11.5 DShot, PWM and firmware implications
 
-- **[VERIFIED]** The repository identifies AM32 as the ESC firmware and bidirectional DShot/extended DShot as the intended protocol. The official AM32 project also lists DShot 300/600, bidirectional DShot and servo PWM support: AM32 (historical source reference)
+- **[VERIFIED]** The repository identifies AM32 as the ESC firmware and bidirectional DShot/extended DShot as the intended protocol. The official AM32 project also lists DShot 300/600, bidirectional DShot and servo PWM support: [AM32](https://github.com/am32-firmware/AM32).
+- **[RECOMMENDATION]** The FC must reserve four H743 output channels whose alternate functions, timers, DMA/DMAMUX paths and firmware board definition can support bidirectional DShot. PWM remains the propeller-off bring-up fallback, not the final telemetry plan.
+- **[OPEN]** Exact ArduPilot/PX4 support depends on the final H743 pin/timer map. ArduPilot explicitly warns that DShot capability is output-group dependent and recommends testing Bdshot-capable outputs with an AM32/BLHelI32 ESC when porting a new board: [DShot documentation](https://ardupilot.org/copter/docs/common-dshot-escs.html), [new-board porting](https://ardupilot.org/dev/docs/porting.html).
+- **[OPEN]** The ESC team must provide the exact AM32 target, firmware commit/binary, motor-pole and motor-Kv configuration procedure, bootloader behavior, temperature-limit policy and motor-direction settings. The repository notes that its as-flashed `limits.temperature = 255` disables thermal foldback and that product-specific motor settings are required; these claims need an actual-board configuration audit.
+- **[OPEN]** The supplied flashing script is not directly a Windows workflow: it hardcodes macOS OpenOCD paths and uses `say`, `afplay` and `system_profiler`. A Windows-capable or platform-neutral production flashing procedure is required for this project.
+
+### 11.6 Thermal and rating interpretation
+
+- **[VERIFIED]** The README publishes 40 A/channel as a continuous headline rating.
+- **[REPO-STATED / NOT INDEPENDENTLY VERIFIED]** `AGENTS.md` reports approximately 30–34 A/channel continuous fan-cooled operation at a 115 degC die, 64 A for 2 s on one channel, 112 A board-level for 2.4 s, and destruction near 40 A sustained by solder reflow. The report says FET joints exceeded 217 degC while the die read approximately 161 degC.
+- **[VERIFIED]** The checked-in thermal script is not a valid current-board predictor: its 20x20 profile is explicitly labelled superseded `SP40N03GNJ`, while the shipping schematic/PCB use 24 `DOY180N03T` parts. It also assumes a simplified thermal model and, as written, requires UTF-8 mode to run cleanly in this Windows environment.
+- **[RECOMMENDATION]** Do not design the FC’s current alarm, battery sizing or flight-performance claims from “40 A/channel” alone. Use the actual motor/propeller/battery test envelope and a verified thermal/cooling condition supplied by the ESC team.
+
+### 11.7 Source-level issues to resolve before using the ESC as a reference
+
+- **[OPEN]** The root schematic assigns capacitor footprints to `R91` and `R92`, while the PCB places resistor footprints for those references. This may be metadata drift, but it must be corrected or explicitly waived after KiCad schematic/PCB parity review.
+- **[OPEN]** The root schematic’s `+10V` power symbols use a `power:+12V` library identifier while displaying `+10V`; the actual net name and ERC behavior must be verified in KiCad.
+- **[OPEN]** Some schematic fields still refer to historical/non-local libraries such as `ESCLibrary`, `PCM_*`, `footprint:*` and `4in1ESC-30x30`, while the repository’s active footprint table defines only the local `4in1ESC` library. Do not run update-from-schematic or copy footprints until this is reconciled.
+- **[VERIFIED]** Rev3.3 intentionally has a PCB-only bulk ceramic bank; the repository warns that updating the PCB from the schematic can delete those parts. The bank must be preserved deliberately and checked in the manufacturing package.
+- **[OPEN]** The local symbol library contains removed/alternate candidates such as `SMF24A-T13`, `LMR51420YDDCR`, an alternate 8-pin connector and an alternate inductor. They are historical library content, not automatic approval for the placed current design.
+
+### 11.8 FC accommodation options
+
+#### Option A — direct OpenESC-compatible connector, signal-only power boundary (**[RECOMMENDATION]**)
 
 Use a mating connector/cable with the OpenESC pin order, but on the FC:
 

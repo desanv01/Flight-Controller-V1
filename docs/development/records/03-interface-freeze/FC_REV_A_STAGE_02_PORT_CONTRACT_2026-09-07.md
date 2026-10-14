@@ -70,7 +70,7 @@ Proposed logical POWER1 pins, independent of placement:
 
 ## 4. CAN implementation candidates
 
-CAN1 is required and populated. CAN2 is visibly reserved but DNP. RECOMMENDATION for each populated bus is TI `TCAN332DCNR`, a 3.3 V, 1 Mbit/s ISO 11898-2 transceiver in SOT-23-8; exact ESD/common-mode choke parts and termination switch are Stage 07 work. TI source: http[LOCAL_SOURCE] and datasheet Rev F: http[LOCAL_SOURCE]
+CAN1 is required and populated. CAN2 is visibly reserved but DNP. RECOMMENDATION for each populated bus is TI `TCAN332DCNR`, a 3.3 V, 1 Mbit/s ISO 11898-2 transceiver in SOT-23-8; exact ESD/common-mode choke parts and termination switch are Stage 07 work. TI source: https://www.ti.com/product/TCAN332/part-details/TCAN332DCNR and datasheet Rev F: https://www.ti.com/lit/ds/symlink/tcan332.pdf
 
 The second bus consumes PB5/PB6 and one optional transceiver footprint only. These pins do not collide with the motor group, USB, SWD, SDMMC1, SPI1 IMU, or required UARTs. Human approval is required before populating CAN2 or assigning its connector placement.
 

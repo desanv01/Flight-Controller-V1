@@ -17,12 +17,12 @@ The SX1281 chip itself is a transceiver, but the complete OpenRX Lite product is
 I reviewed:
 
 - The attached schematic image.
-- The legacy [OpenRX family repository](http[LOCAL_SOURCE]
-- The current dedicated [OpenRX-Lite repository](http[LOCAL_SOURCE]
+- The legacy [OpenRX family repository](https://github.com/OpenDrone-hw/OpenRX).
+- The current dedicated [OpenRX-Lite repository](https://github.com/OpenDrone-hw/OpenRX-Lite).
 - Its README, technical instructions, schematic, PCB, firmware target, and shared KiCad library.
-- The [OpenDrone OpenRX product page](http[LOCAL_SOURCE]
-- The [OpenRX-Lite-UFL variant](http[LOCAL_SOURCE]
-- Official documentation for the [SX1281](http[LOCAL_SOURCE] [ESP32-C3](http[LOCAL_SOURCE] [TLV75533](http[LOCAL_SOURCE] RF filter, antenna, and [ExpressLRS wiring/protocols](http[LOCAL_SOURCE]
+- The [OpenDrone OpenRX product page](https://opendrone.be/products/openrx).
+- The [OpenRX-Lite-UFL variant](https://github.com/OpenDrone-hw/OpenRX-Lite-UFL).
+- Official documentation for the [SX1281](https://www.semtech.com/products/wireless-rf/lora-connect/sx1281), [ESP32-C3](https://documentation.espressif.com/esp32-c3_datasheet_en.html), [TLV75533](https://www.ti.com/product/TLV755P/part-details/TLV75533PDQNR), RF filter, antenna, and [ExpressLRS wiring/protocols](https://www.expresslrs.org/quick-start/receivers/wiring-up/).
 
 The old `OpenRX` repository is mainly a family hub. The dedicated board repositories contain the actual current hardware sources.
 
@@ -87,10 +87,10 @@ Molex 47948-0001 ceramic antenna
 ```
 
 The Johanson filter is an impedance-matched 2.4 GHz filter intended for SX1280/SX1281-type applications. Its published characteristics include approximately 0.75 dB typical insertion loss, 50 Ω operation, and 2.4–2.5 GHz coverage.  
-[Johanson filter documentation](http[LOCAL_SOURCE]
+[Johanson filter documentation](https://www.johansontechnology.com/products/chipset-specific-rf-front-end/semtech/2450fm07d0034001t/)
 
 The Molex antenna is specified for the 2.4 GHz band, with a published peak gain around 3.7 dBi and total efficiency above 70% under its specified conditions. Actual performance still depends strongly on PCB ground, enclosure, carbon-fibre proximity, and antenna keepout.  
-[Molex 47948-0001](http[LOCAL_SOURCE]
+[Molex 47948-0001](https://www.molex.com/en-us/products/part-detail/479480001)
 
 ### Important limitation
 
@@ -152,7 +152,7 @@ RGB LED: GPIO8
 ```
 
 The current repository documents CRSF as the primary FC protocol.  
-[OpenRX-Lite firmware target](http[LOCAL_SOURCE]
+[OpenRX-Lite firmware target](https://raw.githubusercontent.com/OpenDrone-hw/OpenRX-Lite/main/firmware/OpenRX%20Lite%202400.json)
 
 ---
 
@@ -171,7 +171,7 @@ TLV75533 3.3 V LDO
 ```
 
 The TLV75533 is a 500 mA, 3.3 V low-dropout regulator with a 1.45–5.5 V input range and protections such as thermal shutdown and current limiting.  
-[TI TLV75533 documentation](http[LOCAL_SOURCE]
+[TI TLV75533 documentation](https://www.ti.com/product/TLV755P/part-details/TLV75533PDQNR)
 
 But this does **not** mean the receiver should be supplied with raw battery voltage.
 
@@ -211,8 +211,8 @@ GND       ────── FC GND
 ```
 
 ExpressLRS CRSF requires a normal, uninverted, full-duplex UART pair. The product description’s phrase “one UART wire” should be interpreted as **one UART interface**, not one physical signal wire.  
-[ExpressLRS receiver wiring](http[LOCAL_SOURCE]  
-[ExpressLRS FC configuration](http[LOCAL_SOURCE]
+[ExpressLRS receiver wiring](https://www.expresslrs.org/quick-start/receivers/wiring-up/)  
+[ExpressLRS FC configuration](https://www.expresslrs.org/quick-start/receivers/configuring-fc/)
 
 The OpenRX board itself has no observed dedicated UART ESD protector or external signal-conditioning circuit. Therefore:
 
@@ -246,7 +246,7 @@ The answer depends on the meaning of “transceiver.”
 | GPS, CAN, USB, lidar, telemetry modem, or FC functions | **NO** |
 
 The ExpressLRS ecosystem supports several serial output protocols, including CRSF, SBUS, SUMD, HoTT, and others. However, the exact OpenRX Lite target is documented primarily for CRSF. Other protocol modes should be treated as **OPEN** until tested on this exact hardware and firmware target.  
-[ExpressLRS serial protocols](http[LOCAL_SOURCE]
+[ExpressLRS serial protocols](https://www.expresslrs.org/software/serial-protocols/)
 
 So the accurate description is:
 
@@ -265,7 +265,7 @@ It is not accurately described as a universal transceiver.
 | Mono | 2.4 GHz + 900 MHz | One U.FL | Up to 22 dBm | 10 × 17.3 mm |
 | Gemini | Dual-band/Xrossband | Two U.FL connectors | Up to 22 dBm | 17 × 15.7 mm |
 
-[OpenRX family specifications](http[LOCAL_SOURCE]
+[OpenRX family specifications](https://github.com/OpenDrone-hw/OpenRX)
 
 None of these should automatically be considered universal multi-protocol transceivers. Mono and Gemini expand the **ExpressLRS frequency/receiver options**, but they remain ExpressLRS devices.
 

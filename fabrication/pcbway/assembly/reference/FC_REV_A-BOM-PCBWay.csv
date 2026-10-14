@@ -1,0 +1,85 @@
+Line#,Quantity Per Part Number,Reference Designator,Part Number,Part Description,Package,Type,Manufacturers Name,Manufacturers Part Number,Distributors Part Number
+1,52,"C1,C2,C3,C4,C5,C9,C11,C13,C14,C22,C26,C35,C39,C43,C44,C45,C46,C51,C54,C55,C56,C57,C62,C63,C64,C65,C66,C67,C68,C69,C71,C72,C73,C74,C75,C76,C77,C78,C79,C80,C81,C82,C85,C87,C88,C89,C95,C96,C97,C98,C99,C101",CC0603KRX7R9BB104,100n - 50V X7R 10%; noncritical local bypass,Capacitor_SMD__C_0603_1608Metric,Surface mount,YAGEO,CC0603KRX7R9BB104,C14663
+2,6,"R8,R10,R28,R31,R33,R36",RT0603BRD07100KL,"100k - Thin film 0.1%, 25ppm/C; +/-0.5% TOTAL design budget; 0.1W; 50% power derating",Resistor_SMD__R_0603_1608Metric,Surface mount,Yageo,RT0603BRD07100KL,
+3,3,"J5,J6,J10",BM06B-GHS-TBT(LF)(SN),TELEM1 - Logical pin numbering from FC connector mating face; verify mechanical drawing before PCB,Connector_JST__JST_GH_BM06B-GHS-TBT_1x06-1MP_P1.25mm_Vertical,Surface mount,JST,BM06B-GHS-TBT(LF)(SN),C20089153
+4,1,U14,SN74AUP3G17DCUR,SN74AUP3G17DCUR,Package_SO__VSSOP-8_2.3x2mm_P0.5mm,Surface mount,Texas Instruments,SN74AUP3G17DCUR,C191827
+5,12,"R3,R5,R9,R12,R13,R15,R20,R22,R25,R32,R34,R37",RT0603BRD0710KL,"10k - Thin film 0.1%, 25ppm/C; +/-0.5% TOTAL design budget; 0.1W; 50% power derating",Resistor_SMD__R_0603_1608Metric,Surface mount,Yageo,RT0603BRD0710KL,C95204
+6,5,"U39,U40,U46,U56,U60",TPD1E05U06DYAR,TPD1E05U06DYAR,TI_DYA0002_SOD523,Surface mount,Texas Instruments,TPD1E05U06DYAR,C3702980
+7,5,"U25,U28,U31,U34,U55",SN74LVC2G34DBVR,SN74LVC2G34DBVR,Package_TO_SOT_SMD__SOT-23-6,Surface mount,Texas Instruments,SN74LVC2G34DBVR,C347589
+8,1,U5,TPS552892RYQR,TPS552892RYQR,TI_RYQ0021_HotRod_5x3,Surface mount,Texas Instruments,TPS552892RYQR,C19272254
+9,10,"U21,U26,U29,U32,U35,U43,U53,U58,U61,U62",TPD4E05U06DQAR,TPD4E05U06DQAR,Package_SON__USON-10_2.5x1.0mm_P0.5mm,Surface mount,Texas Instruments,TPD4E05U06DQAR,C138714
+10,12,"R58,R61,R64,R67,R101,R102,R113,R119,R121,R123,R125,R127",0603WAF0000T5E,0 - Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating,Resistor_SMD__R_0603_1608Metric,Surface mount,UNI-ROYAL(Uniroyal Elec),0603WAF0000T5E,C21189
+11,2,"R26,R35",RT0603BRD07220KL,"220k - Thin film 0.1%, 25ppm/C; +/-0.5% TOTAL design budget; 0.1W; 50% power derating",Resistor_SMD__R_0603_1608Metric,Surface mount,Yageo,RT0603BRD07220KL,
+12,2,"U3,U11",TPS3808G01DBVR,TPS3808G01DBVR,Package_TO_SOT_SMD__SOT-23-6,Surface mount,Texas Instruments,TPS3808G01DBVR,C19653
+13,29,"R57,R59,R60,R62,R63,R65,R66,R68,R72,R74,R76,R78,R80,R82,R84,R86,R88,R90,R92,R94,R96,R97,R109,R120,R122,R124,R126,R128,R129",0603WAF4702T5E,47k - Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating,Resistor_SMD__R_0603_1608Metric,Surface mount,UNI-ROYAL(Uniroyal Elec),0603WAF4702T5E,C25819
+14,1,Y1,ABM3B-8.000MHZ-B2-T,8.000MHz - CL=18 pF; ESR<=200 Ohm; C0<=7 pF; drive<=100 uW; -20 to +70 C; tolerance +/-20 ppm; stability +/-50 ppm,Crystal__Crystal_SMD_Abracon_ABM3B-4Pin_5.0x3.2mm,Surface mount,Abracon,ABM3B-8.000MHZ-B2-T,C83312
+15,2,"R19,R24",RT0603BRD0734K8L,"34.8k - Thin film 0.1%, 25ppm/C; +/-0.5% TOTAL design budget; 0.1W; 50% power derating",Resistor_SMD__R_0603_1608Metric,Surface mount,Yageo,RT0603BRD0734K8L,
+16,1,J_POWER1,43045-0600,43045-0600,POWER1_Molex_43045_0600_4Electrical_2NPTH,Thru-hole,MOLEX,43045-0600,C240836
+17,16,"C21,C23,C24,C25,C30,C31,C32,C33,C34,C40,C41,C47,C48,C49,C50,C100",CL32A226KAJNNNE,22u - 25V X7R 10%; assumed effective 10..28u at <=5.5V incl bias/temp/aging; verify lot/model,Capacitor_SMD__C_1210_3225Metric,Surface mount,Samsung Electro-Mechanics,CL32A226KAJNNNE,C52306
+18,1,U12,ICM-42688-P,ICM-42688-P,TDK_ICM42688P_LGA14_3x2.5,Surface mount,TDK InvenSense,ICM-42688-P,C1850418
+19,2,"R111,R112",0603WAF5101T5E,5.1k - Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating,Resistor_SMD__R_0603_1608Metric,Surface mount,UNI-ROYAL(Uniroyal Elec),0603WAF5101T5E,C23186
+20,3,"C58,C60,C61",CL31B105KBHNNNE,1u - 50V X7R +/-10%; effective 0.5..1.2u assumption,Capacitor_SMD__C_1206_3216Metric,Surface mount,Samsung Electro-Mechanics,CL31B105KBHNNNE,C1848
+21,1,U17,TCA9416DDFR,TCA9416DDFR,TI_DDF0008_SOT23THIN_8,Surface mount,Texas Instruments,TCA9416DDFR,C4364143
+22,7,"R38,R42,R43,R44,R45,R46,R48",0603WAF1003T5E,100k - Thick film 1%; total +/-3% design allowance incl temperature; 0.1W; 50% power derating,Resistor_SMD__R_0603_1608Metric,Surface mount,UNI-ROYAL(Uniroyal Elec),0603WAF1003T5E,C25803
+23,2,"R16,R30",RT0603BRD0749K9L,"49.9k - Thin film 0.1%, 25ppm/C; +/-0.5% TOTAL design budget; 0.1W; 50% power derating",Resistor_SMD__R_0603_1608Metric,Surface mount,Yageo,RT0603BRD0749K9L,
+24,4,"U36,U37,U45,U59",LM66100DCKR,LM66100DCKR,Package_TO_SOT_SMD__SOT-363_SC-70-6,Surface mount,Texas Instruments,LM66100DCKR,C2869734
+25,1,U18,SN74AXC1T45DBVR,SN74AXC1T45DBVR,Package_TO_SOT_SMD__SOT-23-6,Surface mount,Texas Instruments,SN74AXC1T45DBVR,C2677376
+26,1,J9,USB4105-GF-A,USB-C GCT USB4105 - Exact physical contact contract in Stage07 handoff; footprint recommendation only,GCT_USB4105_GF_A_095_S1_S4,Hybrid,GCT,USB4105-GF-A,
+27,4,"U24,U27,U30,U33",SN74LVC2G07DBVR,SN74LVC2G07DBVR,Package_TO_SOT_SMD__SOT-23-6,Surface mount,Texas Instruments,SN74LVC2G07DBVR,C37708
+28,2,"C7,C8",CL10A225KO8NNNC,2.2u - Ceramic; 2.2 uF effective +/-20%; ESR <100 mOhm; >=6.3 V; place at pin 73,Capacitor_SMD__C_0603_1608Metric,Surface mount,Samsung Electro-Mechanics,CL10A225KO8NNNC,C23630
+29,1,U1,STM32H743VIT6,STM32H743VIT6,Package_QFP__LQFP-100_14x14mm_P0.5mm,Surface mount,STMicroelectronics,STM32H743VIT6,C114409
+30,1,R2,RT0603BRD0728K7L,"28.7k - Thin film 0.1%, 25ppm/C; +/-0.5% TOTAL design budget; 0.1W; 50% power derating",Resistor_SMD__R_0603_1608Metric,Surface mount,Yageo,RT0603BRD0728K7L,
+31,1,U47,TCAN332DCNR,TCAN332DCNR,Package_TO_SOT_SMD__SOT-23-8,Surface mount,Texas Instruments,TCAN332DCNR,C544741
+32,1,J_ESC_FC,SM05B-SRSS-TB,SM05B-SRSS-TB,ESC_JST_SH_SM05B_SRSS_TB,Surface mount,JST,SM05B-SRSS-TB,C20089326
+33,2,"U13,U19",SN74AXC4T774PWR,SN74AXC4T774PWR,Package_SO__TSSOP-16_4.4x5mm_P0.65mm,Surface mount,Texas Instruments,SN74AXC4T774PWR,C1849453
+34,1,U4,TPS62130ARGTR,TPS62130ARGTR,Package_DFN_QFN__VQFN-16-1EP_3x3mm_P0.5mm_EP1.68x1.68mm,Surface mount,Texas Instruments,TPS62130ARGTR,C337502
+35,2,"R47,R117",0603WAF6800T5E,680 - Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating,Resistor_SMD__R_0603_1608Metric,Surface mount,UNI-ROYAL(Uniroyal Elec),0603WAF6800T5E,C23228
+36,1,R4,RT0603BRD0737K4L,"37.4k - Thin film 0.1%, 25ppm/C; +/-0.5% TOTAL design budget; 0.1W; 50% power derating",Resistor_SMD__R_0603_1608Metric,Surface mount,Yageo,RT0603BRD0737K4L,
+37,2,"U9,U10",TPS3700DDCR,TPS3700DDCR,Package_TO_SOT_SMD__SOT-23-6,Surface mount,Texas Instruments,TPS3700DDCR,C33002
+38,7,"C19,C20,C27,C28,C29,C38,C42",CL31B104KBCNNNC,100n - 50V C0G 5%; +/-6% total timing/edge budget,Capacitor_SMD__C_1206_3216Metric,Surface mount,Samsung Electro-Mechanics,CL31B104KBCNNNC,C24497
+39,4,"U20,U42,U54,U57",TMUX1511PWR,TMUX1511PWR,Package_SO__TSSOP-14_4.4x5mm_P0.65mm,Surface mount,Texas Instruments,TMUX1511PWR,C2866750
+40,2,"C15,C16",0603CG240J500NT,"24p - RECOMMENDATION C0G/NP0 1%; C=2*(18pF-6pF)=24pF; Cs=6pF ASSUMPTION, 5..7pF bound; verify layout/startup/drive",Capacitor_SMD__C_0603_1608Metric,Surface mount,FH (Guangdong Fenghua Advanced Tech),0603CG240J500NT,C1654
+41,1,J4,BM08B-GHS-TBT(LF)(SN),GPS1 - Logical pin numbering from FC connector mating face; verify mechanical drawing before PCB,Connector_JST__JST_GH_BM08B-GHS-TBT_1x08-1MP_P1.25mm_Vertical,Surface mount,JST,BM08B-GHS-TBT(LF)(SN),
+42,1,R21,RT0603BRD0745K3L,"45.3k - Thin film 0.1%, 25ppm/C; +/-0.5% TOTAL design budget; 0.1W; 50% power derating",Resistor_SMD__R_0603_1608Metric,Surface mount,Yageo,RT0603BRD0745K3L,C861415
+43,1,R14,RT0603BRD0731K6L,"31.6k - Thin film 0.1%, 25ppm/C; +/-0.5% TOTAL design budget; 0.1W; 50% power derating",Resistor_SMD__R_0603_1608Metric,Surface mount,Yageo,RT0603BRD0731K6L,
+44,1,FB1,BLM18AG601SN1D,600R@100MHz - 600Ohm at100MHz; 0.38Ohm max DCR; 500mA; ANA50mA; damping/layout validation OPEN,Inductor_SMD__L_0603_1608Metric,Surface mount,Murata,BLM18AG601SN1D,C19330
+45,1,J12,MEM2075-00-140-01-A,microSD GCT MEM2075 - Exact physical contact contract in Stage07 handoff; footprint recommendation only,GCT_MEM2075_00_140_01_A,Surface mount,GCT,MEM2075-00-140-01-A,C3029735
+46,2,"J3,J7",BM04B-GHS-TBT(LF)(SN),RC_IN - Logical pin numbering from FC connector mating face; verify mechanical drawing before PCB,Connector_JST__JST_GH_BM04B-GHS-TBT_1x04-1MP_P1.25mm_Vertical,Surface mount,JST,BM04B-GHS-TBT(LF)(SN),
+47,1,R18,RT0603BRD0771K5L,"71.5k - Thin film 0.1%, 25ppm/C; +/-0.5% TOTAL design budget; 0.1W; 50% power derating",Resistor_SMD__R_0603_1608Metric,Surface mount,Yageo,RT0603BRD0771K5L,
+48,1,R11,RT0603BRD0731K2L,"31.2k - Thin film 0.1%, 25ppm/C; +/-0.5% TOTAL design budget; 0.1W; 50% power derating",Resistor_SMD__R_0603_1608Metric,Surface mount,Yageo,RT0603BRD0731K2L,C861319
+49,1,U2,TPS259470LRPWR,TPS259470LRPWR,TI_RPW0010_HotRod_2x2,Surface mount,Texas Instruments,TPS259470LRPWR,C3662793
+50,1,U16,BMP390,BMP390,Bosch_BMP390_LGA10_2x2,Surface mount,Bosch Sensortec,BMP390,C5124834
+51,2,"C36,C52",CL31B225KBHNNNE,"2.2u - 50V X7R +/-10%; effective 1.5..2.7u assumption, validate bias/temp/aging",Capacitor_SMD__C_1206_3216Metric,Surface mount,Samsung Electro-Mechanics,CL31B225KBHNNNE,C50254
+52,1,L2,XAL7070-682MEC,6.8u - 6.8u +/-20%; DCR max19.62mOhm; Isat12.8A at30% drop; Irms6.8A/20C rise; fault pulse qualification OPEN,Inductor_SMD__L_Coilcraft_XAL7070-XXX,Surface mount,Coilcraft,XAL7070-682MEC,
+53,1,U6,TPS25940LRVCR,TPS25940LRVCR,Package_DFN_QFN__Texas_RVC0020A_WQFN-20-1EP_3x4mm_P0.5mm_EP1.6x2.6mm,Surface mount,Texas Instruments,TPS25940LRVCR,C2867756
+54,11,"R52,R54,R55,R56,R75,R79,R83,R87,R91,R95,R110",0603WAF2202T5E,22k - Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating,Resistor_SMD__R_0603_1608Metric,Surface mount,UNI-ROYAL(Uniroyal Elec),0603WAF2202T5E,C31850
+55,1,R118,0603WAF220JT5E,22 - Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating,Resistor_SMD__R_0603_1608Metric,Surface mount,UNI-ROYAL(Uniroyal Elec),0603WAF220JT5E,C23345
+56,1,L1,SDFL1005P2R2KTF,2.2u - 2.2u +/-20%; DCR max38.7mOhm at25C; Isat5.6A (30% drop); Irms4A/20C rise,Inductor_SMD__L_Coilcraft_XAL4020-XXX,Surface mount,Sunlord,SDFL1005P2R2KTF,C49067
+57,1,U7,TPS73633DBVR,TPS73633DBVR,Package_TO_SOT_SMD__SOT-23-5,Surface mount,Texas Instruments,TPS73633DBVR,C28038
+58,1,U15,TPS22918DBVR,TPS22918DBVR,Package_TO_SOT_SMD__SOT-23-6,Surface mount,Texas Instruments,TPS22918DBVR,C131941
+59,1,C53,0603B103K500NT,10n - 50V X7R +/-10%; TDK VDDIO bypass,Capacitor_SMD__C_0603_1608Metric,Surface mount,FH (Guangdong Fenghua Advanced Tech),0603B103K500NT,C57112
+60,1,R108,0603WAF1001T5E,1k - Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating,Resistor_SMD__R_0603_1608Metric,Surface mount,UNI-ROYAL(Uniroyal Elec),0603WAF1001T5E,C21190
+61,2,"C10,C12",CL10A105KB8NNNC,1u - Ceramic; local decoupling; >=6.3 V; production MPN/footprint OPEN,Capacitor_SMD__C_0603_1608Metric,Surface mount,Samsung Electro-Mechanics,CL10A105KB8NNNC,C15849
+62,1,TP2,BOOT0,BOOT0 - Physical geometry/accessibility Stage 08/09,TestPoint__TestPoint_Pad_D1.0mm,Surface mount,,BOOT0,
+63,3,"R39,R40,R53",0603WAF1504T5E,1.5M - Thick film 1%; total +/-3% design allowance incl temperature; 0.1W; 50% power derating,Resistor_SMD__R_0603_1608Metric,Surface mount,UNI-ROYAL(Uniroyal Elec),0603WAF1504T5E,C4172
+64,1,R49,0603WAF9100T5E,910 - Thick film 1%; total +/-3% design allowance incl temperature; 0.1W; 50% power derating,Resistor_SMD__R_0603_1608Metric,Surface mount,UNI-ROYAL(Uniroyal Elec),0603WAF9100T5E,C23264
+65,8,"TP8,TP9,TP10,TP11,TP12,TP13,TP14,TP15",PCB_TEST_PAD,PWR_STATUS - Required rail access; pad/fixture geometry RECOMMENDATION Stage08/09,TestPoint__TestPoint_Pad_D1.0mm,Surface mount,,PCB_TEST_PAD,
+66,1,TP7,3V3_REF,3V3_REF - Sense/reference only <=10 mA; no target power injection,TestPoint__TestPoint_Pad_D1.0mm,Surface mount,,3V3_REF,
+67,1,TP3,SWDIO,SWDIO - Physical geometry/accessibility Stage 08/09,TestPoint__TestPoint_Pad_D1.0mm,Surface mount,,SWDIO,
+68,1,R7,RT0603BRD07100RL,"100 - Thin film 0.1%, 25ppm/C; +/-0.5% TOTAL design budget; 0.1W; 50% power derating",Resistor_SMD__R_0603_1608Metric,Surface mount,Yageo,RT0603BRD07100RL,
+69,6,"R73,R77,R81,R85,R89,R93",0603WAF470JT5E,47 - Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating,Resistor_SMD__R_0603_1608Metric,Surface mount,UNI-ROYAL(Uniroyal Elec),0603WAF470JT5E,C23182
+70,1,TP1,NRST,NRST - Physical geometry/accessibility Stage 08/09,TestPoint__TestPoint_Pad_D1.0mm,Surface mount,,NRST,
+71,1,TP6,GND,GND - Physical geometry/accessibility Stage 08/09,TestPoint__TestPoint_Pad_D1.0mm,Surface mount,,GND,
+72,1,R29,RT0603BRD07137KL,"137k - Thin film 0.1%, 25ppm/C; +/-0.5% TOTAL design budget; 0.1W; 50% power derating",Resistor_SMD__R_0603_1608Metric,Surface mount,Yageo,RT0603BRD07137KL,
+73,1,C6,CL10A475KO8NNNC,4.7u - Ceramic; effective package bulk >=4.7 uF at 3.3 V; voltage >=6.3 V,Capacitor_SMD__C_0603_1608Metric,Surface mount,Samsung Electro-Mechanics,CL10A475KO8NNNC,C19666
+74,1,R17,RT0603BRD07680RL,"680 - Thin film 0.1%, 25ppm/C; +/-0.5% TOTAL design budget; 0.1W; 50% power derating",Resistor_SMD__R_0603_1608Metric,Surface mount,Yageo,RT0603BRD07680RL,
+75,2,"R50,R51",0603WAF4701T5E,4.7k - Thick film 1%; total +/-3% design allowance incl temperature; 0.1W; 50% power derating,Resistor_SMD__R_0603_1608Metric,Surface mount,UNI-ROYAL(Uniroyal Elec),0603WAF4701T5E,C23162
+76,2,"R99,R115",0603WAF3301T5E,3.3k - Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating,Resistor_SMD__R_0603_1608Metric,Surface mount,UNI-ROYAL(Uniroyal Elec),0603WAF3301T5E,C22978
+77,1,C37,0603B472K500NT,4.7n - 50V C0G 5%; +/-6% total,Capacitor_SMD__C_0603_1608Metric,Surface mount,FH (Guangdong Fenghua Advanced Tech),0603B472K500NT,C53987
+78,1,U8,SN74HCS11DR,SN74HCS11DR,Package_SO__SOIC-14_3.9x8.7mm_P1.27mm,Surface mount,Texas Instruments,SN74HCS11DR,C2869822
+79,1,R6,RT0603BRD07732RL,"732 - Thin film 0.1%, 25ppm/C; +/-0.5% TOTAL design budget; 0.1W; 50% power derating",Resistor_SMD__R_0603_1608Metric,Surface mount,Yageo,RT0603BRD07732RL,
+80,2,"R1,R100",0603WAF1002T5E,10k - Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating,Resistor_SMD__R_0603_1608Metric,Surface mount,UNI-ROYAL(Uniroyal Elec),0603WAF1002T5E,C25804
+81,1,R23,RT0603BRD071KL,"1k - Thin film 0.1%, 25ppm/C; +/-0.5% TOTAL design budget; 0.1W; 50% power derating",Resistor_SMD__R_0603_1608Metric,Surface mount,Yageo,RT0603BRD071KL,
+82,1,C59,FV31X223K102EEG,22n - 50V C0G +/-5%; slew timing; total +/-6% engineering allowance,Capacitor_SMD__C_1206_3216Metric,Surface mount,PSA(Prosperity Dielectrics),FV31X223K102EEG,C1021604
+83,1,TP4,SWCLK,SWCLK - Physical geometry/accessibility Stage 08/09,TestPoint__TestPoint_Pad_D1.0mm,Surface mount,,SWCLK,
+84,1,R41,0603WAF3000T5E,300 - Thick film 1%; total +/-3% design allowance incl temperature; 0.1W; 50% power derating,Resistor_SMD__R_0603_1608Metric,Surface mount,UNI-ROYAL(Uniroyal Elec),0603WAF3000T5E,C23025

@@ -60,16 +60,10 @@ Line#,Quantity Per Part Number,Reference Designator,Part Number,Part Description
 59,1,C53,0603B103K500NT,10n - 50V X7R +/-10%; TDK VDDIO bypass,Capacitor_SMD__C_0603_1608Metric,Surface mount,FH (Guangdong Fenghua Advanced Tech),0603B103K500NT,C57112
 60,1,R108,0603WAF1001T5E,1k - Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating,Resistor_SMD__R_0603_1608Metric,Surface mount,UNI-ROYAL(Uniroyal Elec),0603WAF1001T5E,C21190
 61,2,"C10,C12",CL10A105KB8NNNC,1u - Ceramic; local decoupling; >=6.3 V; production MPN/footprint OPEN,Capacitor_SMD__C_0603_1608Metric,Surface mount,Samsung Electro-Mechanics,CL10A105KB8NNNC,C15849
-62,1,TP2,BOOT0,BOOT0 - Physical geometry/accessibility Stage 08/09,TestPoint__TestPoint_Pad_D1.0mm,Surface mount,,BOOT0,
 63,3,"R39,R40,R53",0603WAF1504T5E,1.5M - Thick film 1%; total +/-3% design allowance incl temperature; 0.1W; 50% power derating,Resistor_SMD__R_0603_1608Metric,Surface mount,UNI-ROYAL(Uniroyal Elec),0603WAF1504T5E,C4172
 64,1,R49,0603WAF9100T5E,910 - Thick film 1%; total +/-3% design allowance incl temperature; 0.1W; 50% power derating,Resistor_SMD__R_0603_1608Metric,Surface mount,UNI-ROYAL(Uniroyal Elec),0603WAF9100T5E,C23264
-65,8,"TP8,TP9,TP10,TP11,TP12,TP13,TP14,TP15",PCB_TEST_PAD,PWR_STATUS - Required rail access; pad/fixture geometry RECOMMENDATION Stage08/09,TestPoint__TestPoint_Pad_D1.0mm,Surface mount,,PCB_TEST_PAD,
-66,1,TP7,3V3_REF,3V3_REF - Sense/reference only <=10 mA; no target power injection,TestPoint__TestPoint_Pad_D1.0mm,Surface mount,,3V3_REF,
-67,1,TP3,SWDIO,SWDIO - Physical geometry/accessibility Stage 08/09,TestPoint__TestPoint_Pad_D1.0mm,Surface mount,,SWDIO,
 68,1,R7,RT0603BRD07100RL,"100 - Thin film 0.1%, 25ppm/C; +/-0.5% TOTAL design budget; 0.1W; 50% power derating",Resistor_SMD__R_0603_1608Metric,Surface mount,Yageo,RT0603BRD07100RL,
 69,6,"R73,R77,R81,R85,R89,R93",0603WAF470JT5E,47 - Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating,Resistor_SMD__R_0603_1608Metric,Surface mount,UNI-ROYAL(Uniroyal Elec),0603WAF470JT5E,C23182
-70,1,TP1,NRST,NRST - Physical geometry/accessibility Stage 08/09,TestPoint__TestPoint_Pad_D1.0mm,Surface mount,,NRST,
-71,1,TP6,GND,GND - Physical geometry/accessibility Stage 08/09,TestPoint__TestPoint_Pad_D1.0mm,Surface mount,,GND,
 72,1,R29,RT0603BRD07137KL,"137k - Thin film 0.1%, 25ppm/C; +/-0.5% TOTAL design budget; 0.1W; 50% power derating",Resistor_SMD__R_0603_1608Metric,Surface mount,Yageo,RT0603BRD07137KL,
 73,1,C6,CL10A475KO8NNNC,4.7u - Ceramic; effective package bulk >=4.7 uF at 3.3 V; voltage >=6.3 V,Capacitor_SMD__C_0603_1608Metric,Surface mount,Samsung Electro-Mechanics,CL10A475KO8NNNC,C19666
 74,1,R17,RT0603BRD07680RL,"680 - Thin film 0.1%, 25ppm/C; +/-0.5% TOTAL design budget; 0.1W; 50% power derating",Resistor_SMD__R_0603_1608Metric,Surface mount,Yageo,RT0603BRD07680RL,
@@ -81,5 +75,4 @@ Line#,Quantity Per Part Number,Reference Designator,Part Number,Part Description
 80,2,"R1,R100",0603WAF1002T5E,10k - Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating,Resistor_SMD__R_0603_1608Metric,Surface mount,UNI-ROYAL(Uniroyal Elec),0603WAF1002T5E,C25804
 81,1,R23,RT0603BRD071KL,"1k - Thin film 0.1%, 25ppm/C; +/-0.5% TOTAL design budget; 0.1W; 50% power derating",Resistor_SMD__R_0603_1608Metric,Surface mount,Yageo,RT0603BRD071KL,
 82,1,C59,FV31X223K102EEG,22n - 50V C0G +/-5%; slew timing; total +/-6% engineering allowance,Capacitor_SMD__C_1206_3216Metric,Surface mount,PSA(Prosperity Dielectrics),FV31X223K102EEG,C1021604
-83,1,TP4,SWCLK,SWCLK - Physical geometry/accessibility Stage 08/09,TestPoint__TestPoint_Pad_D1.0mm,Surface mount,,SWCLK,
 84,1,R41,0603WAF3000T5E,300 - Thick film 1%; total +/-3% design allowance incl temperature; 0.1W; 50% power derating,Resistor_SMD__R_0603_1608Metric,Surface mount,UNI-ROYAL(Uniroyal Elec),0603WAF3000T5E,C23025
