@@ -1,0 +1,9 @@
+*.kicad_prl
+*.lck
+*.pyc
+__pycache__/
+.history/
+*-backups/
+.venv/
+node_modules/
+.DS_Store
