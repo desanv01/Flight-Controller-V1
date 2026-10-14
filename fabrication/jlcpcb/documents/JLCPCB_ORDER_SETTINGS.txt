@@ -1,0 +1,36 @@
+FC FC_REV_A REV A - ENGINEERING VALIDATION EVT1
+Primary manufacturer/assembler: JLCPCB
+
+SOURCE BOARD
+- Six copper layers, 1.60 mm finished thickness
+- Outline 104.000 x 104.000 mm
+- Finish: ENIG recommended
+- Solder mask: green recommended, both sides
+- Silkscreen: both sides
+- Controlled-impedance stack-up: NONE DEFINED in the source - see
+  JLCPCB_IMPEDANCE_RECORD.md before ordering if USB High Speed is intended
+- Preserve the 0.40 mm / 0.20 mm vias. Seven of the 531 vias use that size
+  and they are in-pad: request resin filling and plating over
+  (IPC-4761 Type VII) if the assembly is ordered from a supplier that requires it
+
+DRILL
+- 4 plated tools, 539 plated holes, minimum 0.200 mm
+- 5 unplated tools, 11 unplated holes
+- Slots present: 0.600 x 1.700 mm (2) and 0.600 x 1.400 mm (2)
+
+ASSEMBLY
+- 273 placements: 147 top, 126 bottom
+- BOM: 114 lines covering 325 parts
+- CPL: FC_REV_A-CPL-JLCPCB.csv, template
+  Designator,Val,Package,Mid X,Mid Y,Layer,Rotation
+- Origin: left/bottom PCB edge-centreline corner, Y up
+- 37 no-populate parts are excluded from both the BOM placement data and the CPL
+- BEFORE ORDERING: 235 placed parts have no LCSC number. Fill the LCSC
+  column in the BOM and re-check the CPL against it.
+- Verify the normalised rotations in the JLCPCB assembly viewer before checkout
+
+WARNINGS
+- The 16 unconnected items in the DRC report are no-populate islands. Section
+  4.5 of the design directive forbids routing them. If the manufacturer's own
+  DRC offers to "fix" them, decline.
+- Do not re-run an autorouter on this board. Both plane layers are solid pours.

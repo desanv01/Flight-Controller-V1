@@ -1,0 +1,4 @@
+Found 12 violations
+Saved ERC Report to [LOCAL_SOURCE] DRONE PROJECT/PUBLICATION_WORK/Flight-Controller-V1/fabrication/jlcpcb/verification/erc.json
+18:01:19: Error: Can't create registry key 'HKCU\Software\kicad-cli' (error 5: Access is denied.)
+18:01:19: Error: Can't open registry key 'HKCU\Software\kicad-cli' (error 5: Access is denied.)

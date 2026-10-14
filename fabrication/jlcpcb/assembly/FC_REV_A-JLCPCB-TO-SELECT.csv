@@ -1,0 +1,20 @@
+Designator,MPN,Manufacturer,Value,Footprint,What to do
+"R8,R10,R28,R31,R33,R36",RT0603BRD07100KL,Yageo,100k,Resistor_SMD__R_0603_1608Metric,Paste the MPN into JLCPCB's part search
+"R26,R35",RT0603BRD07220KL,Yageo,220k,Resistor_SMD__R_0603_1608Metric,Paste the MPN into JLCPCB's part search
+"R19,R24",RT0603BRD0734K8L,Yageo,34.8k,Resistor_SMD__R_0603_1608Metric,Paste the MPN into JLCPCB's part search
+"R16,R30",RT0603BRD0749K9L,Yageo,49.9k,Resistor_SMD__R_0603_1608Metric,Paste the MPN into JLCPCB's part search
+J9,USB4105-GF-A,GCT,USB-C GCT USB4105,GCT_USB4105_GF_A_095_S1_S4,Paste the MPN into JLCPCB's part search
+R2,RT0603BRD0728K7L,Yageo,28.7k,Resistor_SMD__R_0603_1608Metric,Paste the MPN into JLCPCB's part search
+R4,RT0603BRD0737K4L,Yageo,37.4k,Resistor_SMD__R_0603_1608Metric,Paste the MPN into JLCPCB's part search
+J4,BM08B-GHS-TBT(LF)(SN),JST,GPS1,Connector_JST__JST_GH_BM08B-GHS-TBT_1x08-1MP_P1.25mm_Vertical,Paste the MPN into JLCPCB's part search
+R21,RT0603BRD0745K3L,Yageo,45.3k,Resistor_SMD__R_0603_1608Metric,Paste the MPN into JLCPCB's part search
+R14,RT0603BRD0731K6L,Yageo,31.6k,Resistor_SMD__R_0603_1608Metric,Paste the MPN into JLCPCB's part search
+"J3,J7",BM04B-GHS-TBT(LF)(SN),JST,RC_IN,Connector_JST__JST_GH_BM04B-GHS-TBT_1x04-1MP_P1.25mm_Vertical,Paste the MPN into JLCPCB's part search
+R18,RT0603BRD0771K5L,Yageo,71.5k,Resistor_SMD__R_0603_1608Metric,Paste the MPN into JLCPCB's part search
+R11,RT0603BRD0731K2L,Yageo,31.2k,Resistor_SMD__R_0603_1608Metric,Paste the MPN into JLCPCB's part search
+L2,XAL7070-682MEC,Coilcraft,6.8u,Inductor_SMD__L_Coilcraft_XAL7070-XXX,Paste the MPN into JLCPCB's part search
+R7,RT0603BRD07100RL,Yageo,100,Resistor_SMD__R_0603_1608Metric,Paste the MPN into JLCPCB's part search
+R29,RT0603BRD07137KL,Yageo,137k,Resistor_SMD__R_0603_1608Metric,Paste the MPN into JLCPCB's part search
+R17,RT0603BRD07680RL,Yageo,680,Resistor_SMD__R_0603_1608Metric,Paste the MPN into JLCPCB's part search
+R6,RT0603BRD07732RL,Yageo,732,Resistor_SMD__R_0603_1608Metric,Paste the MPN into JLCPCB's part search
+R23,RT0603BRD071KL,Yageo,1k,Resistor_SMD__R_0603_1608Metric,Paste the MPN into JLCPCB's part search

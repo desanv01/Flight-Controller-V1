@@ -1,0 +1,310 @@
+{
+    "$schema": "http[LOCAL_SOURCE]",
+    "coordinate_units": "mm",
+    "date": "2026-10-14T18:01:31",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.6",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9",
+            "violations": [
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'AUX_UART_RX'",
+                            "pos": {
+                                "x": 1.7526,
+                                "y": 0.8636
+                            },
+                            "uuid": "85021bfe-a1d4-5110-ab4d-7364a9b8041a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'AUX_UART_TX'",
+                            "pos": {
+                                "x": 1.7526,
+                                "y": 0.889
+                            },
+                            "uuid": "0719f132-ead4-5c1e-8fd7-3faee338f842"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'BUZZER'",
+                            "pos": {
+                                "x": 1.7526,
+                                "y": 0.9906
+                            },
+                            "uuid": "6d7bc5c8-c827-58c0-b40d-64e690b7f7fe"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'LIDAR_FC_TX'",
+                            "pos": {
+                                "x": 2.3114,
+                                "y": 0.635
+                            },
+                            "uuid": "f37ceb54-c2ed-5f00-a191-3d8d7fbdc07a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'LIDAR_FC_RX'",
+                            "pos": {
+                                "x": 2.3114,
+                                "y": 0.6604
+                            },
+                            "uuid": "f00e82fe-b65e-5b51-b191-cea9dbcb0eb8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'VBAT_SENSE_3V3'",
+                            "pos": {
+                                "x": 2.3114,
+                                "y": 1.4986
+                            },
+                            "uuid": "9dab6edf-a60c-5ba0-b342-46a9d92f1953"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                }
+            ]
+        },
+        {
+            "path": "/STM32H743 core/",
+            "uuid_path": "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/a67b5edc-6e1f-5882-86e9-fefed260d2cd",
+            "violations": [
+                {
+                    "description": "Both 3V3_REF and 3V3_MAIN are attached to the same items; 3V3_REF will be used in the netlist",
+                    "items": [
+                        {
+                            "description": "Global Label '3V3_REF'",
+                            "pos": {
+                                "x": 2.3622,
+                                "y": 2.6162
+                            },
+                            "uuid": "31542fde-4f0c-51f9-a784-837db071b22e"
+                        },
+                        {
+                            "description": "Label '3V3_MAIN'",
+                            "pos": {
+                                "x": 0.635,
+                                "y": 0.381
+                            },
+                            "uuid": "2a447e41-f5d1-566d-8437-599f9606b015"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "multiple_net_names"
+                }
+            ]
+        },
+        {
+            "path": "/Power and monitoring/",
+            "uuid_path": "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/0a17c93f-6ff1-59ad-9451-7e2dbd731cd9",
+            "violations": [
+                {
+                    "description": "Both 5V_FC_IN_A and 5V_FC_IN are attached to the same items; 5V_FC_IN_A will be used in the netlist",
+                    "items": [
+                        {
+                            "description": "Global Label '5V_FC_IN_A'",
+                            "pos": {
+                                "x": 0.3048,
+                                "y": 0.3683
+                            },
+                            "uuid": "52672256-e401-5522-a854-f1f46886506f"
+                        },
+                        {
+                            "description": "Label '5V_FC_IN'",
+                            "pos": {
+                                "x": 0.6223,
+                                "y": 0.4572
+                            },
+                            "uuid": "e7f94bc5-d4a7-5de0-aa2b-82852bc3ed85"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "multiple_net_names"
+                }
+            ]
+        },
+        {
+            "path": "/Local sensors/",
+            "uuid_path": "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/0c98f13c-08e2-5432-abd0-9106cfc5598d",
+            "violations": [
+                {
+                    "description": "Pins of type Bidirectional and Power output are connected",
+                    "items": [
+                        {
+                            "description": "Symbol U19 Pin 11 [B4, Bidirectional, Line]",
+                            "pos": {
+                                "x": 2.2733,
+                                "y": 1.5875
+                            },
+                            "uuid": "af628ca8-4e21-598f-92d5-ce02cefdfa8b"
+                        },
+                        {
+                            "description": "Symbol #FLG03 Pin 1 [Power output, Line]",
+                            "pos": {
+                                "x": 1.1176,
+                                "y": 2.1844
+                            },
+                            "uuid": "a2cf08ff-731b-5f8c-9fbd-d33e2be67acf"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "pin_to_pin"
+                },
+                {
+                    "description": "Pins of type Bidirectional and Power output are connected",
+                    "items": [
+                        {
+                            "description": "Symbol U13 Pin 11 [B4, Bidirectional, Line]",
+                            "pos": {
+                                "x": 4.6101,
+                                "y": 0.9271
+                            },
+                            "uuid": "de7b7360-111d-50cb-8602-160c5393e102"
+                        },
+                        {
+                            "description": "Symbol #FLG03 Pin 1 [Power output, Line]",
+                            "pos": {
+                                "x": 1.1176,
+                                "y": 2.1844
+                            },
+                            "uuid": "a2cf08ff-731b-5f8c-9fbd-d33e2be67acf"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "pin_to_pin"
+                }
+            ]
+        },
+        {
+            "path": "/ESC signal boundary/",
+            "uuid_path": "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/8fb3c890-c3ef-5a75-a7fe-fe7599236f38",
+            "violations": []
+        },
+        {
+            "path": "/External UART and I2C ports/",
+            "uuid_path": "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/6c5aef0c-5d78-5d16-a3cc-5462eba02fcd",
+            "violations": [
+                {
+                    "description": "Both 3V3_MAIN and 3V3_REF are attached to the same items; 3V3_MAIN will be used in the netlist",
+                    "items": [
+                        {
+                            "description": "Label '3V3_MAIN'",
+                            "pos": {
+                                "x": 0.2794,
+                                "y": 3.9243
+                            },
+                            "uuid": "f6b00dd2-0ee1-56de-afef-4b753d2aaf22"
+                        },
+                        {
+                            "description": "Hierarchical Label '3V3_REF'",
+                            "pos": {
+                                "x": 0.8509,
+                                "y": 3.9243
+                            },
+                            "uuid": "1290c064-4266-5670-93fe-5af6371b131f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "multiple_net_names"
+                }
+            ]
+        },
+        {
+            "path": "/CAN interfaces/",
+            "uuid_path": "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/4ca2fec9-4689-597c-a835-e86454ac63c2",
+            "violations": []
+        },
+        {
+            "path": "/USB and debug/",
+            "uuid_path": "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/c2909f22-32bf-547e-9461-783c84507c14",
+            "violations": [
+                {
+                    "description": "Both 3V3_MAIN and 3V3_REF are attached to the same items; 3V3_MAIN will be used in the netlist",
+                    "items": [
+                        {
+                            "description": "Label '3V3_MAIN'",
+                            "pos": {
+                                "x": 0.2794,
+                                "y": 3.9243
+                            },
+                            "uuid": "f6b00dd2-0ee1-56de-afef-4b753d2aaf22"
+                        },
+                        {
+                            "description": "Hierarchical Label '3V3_REF'",
+                            "pos": {
+                                "x": 0.2032,
+                                "y": 3.9878
+                            },
+                            "uuid": "a959673d-e386-5501-b956-3d37ce30fde7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "multiple_net_names"
+                }
+            ]
+        },
+        {
+            "path": "/Storage and status/",
+            "uuid_path": "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/c3706ed6-e749-559d-acb9-37025fa631d3",
+            "violations": []
+        }
+    ],
+    "source": "FC_REV_A.kicad_sch"
+}

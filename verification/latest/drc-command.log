@@ -1,0 +1,6 @@
+Found 3 violations
+Found 16 unconnected items
+Found 0 schematic parity issues
+Saved DRC Report to [LOCAL_SOURCE] DRONE PROJECT/PUBLICATION_WORK/Flight-Controller-V1/verification/latest/drc.json
+18:00:52: Error: Can't create registry key 'HKCU\Software\kicad-cli' (error 5: Access is denied.)
+18:00:52: Error: Can't open registry key 'HKCU\Software\kicad-cli' (error 5: Access is denied.)

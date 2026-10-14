@@ -1,0 +1,49 @@
+FC FC_REV_A REV A - ENGINEERING VALIDATION EVT1
+Manufacturer / assembler: PCBWay
+
+SOURCE BOARD
+- Six copper layers, 1.60 mm finished thickness
+- Outline 104.000 x 104.000 mm
+- Finish: ENIG recommended
+- Solder mask: green recommended, both sides
+- Silkscreen: both sides
+- Stack-up: NONE DEFINED IN THE DESIGN. PCBWay publishes 298 standard stackups
+  and offers a custom stackup / impedance-control option. Select one and record
+  it - see PCBWAY_STACKUP_RECORD.md
+- Vias: 531 through vias, no blind or buried. Seven use 0.40 mm pad /
+  0.20 mm drill and sit in-pad. PCBWay's standard process handles 0.20 mm drills;
+  if their engineering flags the in-pad vias, ask for resin filling and plating
+  over (IPC-4761 Type VII) to stop solder wicking into the barrel
+
+DRILL
+- 4 plated tools, 539 plated holes, minimum 0.200 mm
+- 5 unplated tools, 11 unplated holes
+- Slots: 0.600 x 1.700 mm (2) and 0.600 x 1.400 mm (2)
+
+FILES PCBWAY ASKS FOR
+- BOM:            assembly/FC_REV_A-BOM-PCBWay.csv
+- Gerbers:        fabrication/gerbers  (RS-274X, 6 copper + mask + paste + silk + edge)
+- Silkscreen:     fabrication/gerbers/FC_REV_A-F_Silkscreen.gto and -B_Silkscreen.gbo
+- Solder paste:   fabrication/gerbers/FC_REV_A-F_Paste.gtp and -B_Paste.gbp
+- Centroid:       assembly/FC_REV_A-Centroid-PCBWay.txt
+- Assembly drawing: output/pdf/EVT1_Assembly_Drawings.pdf
+- Optional:       fabrication/FC_REV_A.ipc (IPC-D-356),
+                  fabrication/FC_REV_A.xml (IPC-2581),
+                  fabrication/FC_REV_A-odb/ (ODB++)
+
+ASSEMBLY
+- Centroid rows: 272 (146 top, 126 bottom), units mm, origin at the
+  bottom-left corner of the board frame
+- Through-hole parts are NOT in the centroid, per PCBWay's file requirements.
+  The only such part is J_POWER1 (Molex 43045-0600); hand-solder it or place it
+  as a separate assembly line item
+- BOM: 115 lines covering 326 parts
+- 37 no-populate references are excluded from placement
+- BEFORE ORDERING: 281 BOM parts have no distributor part number. Fill that
+  column or expect substitutions to be quoted
+
+WARNINGS
+- The 16 unconnected items in the DRC report are no-populate islands.
+  Directive section 4.5 forbids routing them. If PCBWay's engineering offers to
+  "fix" them, decline.
+- Do not re-run an autorouter on this board; both plane layers are solid pours.
