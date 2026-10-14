@@ -1,0 +1,674 @@
+(kicad_sch (version 20250114) (generator "eeschema") (uuid "c0255931-d06a-596c-b4cc-a11cae1b0975") (paper "A2") (title_block (title "FC FC Rev A Stage07 - storage_status") (date "2026-09-09") (rev "A-S07-01") (company "FC Drone Project") (comment 1 "RECOMMENDATION - OPEN UNTESTED - NOT FOR FABRICATION")) (lib_symbols (symbol "Device:C_Small"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0.254)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "C"
+			(at 0.254 1.778 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "C_Small"
+			(at 0.254 -2.032 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 0 -10.16 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "capacitor cap"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "C_*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "C_Small_0_1"
+			(polyline
+				(pts
+					(xy -1.524 0.508) (xy 1.524 0.508)
+				)
+				(stroke
+					(width 0.3048)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -1.524 -0.508) (xy 1.524 -0.508)
+				)
+				(stroke
+					(width 0.3048)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "C_Small_1_1"
+			(pin passive line
+				(at 0 2.54 270)
+				(length 2.032)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 0 -2.54 90)
+				(length 2.032)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)(symbol "Device:LED_Small"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0.254)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "D"
+			(at -1.27 3.175 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "LED_Small"
+			(at -4.445 -2.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Light emitting diode, small symbol"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "LED diode light-emitting-diode"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "LED* LED_SMD:* LED_THT:*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "LED_Small_0_1"
+			(polyline
+				(pts
+					(xy -0.762 -1.016) (xy -0.762 1.016)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 0.762) (xy -0.508 1.27) (xy -0.254 1.27) (xy -0.508 1.27) (xy -0.508 1.016)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0.508 1.27) (xy 0 1.778) (xy 0.254 1.778) (xy 0 1.778) (xy 0 1.524)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0.762 -1.016) (xy -0.762 0) (xy 0.762 1.016) (xy 0.762 -1.016)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 1.016 0) (xy -0.762 0)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "LED_Small_1_1"
+			(pin passive line
+				(at -2.54 0 0)
+				(length 1.778)
+				(name "K"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 2.54 0 180)
+				(length 1.778)
+				(name "A"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)(symbol "Device:R_Small"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0.254)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "R"
+			(at 0 0 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Value" "R_Small"
+			(at 1.778 0 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "R resistor"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "R_*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "R_Small_0_1"
+			(rectangle
+				(start -0.762 1.778)
+				(end 0.762 -1.778)
+				(stroke
+					(width 0.2032)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "R_Small_1_1"
+			(pin passive line
+				(at 0 2.54 270)
+				(length 0.762)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 0 -2.54 90)
+				(length 0.762)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)(symbol "FC_REV_A_Local:MEM2075-00-140-01-A" (pin_names (offset 0.508)) (in_bom yes) (on_board yes) (property "Reference" "J" (at 0 30.48 0) (effects (font (size 1.27 1.27)))) (property "Value" "MEM2075-00-140-01-A" (at 0 -30.48 0) (effects (font (size 1.27 1.27)))) (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27))) (hide yes)) (property "Datasheet" "https://gct.co/files/drawings/mem2075.pdf" (at 0 0 0) (effects (font (size 1.27 1.27))) (hide yes)) (symbol "MEM2075-00-140-01-A_0_1" (rectangle (start -17.78 27.94) (end 17.78 -27.94) (stroke (width .254) (type default)) (fill (type background)))) (symbol "MEM2075-00-140-01-A_1_1" (pin passive line (at -22.86 17.78 0) (length 5.08) (name "DAT2" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))(pin passive line (at -22.86 12.7 0) (length 5.08) (name "CD/DAT3" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))(pin passive line (at -22.86 7.62 0) (length 5.08) (name "CMD" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27)))))(pin passive line (at -22.86 2.54 0) (length 5.08) (name "VDD" (effects (font (size 1.27 1.27)))) (number "4" (effects (font (size 1.27 1.27)))))(pin passive line (at -22.86 -2.54 0) (length 5.08) (name "CLK" (effects (font (size 1.27 1.27)))) (number "5" (effects (font (size 1.27 1.27)))))(pin passive line (at -22.86 -7.62 0) (length 5.08) (name "VSS" (effects (font (size 1.27 1.27)))) (number "6" (effects (font (size 1.27 1.27)))))(pin passive line (at -22.86 -12.7 0) (length 5.08) (name "DAT0" (effects (font (size 1.27 1.27)))) (number "7" (effects (font (size 1.27 1.27)))))(pin passive line (at -22.86 -17.78 0) (length 5.08) (name "DAT1" (effects (font (size 1.27 1.27)))) (number "8" (effects (font (size 1.27 1.27)))))(pin passive line (at 22.86 2.54 180) (length 5.08) (name "DETECT" (effects (font (size 1.27 1.27)))) (number "CD" (effects (font (size 1.27 1.27)))))(pin passive line (at 22.86 -2.54 180) (length 5.08) (name "SHELL" (effects (font (size 1.27 1.27)))) (number "SH" (effects (font (size 1.27 1.27))))))(property "Description" "Controlled interface component; prototype recommendation" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))(property "ki_keywords" "interface protected Stage07" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))(property "ki_fp_filters" "" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes))))(symbol "FC_REV_A_Local:TPD4E05U06DQAR" (pin_names (offset 0.508)) (in_bom yes) (on_board yes) (property "Reference" "U" (at 0 25.4 0) (effects (font (size 1.27 1.27)))) (property "Value" "TPD4E05U06DQAR" (at 0 -25.4 0) (effects (font (size 1.27 1.27)))) (property "Footprint" "Package_SON:USON-10_2.5x1.0mm_P0.5mm" (at 0 0 0) (effects (font (size 1.27 1.27))) (hide yes)) (property "Datasheet" "https://www.ti.com/lit/ds/symlink/tpd4e05u06.pdf" (at 0 0 0) (effects (font (size 1.27 1.27))) (hide yes)) (symbol "TPD4E05U06DQAR_0_1" (rectangle (start -17.78 22.86) (end 17.78 -22.86) (stroke (width .254) (type default)) (fill (type background)))) (symbol "TPD4E05U06DQAR_1_1" (pin passive line (at -22.86 2.54 0) (length 5.08) (name "D1+" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))(pin passive line (at -22.86 -2.54 0) (length 5.08) (name "D1-" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))(pin passive line (at 22.86 12.7 180) (length 5.08) (name "D2+" (effects (font (size 1.27 1.27)))) (number "4" (effects (font (size 1.27 1.27)))))(pin passive line (at 22.86 7.62 180) (length 5.08) (name "D2-" (effects (font (size 1.27 1.27)))) (number "5" (effects (font (size 1.27 1.27)))))(pin no_connect line (at 22.86 2.54 180) (length 5.08) (name "NC" (effects (font (size 1.27 1.27)))) (number "6" (effects (font (size 1.27 1.27)))))(pin no_connect line (at 22.86 -2.54 180) (length 5.08) (name "NC" (effects (font (size 1.27 1.27)))) (number "7" (effects (font (size 1.27 1.27)))))(pin no_connect line (at 22.86 -7.62 180) (length 5.08) (name "NC" (effects (font (size 1.27 1.27)))) (number "9" (effects (font (size 1.27 1.27)))))(pin no_connect line (at 22.86 -12.7 180) (length 5.08) (name "NC" (effects (font (size 1.27 1.27)))) (number "10" (effects (font (size 1.27 1.27)))))(pin passive line (at -2.54 -27.94 90) (length 5.08) (name "GND" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27)))))(pin passive line (at 2.54 -27.94 90) (length 5.08) (name "GND" (effects (font (size 1.27 1.27)))) (number "8" (effects (font (size 1.27 1.27))))))(property "Description" "Controlled interface component; prototype recommendation" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))(property "ki_keywords" "interface protected Stage07" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))(property "ki_fp_filters" "USON?10?2.5x1.0mm?P0.5mm*" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))))
+(text "Removable microSD / optional status - Stage07 recommendation / OPEN UNTESTED" (at 10.16 11.43 0) (effects (font (size 2 2)) (justify left)) (uuid "241868a3-a351-5c6d-bcce-6f2545e59691"))
+(text "3.3V logic. No external 5V direct to MCU. No PCB / footprint release / fabrication authority." (at 10.16 19.05 0) (effects (font (size 1.1 1.1)) (justify left)) (uuid "657de3bb-d28d-5a55-8218-ec8b826bb030"))
+(rectangle (start 7.62 26.67) (end 582.93 264.16) (stroke (width .254) (type default)) (fill (type none)) (uuid "5e6b5590-7aab-561d-87fa-601ae90f519d"))
+(text "SDMMC1 4-bit / 3V3_MAIN only" (at 11.43 30.48 0) (effects (font (size 1.5 1.5)) (justify left)) (uuid "75ab6a70-9ea3-5e1d-91e0-885d880eeac9"))
+(rectangle (start 7.62 270.51) (end 582.93 378.46) (stroke (width .254) (type default)) (fill (type none)) (uuid "a23e02e1-f618-50ca-81f3-c8043668531a"))
+(text "Status and insertion policy" (at 11.43 275.59 0) (effects (font (size 1.5 1.5)) (justify left)) (uuid "3d955e07-6e58-594a-a6a9-9619e7f8af42"))
+(hierarchical_label "3V3_MAIN" (shape bidirectional) (at 20.32 392.43 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "4ff44083-a2f8-54af-8883-f41bd8f2140a"))
+(wire (pts (xy 20.32 392.43) (xy 27.94 392.43)) (stroke (width 0) (type default)) (uuid "3683fecc-9823-5bc9-ad2e-7c05651ddcb1"))
+(label "3V3_MAIN" (at 27.94 392.43 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "f6b00dd2-0ee1-56de-afef-4b753d2aaf22"))
+(hierarchical_label "GND" (shape passive) (at 20.32 398.78 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "1686f9d7-6f16-5681-a42b-75a25314fb55"))
+(wire (pts (xy 20.32 398.78) (xy 27.94 398.78)) (stroke (width 0) (type default)) (uuid "04784522-343c-5dcb-aa7a-9c9c9663f408"))
+(label "GND" (at 27.94 398.78 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "91e64b3e-35ae-53d1-8173-83acdbc11142"))
+(hierarchical_label "SDMMC1_CLK" (shape bidirectional) (at 20.32 405.13 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "77b9cc48-b8f8-511f-8cd4-4415b49c0212"))
+(wire (pts (xy 20.32 405.13) (xy 27.94 405.13)) (stroke (width 0) (type default)) (uuid "ef8e3631-b926-5480-989b-11b66b046562"))
+(label "SDMMC1_CLK" (at 27.94 405.13 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "02676f2e-2a91-593e-9f88-ed9d361bbf94"))
+(hierarchical_label "SDMMC1_CMD" (shape bidirectional) (at 85.09 392.43 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "e0a2c135-cbda-573a-b09f-5f84bce689d2"))
+(wire (pts (xy 85.09 392.43) (xy 92.71 392.43)) (stroke (width 0) (type default)) (uuid "0e5d79d6-3c0a-569d-94fa-84d2398ef36e"))
+(label "SDMMC1_CMD" (at 92.71 392.43 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "b2b25dc5-306d-5409-abb5-9bd3af653903"))
+(hierarchical_label "SDMMC1_D0" (shape bidirectional) (at 85.09 398.78 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "66d3b049-0b3e-5f20-8ae4-8440c9fe0bd2"))
+(wire (pts (xy 85.09 398.78) (xy 92.71 398.78)) (stroke (width 0) (type default)) (uuid "a3b00f79-bc5f-5fce-8713-90ada46f3457"))
+(label "SDMMC1_D0" (at 92.71 398.78 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "4b81b587-ab3e-5af3-95a3-15c4d0f4a7e5"))
+(hierarchical_label "SDMMC1_D1" (shape bidirectional) (at 85.09 405.13 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "7c4a5dc8-8579-526c-8910-08182b95564b"))
+(wire (pts (xy 85.09 405.13) (xy 92.71 405.13)) (stroke (width 0) (type default)) (uuid "944c6b25-7eff-5a92-8bf7-53e677efdd1e"))
+(label "SDMMC1_D1" (at 92.71 405.13 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "51cb95df-7aa7-55d7-bbf0-f93d52f0d83b"))
+(hierarchical_label "SDMMC1_D2" (shape bidirectional) (at 149.86 392.43 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "7505cc20-c599-580a-9b3f-dfdd199acbb1"))
+(wire (pts (xy 149.86 392.43) (xy 157.48 392.43)) (stroke (width 0) (type default)) (uuid "34253e1d-791b-5fb1-9070-c192d7cdaa47"))
+(label "SDMMC1_D2" (at 157.48 392.43 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "0c6a91be-cac1-5274-a9f5-53d6c3c75077"))
+(hierarchical_label "SDMMC1_D3" (shape bidirectional) (at 149.86 398.78 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "00bcf3e6-5fc9-5974-b4bc-957dac2ee7b6"))
+(wire (pts (xy 149.86 398.78) (xy 157.48 398.78)) (stroke (width 0) (type default)) (uuid "f8448c82-c22a-50ff-ae62-f837a8144e42"))
+(label "SDMMC1_D3" (at 157.48 398.78 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "7ed31985-90eb-538e-97f6-d73901f9bace"))
+(hierarchical_label "SD_CARD_DETECT" (shape bidirectional) (at 149.86 405.13 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "ad02fc4f-f167-56c6-b428-386f91acf3d6"))
+(wire (pts (xy 149.86 405.13) (xy 157.48 405.13)) (stroke (width 0) (type default)) (uuid "43a6907c-768b-51ff-a6a9-1b0ed741dafd"))
+(label "SD_CARD_DETECT" (at 157.48 405.13 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "a3287a0f-826f-5a08-af5c-638c02c75daf"))
+(hierarchical_label "STATUS_LED" (shape bidirectional) (at 214.63 392.43 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "c8b79dd5-3c3f-56df-b1ee-12f75c8b94de"))
+(wire (pts (xy 214.63 392.43) (xy 222.25 392.43)) (stroke (width 0) (type default)) (uuid "370fcbca-309a-59fc-a7b6-ceaca53ccfc2"))
+(label "STATUS_LED" (at 222.25 392.43 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "652eb66f-7d4f-50a6-aec0-98d630a16f6d"))
+(symbol (lib_id "Device:R_Small") (at 66.04 86.36 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "b2742a25-87cc-5683-8161-c3d559c33267") (property "Reference" "R118" (at 69.85 85.09 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Value" "22" (at 69.85 87.63 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Footprint" "FC_REV_A_Local:Resistor_SMD__R_0603_1608Metric" (at 66.04 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Datasheet" "https://yageogroup.com/component-documentation/download/specsheet/RC0603FR-0722RL" (at 66.04 86.36 0) (effects (font (size 1 1))) (hide yes))(property "MPN" "RC0603FR-0722RL" (at 66.04 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Manufacturer" "Yageo" (at 66.04 86.36 0) (effects (font (size 1 1))) (hide yes))(property "LCSC" "" (at 66.04 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Status" "RECOMMENDATION - Stage07; OPEN UNTESTED" (at 66.04 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Footprint_Status" "RECOMMENDATION - verify Stage08/09" (at 66.04 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Specification" "Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating" (at 66.04 86.36 0) (effects (font (size 1 1))) (hide yes))(pin "1" (uuid "a5e9d478-742b-5e7c-a015-1ae7d0147ac6"))(pin "2" (uuid "fb7c5e95-a450-5c22-9c1f-0d0304c14a69"))(instances (project "FC_REV_A" (path "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/c3706ed6-e749-559d-acb9-37025fa631d3" (reference "R118") (unit 1)))))
+(wire (pts (xy 66.04 83.82) (xy 66.04 80.01)) (stroke (width 0) (type default)) (uuid "efcb2f5c-4db3-5e30-b31c-495913dbe7fd"))
+(label "SDMMC1_CLK" (at 66.04 80.01 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "93765359-f2a5-5373-a839-886013016aa5"))
+(wire (pts (xy 66.04 88.9) (xy 66.04 92.71)) (stroke (width 0) (type default)) (uuid "97661d5b-638c-52dd-98a5-3fa1ea7502e4"))
+(label "SD_CLK_PORT" (at 66.04 92.71 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "d9a09f9a-6622-5aee-b532-a289d29739e8"))
+(symbol (lib_id "Device:R_Small") (at 127 86.36 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "c29a28d2-c5f1-5f93-a0a9-f15d4e098bf0") (property "Reference" "R119" (at 130.81 85.09 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Value" "0" (at 130.81 87.63 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Footprint" "FC_REV_A_Local:Resistor_SMD__R_0603_1608Metric" (at 127 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Datasheet" "https://yageogroup.com/component-documentation/download/specsheet/RC0603JR-070RL" (at 127 86.36 0) (effects (font (size 1 1))) (hide yes))(property "MPN" "RC0603JR-070RL" (at 127 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Manufacturer" "Yageo" (at 127 86.36 0) (effects (font (size 1 1))) (hide yes))(property "LCSC" "" (at 127 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Status" "RECOMMENDATION - Stage07; OPEN UNTESTED" (at 127 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Footprint_Status" "RECOMMENDATION - verify Stage08/09" (at 127 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Specification" "Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating" (at 127 86.36 0) (effects (font (size 1 1))) (hide yes))(pin "1" (uuid "8da14384-1c19-5611-8850-1f531d4602dc"))(pin "2" (uuid "2f56cfa2-577a-57ee-b569-9069691fde5e"))(instances (project "FC_REV_A" (path "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/c3706ed6-e749-559d-acb9-37025fa631d3" (reference "R119") (unit 1)))))
+(wire (pts (xy 127 83.82) (xy 127 80.01)) (stroke (width 0) (type default)) (uuid "ccacc8fd-7dfe-5e60-9077-df616a89fa81"))
+(label "SDMMC1_CMD" (at 127 80.01 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "e42ba4de-2838-50cf-8a56-694f5dd901a7"))
+(wire (pts (xy 127 88.9) (xy 127 92.71)) (stroke (width 0) (type default)) (uuid "2b2d0a33-dcc6-5c3c-a3fb-0a03fd1203e3"))
+(label "SD_CMD_PORT" (at 127 92.71 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "b6e9db2f-7730-5408-85f5-786f51fa0ce1"))
+(symbol (lib_id "Device:R_Small") (at 127 132.08 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "e23e9d1b-98b1-51ae-9bc0-fb62f8044eb0") (property "Reference" "R120" (at 130.81 130.81 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Value" "47k" (at 130.81 133.35 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Footprint" "FC_REV_A_Local:Resistor_SMD__R_0603_1608Metric" (at 127 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Datasheet" "https://yageogroup.com/component-documentation/download/specsheet/RC0603FR-0747KL" (at 127 132.08 0) (effects (font (size 1 1))) (hide yes))(property "MPN" "RC0603FR-0747KL" (at 127 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Manufacturer" "Yageo" (at 127 132.08 0) (effects (font (size 1 1))) (hide yes))(property "LCSC" "" (at 127 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Status" "RECOMMENDATION - Stage07; OPEN UNTESTED" (at 127 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Footprint_Status" "RECOMMENDATION - verify Stage08/09" (at 127 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Specification" "Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating" (at 127 132.08 0) (effects (font (size 1 1))) (hide yes))(pin "1" (uuid "05dfa18d-632f-5699-968a-187b94210175"))(pin "2" (uuid "f0b90035-086d-500a-93ed-761cf9b6d5a5"))(instances (project "FC_REV_A" (path "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/c3706ed6-e749-559d-acb9-37025fa631d3" (reference "R120") (unit 1)))))
+(wire (pts (xy 127 129.54) (xy 127 125.73)) (stroke (width 0) (type default)) (uuid "0be0b8d7-3347-53f1-affd-1648553dc916"))
+(label "3V3_MAIN" (at 127 125.73 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "9f9ce380-3d32-5e4f-aedf-cc51fedd22a3"))
+(wire (pts (xy 127 134.62) (xy 127 138.43)) (stroke (width 0) (type default)) (uuid "b50bfb85-cbc3-573c-ac97-4a4b5745ffcd"))
+(label "SD_CMD_PORT" (at 127 138.43 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "6a91eeb2-5b9d-534d-8baa-a1beff9174ea"))
+(symbol (lib_id "Device:R_Small") (at 187.96 86.36 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "c3c4fd7b-a78b-532c-a8c5-240ddfc6be02") (property "Reference" "R121" (at 191.77 85.09 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Value" "0" (at 191.77 87.63 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Footprint" "FC_REV_A_Local:Resistor_SMD__R_0603_1608Metric" (at 187.96 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Datasheet" "https://yageogroup.com/component-documentation/download/specsheet/RC0603JR-070RL" (at 187.96 86.36 0) (effects (font (size 1 1))) (hide yes))(property "MPN" "RC0603JR-070RL" (at 187.96 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Manufacturer" "Yageo" (at 187.96 86.36 0) (effects (font (size 1 1))) (hide yes))(property "LCSC" "" (at 187.96 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Status" "RECOMMENDATION - Stage07; OPEN UNTESTED" (at 187.96 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Footprint_Status" "RECOMMENDATION - verify Stage08/09" (at 187.96 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Specification" "Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating" (at 187.96 86.36 0) (effects (font (size 1 1))) (hide yes))(pin "1" (uuid "12ea0b08-aab5-5fee-bf61-275a1998a691"))(pin "2" (uuid "4b95f184-890b-53cc-ad03-7d4227e04d1d"))(instances (project "FC_REV_A" (path "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/c3706ed6-e749-559d-acb9-37025fa631d3" (reference "R121") (unit 1)))))
+(wire (pts (xy 187.96 83.82) (xy 187.96 80.01)) (stroke (width 0) (type default)) (uuid "cb22fdfa-7335-54a4-a48f-cc6a9c79c7eb"))
+(label "SDMMC1_D0" (at 187.96 80.01 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "381eb7ce-5dbb-5d26-8e73-b39ad03ac919"))
+(wire (pts (xy 187.96 88.9) (xy 187.96 92.71)) (stroke (width 0) (type default)) (uuid "9b662622-64e9-5037-9c4b-1ca0b371072c"))
+(label "SD_D0_PORT" (at 187.96 92.71 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "6d17a4ff-2dc0-5f3a-b1db-5b3c0fdbb090"))
+(symbol (lib_id "Device:R_Small") (at 187.96 132.08 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "5b4f5d50-b896-5835-b2e7-ca92f051a5c8") (property "Reference" "R122" (at 191.77 130.81 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Value" "47k" (at 191.77 133.35 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Footprint" "FC_REV_A_Local:Resistor_SMD__R_0603_1608Metric" (at 187.96 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Datasheet" "https://yageogroup.com/component-documentation/download/specsheet/RC0603FR-0747KL" (at 187.96 132.08 0) (effects (font (size 1 1))) (hide yes))(property "MPN" "RC0603FR-0747KL" (at 187.96 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Manufacturer" "Yageo" (at 187.96 132.08 0) (effects (font (size 1 1))) (hide yes))(property "LCSC" "" (at 187.96 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Status" "RECOMMENDATION - Stage07; OPEN UNTESTED" (at 187.96 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Footprint_Status" "RECOMMENDATION - verify Stage08/09" (at 187.96 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Specification" "Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating" (at 187.96 132.08 0) (effects (font (size 1 1))) (hide yes))(pin "1" (uuid "329ce15c-2465-5fbe-bbab-e26000325030"))(pin "2" (uuid "866dc8b3-0554-5f5f-9a50-62a3af2927a0"))(instances (project "FC_REV_A" (path "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/c3706ed6-e749-559d-acb9-37025fa631d3" (reference "R122") (unit 1)))))
+(wire (pts (xy 187.96 129.54) (xy 187.96 125.73)) (stroke (width 0) (type default)) (uuid "27b52ba4-50d6-5e1e-b9c5-f297e930269a"))
+(label "3V3_MAIN" (at 187.96 125.73 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "195424de-8106-533b-9791-a8205a3706f6"))
+(wire (pts (xy 187.96 134.62) (xy 187.96 138.43)) (stroke (width 0) (type default)) (uuid "debfd08f-24bc-5f1c-83fd-0065093161c1"))
+(label "SD_D0_PORT" (at 187.96 138.43 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "0b8e1671-2357-5a07-8621-820bb93e1fed"))
+(symbol (lib_id "Device:R_Small") (at 248.92 86.36 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "23bfa222-1ae1-5e96-b11f-46c11df0e31d") (property "Reference" "R123" (at 252.73 85.09 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Value" "0" (at 252.73 87.63 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Footprint" "FC_REV_A_Local:Resistor_SMD__R_0603_1608Metric" (at 248.92 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Datasheet" "https://yageogroup.com/component-documentation/download/specsheet/RC0603JR-070RL" (at 248.92 86.36 0) (effects (font (size 1 1))) (hide yes))(property "MPN" "RC0603JR-070RL" (at 248.92 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Manufacturer" "Yageo" (at 248.92 86.36 0) (effects (font (size 1 1))) (hide yes))(property "LCSC" "" (at 248.92 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Status" "RECOMMENDATION - Stage07; OPEN UNTESTED" (at 248.92 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Footprint_Status" "RECOMMENDATION - verify Stage08/09" (at 248.92 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Specification" "Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating" (at 248.92 86.36 0) (effects (font (size 1 1))) (hide yes))(pin "1" (uuid "0a875fec-dd23-5d83-ba51-e0063b9549a9"))(pin "2" (uuid "0e5d9635-58ba-555c-a114-b32b101dddbb"))(instances (project "FC_REV_A" (path "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/c3706ed6-e749-559d-acb9-37025fa631d3" (reference "R123") (unit 1)))))
+(wire (pts (xy 248.92 83.82) (xy 248.92 80.01)) (stroke (width 0) (type default)) (uuid "6bc4848d-c969-54f2-9072-81e9d196644d"))
+(label "SDMMC1_D1" (at 248.92 80.01 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "5bc5b79a-b9ba-5db1-be4b-e9e4201eab0a"))
+(wire (pts (xy 248.92 88.9) (xy 248.92 92.71)) (stroke (width 0) (type default)) (uuid "190b9932-43a6-5339-bfbf-c34ad951bcb4"))
+(label "SD_D1_PORT" (at 248.92 92.71 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "dd36b231-f557-56cd-86b0-0a464c4fc25c"))
+(symbol (lib_id "Device:R_Small") (at 248.92 132.08 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "da0bfd02-1c51-51e2-9da9-773e96c6d6d8") (property "Reference" "R124" (at 252.73 130.81 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Value" "47k" (at 252.73 133.35 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Footprint" "FC_REV_A_Local:Resistor_SMD__R_0603_1608Metric" (at 248.92 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Datasheet" "https://yageogroup.com/component-documentation/download/specsheet/RC0603FR-0747KL" (at 248.92 132.08 0) (effects (font (size 1 1))) (hide yes))(property "MPN" "RC0603FR-0747KL" (at 248.92 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Manufacturer" "Yageo" (at 248.92 132.08 0) (effects (font (size 1 1))) (hide yes))(property "LCSC" "" (at 248.92 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Status" "RECOMMENDATION - Stage07; OPEN UNTESTED" (at 248.92 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Footprint_Status" "RECOMMENDATION - verify Stage08/09" (at 248.92 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Specification" "Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating" (at 248.92 132.08 0) (effects (font (size 1 1))) (hide yes))(pin "1" (uuid "ad6d0c07-001d-56ae-9c52-fe3fe210995a"))(pin "2" (uuid "202e6ecc-70e3-5bdd-9e16-785a46c11c54"))(instances (project "FC_REV_A" (path "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/c3706ed6-e749-559d-acb9-37025fa631d3" (reference "R124") (unit 1)))))
+(wire (pts (xy 248.92 129.54) (xy 248.92 125.73)) (stroke (width 0) (type default)) (uuid "4ed2a960-555c-5995-bf9a-2cdfeeaf0be7"))
+(label "3V3_MAIN" (at 248.92 125.73 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "4dc66c8c-f951-5580-8ffa-d1075e59be63"))
+(wire (pts (xy 248.92 134.62) (xy 248.92 138.43)) (stroke (width 0) (type default)) (uuid "aa4582d9-9e42-5ad7-b73f-ad07ab51c939"))
+(label "SD_D1_PORT" (at 248.92 138.43 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "b644eb9c-fe0f-5fa9-8454-0e3e001b8a38"))
+(symbol (lib_id "Device:R_Small") (at 309.88 86.36 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "31bc7330-ff5e-506e-818f-97e01703001e") (property "Reference" "R125" (at 313.69 85.09 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Value" "0" (at 313.69 87.63 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Footprint" "FC_REV_A_Local:Resistor_SMD__R_0603_1608Metric" (at 309.88 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Datasheet" "https://yageogroup.com/component-documentation/download/specsheet/RC0603JR-070RL" (at 309.88 86.36 0) (effects (font (size 1 1))) (hide yes))(property "MPN" "RC0603JR-070RL" (at 309.88 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Manufacturer" "Yageo" (at 309.88 86.36 0) (effects (font (size 1 1))) (hide yes))(property "LCSC" "" (at 309.88 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Status" "RECOMMENDATION - Stage07; OPEN UNTESTED" (at 309.88 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Footprint_Status" "RECOMMENDATION - verify Stage08/09" (at 309.88 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Specification" "Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating" (at 309.88 86.36 0) (effects (font (size 1 1))) (hide yes))(pin "1" (uuid "e710f843-cf02-5a53-bbe2-98f9f2b892d1"))(pin "2" (uuid "1f3e7a2c-0836-549a-b6ca-16f81b7e12dc"))(instances (project "FC_REV_A" (path "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/c3706ed6-e749-559d-acb9-37025fa631d3" (reference "R125") (unit 1)))))
+(wire (pts (xy 309.88 83.82) (xy 309.88 80.01)) (stroke (width 0) (type default)) (uuid "5dc793ec-2b36-5926-8f7a-9f9a388b905d"))
+(label "SDMMC1_D2" (at 309.88 80.01 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "8f6f0fdc-70c6-5726-b1b8-cda924d60f5c"))
+(wire (pts (xy 309.88 88.9) (xy 309.88 92.71)) (stroke (width 0) (type default)) (uuid "1b362319-535d-51ba-9ebf-51d9a5961cb1"))
+(label "SD_D2_PORT" (at 309.88 92.71 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "73ea7702-75f0-5e2f-a552-2436d9923d39"))
+(symbol (lib_id "Device:R_Small") (at 309.88 132.08 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "2cca8114-df14-5ec4-bcf5-8d1ca18bd190") (property "Reference" "R126" (at 313.69 130.81 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Value" "47k" (at 313.69 133.35 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Footprint" "FC_REV_A_Local:Resistor_SMD__R_0603_1608Metric" (at 309.88 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Datasheet" "https://yageogroup.com/component-documentation/download/specsheet/RC0603FR-0747KL" (at 309.88 132.08 0) (effects (font (size 1 1))) (hide yes))(property "MPN" "RC0603FR-0747KL" (at 309.88 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Manufacturer" "Yageo" (at 309.88 132.08 0) (effects (font (size 1 1))) (hide yes))(property "LCSC" "" (at 309.88 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Status" "RECOMMENDATION - Stage07; OPEN UNTESTED" (at 309.88 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Footprint_Status" "RECOMMENDATION - verify Stage08/09" (at 309.88 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Specification" "Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating" (at 309.88 132.08 0) (effects (font (size 1 1))) (hide yes))(pin "1" (uuid "0cbfca05-d465-5ff7-bc7d-9ab822799c19"))(pin "2" (uuid "5e39b124-e666-5d5e-b5a8-e7219cfb5975"))(instances (project "FC_REV_A" (path "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/c3706ed6-e749-559d-acb9-37025fa631d3" (reference "R126") (unit 1)))))
+(wire (pts (xy 309.88 129.54) (xy 309.88 125.73)) (stroke (width 0) (type default)) (uuid "8bebaa75-13d1-5dea-8e25-92814a587ddc"))
+(label "3V3_MAIN" (at 309.88 125.73 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "2f8d7aa4-9c58-5feb-b109-646e1e7bb271"))
+(wire (pts (xy 309.88 134.62) (xy 309.88 138.43)) (stroke (width 0) (type default)) (uuid "5d7da101-ac74-5cb4-97d4-cbb4ed858c34"))
+(label "SD_D2_PORT" (at 309.88 138.43 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "04098753-b6ec-510a-87aa-27a7d80c8ca6"))
+(symbol (lib_id "Device:R_Small") (at 370.84 86.36 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "a4a242cd-b7a0-5c12-8d58-37b48d41c980") (property "Reference" "R127" (at 374.65 85.09 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Value" "0" (at 374.65 87.63 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Footprint" "FC_REV_A_Local:Resistor_SMD__R_0603_1608Metric" (at 370.84 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Datasheet" "https://yageogroup.com/component-documentation/download/specsheet/RC0603JR-070RL" (at 370.84 86.36 0) (effects (font (size 1 1))) (hide yes))(property "MPN" "RC0603JR-070RL" (at 370.84 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Manufacturer" "Yageo" (at 370.84 86.36 0) (effects (font (size 1 1))) (hide yes))(property "LCSC" "" (at 370.84 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Status" "RECOMMENDATION - Stage07; OPEN UNTESTED" (at 370.84 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Footprint_Status" "RECOMMENDATION - verify Stage08/09" (at 370.84 86.36 0) (effects (font (size 1 1))) (hide yes))(property "Specification" "Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating" (at 370.84 86.36 0) (effects (font (size 1 1))) (hide yes))(pin "1" (uuid "80afaba8-6ea4-51e8-91e1-996a294e9b5e"))(pin "2" (uuid "9db5aea8-f336-5021-8cf6-50b22d3bf5db"))(instances (project "FC_REV_A" (path "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/c3706ed6-e749-559d-acb9-37025fa631d3" (reference "R127") (unit 1)))))
+(wire (pts (xy 370.84 83.82) (xy 370.84 80.01)) (stroke (width 0) (type default)) (uuid "d889c8bd-a5b9-5bd7-a034-1ab6e45f23fd"))
+(label "SDMMC1_D3" (at 370.84 80.01 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "5e5546b1-488f-573f-a319-270c186dc7dc"))
+(wire (pts (xy 370.84 88.9) (xy 370.84 92.71)) (stroke (width 0) (type default)) (uuid "1d72962e-1470-5feb-b636-3a80a4bb5d58"))
+(label "SD_D3_PORT" (at 370.84 92.71 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "6c756acc-8e5a-593a-b1e4-d25c3e0fd356"))
+(symbol (lib_id "Device:R_Small") (at 370.84 132.08 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "d2c5eb4d-e58f-5fb0-b484-81750dff45f8") (property "Reference" "R128" (at 374.65 130.81 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Value" "47k" (at 374.65 133.35 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Footprint" "FC_REV_A_Local:Resistor_SMD__R_0603_1608Metric" (at 370.84 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Datasheet" "https://yageogroup.com/component-documentation/download/specsheet/RC0603FR-0747KL" (at 370.84 132.08 0) (effects (font (size 1 1))) (hide yes))(property "MPN" "RC0603FR-0747KL" (at 370.84 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Manufacturer" "Yageo" (at 370.84 132.08 0) (effects (font (size 1 1))) (hide yes))(property "LCSC" "" (at 370.84 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Status" "RECOMMENDATION - Stage07; OPEN UNTESTED" (at 370.84 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Footprint_Status" "RECOMMENDATION - verify Stage08/09" (at 370.84 132.08 0) (effects (font (size 1 1))) (hide yes))(property "Specification" "Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating" (at 370.84 132.08 0) (effects (font (size 1 1))) (hide yes))(pin "1" (uuid "f1d0b3df-7609-5037-a7cf-e65f068e4705"))(pin "2" (uuid "f1744028-1afb-5e17-b62e-c82524172ef1"))(instances (project "FC_REV_A" (path "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/c3706ed6-e749-559d-acb9-37025fa631d3" (reference "R128") (unit 1)))))
+(wire (pts (xy 370.84 129.54) (xy 370.84 125.73)) (stroke (width 0) (type default)) (uuid "1a2528a4-deec-51fa-9451-af6f6a0f3083"))
+(label "3V3_MAIN" (at 370.84 125.73 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "32f815a1-7cfa-5896-9ac4-0fee934dcc4b"))
+(wire (pts (xy 370.84 134.62) (xy 370.84 138.43)) (stroke (width 0) (type default)) (uuid "47e08c58-1fff-5d14-ad9c-796925a2c5cb"))
+(label "SD_D3_PORT" (at 370.84 138.43 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "ea3752de-6cc3-5888-abfd-7f2afde41adb"))
+(symbol (lib_id "FC_REV_A_Local:TPD4E05U06DQAR") (at 116.84 208.28 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "efc26690-833d-5e3b-84e8-8e49400e0ec4") (property "Reference" "U61" (at 99.06 177.8 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Value" "TPD4E05U06DQAR" (at 99.06 180.34 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Footprint" "FC_REV_A_Local:Package_SON__USON-10_2.5x1.0mm_P0.5mm" (at 116.84 208.28 0) (effects (font (size 1 1))) (hide yes))(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tpd4e05u06.pdf" (at 116.84 208.28 0) (effects (font (size 1 1))) (hide yes))(property "MPN" "TPD4E05U06DQAR" (at 116.84 208.28 0) (effects (font (size 1 1))) (hide yes))(property "Manufacturer" "Texas Instruments" (at 116.84 208.28 0) (effects (font (size 1 1))) (hide yes))(property "LCSC" "C138714" (at 116.84 208.28 0) (effects (font (size 1 1))) (hide yes))(property "Status" "RECOMMENDATION - Stage07; OPEN UNTESTED" (at 116.84 208.28 0) (effects (font (size 1 1))) (hide yes))(property "Footprint_Status" "RECOMMENDATION - verify Stage08/09" (at 116.84 208.28 0) (effects (font (size 1 1))) (hide yes))(pin "1" (uuid "b0d8d857-d3dd-5974-8bdd-fa0a6db7b7ce"))(pin "2" (uuid "f769b336-e32b-578f-aa1a-dd9c3daacfef"))(pin "4" (uuid "1179d9be-efc3-5385-967e-a01416dda337"))(pin "5" (uuid "95c5e61c-d6af-52da-bbb2-935c055f9b5f"))(pin "6" (uuid "8b65d45d-469a-5baf-bb69-b7b2a33ca1cc"))(pin "7" (uuid "3dca2c56-1679-5aa8-9aa3-6f5db323cf00"))(pin "9" (uuid "4346c33a-0198-5220-90d1-9040bf45e49d"))(pin "10" (uuid "dcb0c70b-6e21-5574-9949-1326dae79a75"))(pin "3" (uuid "b6e0900d-740b-5c37-a079-baea74500898"))(pin "8" (uuid "e51a1a3d-701e-5f7b-97e6-f7ed436e1cc1"))(instances (project "FC_REV_A" (path "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/c3706ed6-e749-559d-acb9-37025fa631d3" (reference "U61") (unit 1)))))
+(wire (pts (xy 93.98 205.74) (xy 88.9 205.74)) (stroke (width 0) (type default)) (uuid "b008bc6f-e215-5a36-b3bb-5f501a71618c"))
+(label "SD_CLK_PORT" (at 88.9 205.74 180) (effects (font (size 0.85 0.85)) (justify right)) (uuid "ce345225-3dc6-5d64-b089-04550c078ddd"))
+(wire (pts (xy 93.98 210.82) (xy 88.9 210.82)) (stroke (width 0) (type default)) (uuid "c5e7b698-0bcb-5933-a5cf-292269790549"))
+(label "SD_CMD_PORT" (at 88.9 210.82 180) (effects (font (size 0.85 0.85)) (justify right)) (uuid "0e20f82e-404a-5301-9579-30b749a1cb76"))
+(wire (pts (xy 139.7 195.58) (xy 144.78 195.58)) (stroke (width 0) (type default)) (uuid "f447eff4-0761-59c8-a09e-597a06404cd5"))
+(label "SD_D0_PORT" (at 144.78 195.58 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "51aef195-68d0-5584-9365-b49e43b2c506"))
+(wire (pts (xy 139.7 200.66) (xy 144.78 200.66)) (stroke (width 0) (type default)) (uuid "9c594254-c9f9-511f-b36e-d017ee45c813"))
+(label "SD_D1_PORT" (at 144.78 200.66 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "498eb495-914b-5fc0-9e28-5c15bfc1a9e5"))
+(wire (pts (xy 114.3 236.22) (xy 114.3 241.3)) (stroke (width 0) (type default)) (uuid "e5f80764-025e-5d6a-a4a9-acc4e07c9f2f"))
+(label "GND" (at 114.3 241.3 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "27015c0d-a472-51b9-845f-4ba1649c9258"))
+(wire (pts (xy 119.38 236.22) (xy 119.38 241.3)) (stroke (width 0) (type default)) (uuid "8b0880e0-f7d1-502c-a224-6426d6b6c0eb"))
+(label "GND" (at 119.38 241.3 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "9214d73b-825e-53cd-b4e6-b51850738124"))
+(no_connect (at 139.7 205.74) (uuid "66a5267f-6327-527e-b4ff-3f75d4dfcec2"))
+(no_connect (at 139.7 210.82) (uuid "959e077b-98c5-5cb4-aad3-3dea484ba606"))
+(no_connect (at 139.7 215.9) (uuid "2ca66035-4ef1-5650-8db9-d57b1ee7e67f"))
+(no_connect (at 139.7 220.98) (uuid "883d7c05-dde9-551b-ad60-39ab3ceed8fc"))
+(symbol (lib_id "FC_REV_A_Local:TPD4E05U06DQAR") (at 256.54 208.28 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "f2931565-94b3-5a69-98e4-2c28e822ebe7") (property "Reference" "U62" (at 238.76 177.8 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Value" "TPD4E05U06DQAR" (at 238.76 180.34 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Footprint" "FC_REV_A_Local:Package_SON__USON-10_2.5x1.0mm_P0.5mm" (at 256.54 208.28 0) (effects (font (size 1 1))) (hide yes))(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tpd4e05u06.pdf" (at 256.54 208.28 0) (effects (font (size 1 1))) (hide yes))(property "MPN" "TPD4E05U06DQAR" (at 256.54 208.28 0) (effects (font (size 1 1))) (hide yes))(property "Manufacturer" "Texas Instruments" (at 256.54 208.28 0) (effects (font (size 1 1))) (hide yes))(property "LCSC" "C138714" (at 256.54 208.28 0) (effects (font (size 1 1))) (hide yes))(property "Status" "RECOMMENDATION - Stage07; OPEN UNTESTED" (at 256.54 208.28 0) (effects (font (size 1 1))) (hide yes))(property "Footprint_Status" "RECOMMENDATION - verify Stage08/09" (at 256.54 208.28 0) (effects (font (size 1 1))) (hide yes))(pin "1" (uuid "66a3a7f5-4dbf-5a3a-a2c2-f53bcc455604"))(pin "2" (uuid "1bee879e-ff1d-50a2-80d4-17964b1508e2"))(pin "4" (uuid "337185a6-8791-5a87-8013-3846ab49e4d9"))(pin "5" (uuid "c997d005-5f7b-5592-9f53-57a6b056e422"))(pin "6" (uuid "1ead401c-1129-58f4-a9db-1486fde9910b"))(pin "7" (uuid "c7acac78-7351-5361-8228-85402b457a02"))(pin "9" (uuid "7d280478-1e6d-5dee-b8e8-e488bd6f3e54"))(pin "10" (uuid "7486eb6f-7f39-57aa-8bf0-78b516cc4c82"))(pin "3" (uuid "06093d6b-7dba-53c0-b898-93e8069c81fd"))(pin "8" (uuid "1a40d6e6-19c6-540f-832c-510fe3ecdc19"))(instances (project "FC_REV_A" (path "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/c3706ed6-e749-559d-acb9-37025fa631d3" (reference "U62") (unit 1)))))
+(wire (pts (xy 233.68 205.74) (xy 228.6 205.74)) (stroke (width 0) (type default)) (uuid "f3eb6836-68eb-5a3c-bced-08efbd1402ae"))
+(label "SD_D2_PORT" (at 228.6 205.74 180) (effects (font (size 0.85 0.85)) (justify right)) (uuid "d78e789d-04e6-5919-a701-4c8f94660489"))
+(wire (pts (xy 233.68 210.82) (xy 228.6 210.82)) (stroke (width 0) (type default)) (uuid "2d8ca9f6-2ee0-53e6-9f2f-fca05305fa60"))
+(label "SD_D3_PORT" (at 228.6 210.82 180) (effects (font (size 0.85 0.85)) (justify right)) (uuid "c6127003-666c-5bea-8fde-6c50ec695411"))
+(wire (pts (xy 279.4 195.58) (xy 284.48 195.58)) (stroke (width 0) (type default)) (uuid "e5d31da4-08b6-5c69-adf4-2011b9893db7"))
+(label "SD_CARD_DETECT" (at 284.48 195.58 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "dc3202c3-ce8f-5949-86de-c817e799bbc8"))
+(wire (pts (xy 279.4 200.66) (xy 284.48 200.66)) (stroke (width 0) (type default)) (uuid "062edecd-d634-5bd8-b1c4-039840174761"))
+(label "GND" (at 284.48 200.66 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "cf52d9d0-0587-5c4a-bd9b-fbd40ddafa35"))
+(wire (pts (xy 254 236.22) (xy 254 241.3)) (stroke (width 0) (type default)) (uuid "fefc766e-1cc9-5f56-9f15-e13ea8b336a1"))
+(label "GND" (at 254 241.3 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "5fbd8860-0f0c-58ac-b471-12ad0e86e07e"))
+(wire (pts (xy 259.08 236.22) (xy 259.08 241.3)) (stroke (width 0) (type default)) (uuid "f0036a60-7192-5e5a-960a-98a6f3ca292e"))
+(label "GND" (at 259.08 241.3 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "093fe764-6a9f-566d-a2d8-c030adba0184"))
+(no_connect (at 279.4 205.74) (uuid "c15b9b0d-5357-5ed4-a6d1-17d0cb96e423"))
+(no_connect (at 279.4 210.82) (uuid "54e7bcfb-120b-52aa-8533-3ab52e791c6c"))
+(no_connect (at 279.4 215.9) (uuid "9c460279-ed12-5fc9-8d1d-e502b40cc8d2"))
+(no_connect (at 279.4 220.98) (uuid "e4afa4b4-968d-5bda-a599-42c1b6ca61d3"))
+(symbol (lib_id "FC_REV_A_Local:MEM2075-00-140-01-A") (at 528.32 144.78 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "17491b6f-ffa5-55fe-8402-69de0c87f091") (property "Reference" "J12" (at 510.54 109.22 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Value" "microSD GCT MEM2075" (at 510.54 111.76 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Footprint" "FC_REV_A_Local:GCT_MEM2075_00_140_01_A" (at 528.32 144.78 0) (effects (font (size 1 1))) (hide yes))(property "Datasheet" "https://gct.co/files/drawings/mem2075.pdf" (at 528.32 144.78 0) (effects (font (size 1 1))) (hide yes))(property "MPN" "MEM2075-00-140-01-A" (at 528.32 144.78 0) (effects (font (size 1 1))) (hide yes))(property "Manufacturer" "GCT" (at 528.32 144.78 0) (effects (font (size 1 1))) (hide yes))(property "LCSC" "" (at 528.32 144.78 0) (effects (font (size 1 1))) (hide yes))(property "Status" "RECOMMENDATION - Stage07; OPEN UNTESTED" (at 528.32 144.78 0) (effects (font (size 1 1))) (hide yes))(property "Footprint_Status" "RECOMMENDATION - verify Stage08/09" (at 528.32 144.78 0) (effects (font (size 1 1))) (hide yes))(property "Specification" "Exact physical contact contract in Stage07 handoff; footprint recommendation only" (at 528.32 144.78 0) (effects (font (size 1 1))) (hide yes))(pin "1" (uuid "4473676d-f50b-54b1-9afa-9033e0e7b379"))(pin "2" (uuid "6c3165a6-6ca6-5f56-9174-36143c944236"))(pin "3" (uuid "af7a7164-de99-5c73-a8df-6e8b14988d85"))(pin "4" (uuid "a19154f6-fe51-5ff0-9649-4962c7211ced"))(pin "5" (uuid "0893d77b-fa80-54fc-89cd-1960b3fc68e3"))(pin "6" (uuid "0ecd9989-5097-51e7-8018-1261c857b603"))(pin "7" (uuid "9465146b-be07-59df-ad3d-c3563fa4ba71"))(pin "8" (uuid "007044b4-161b-519d-a80b-e6e917d20364"))(pin "CD" (uuid "fc3cef90-0ef9-531d-9d26-0bbd05f3e8bc"))(pin "SH" (uuid "51782252-8d94-5c6a-ad35-9ec200196c67"))(instances (project "FC_REV_A" (path "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/c3706ed6-e749-559d-acb9-37025fa631d3" (reference "J12") (unit 1)))))
+(wire (pts (xy 505.46 127) (xy 500.38 127)) (stroke (width 0) (type default)) (uuid "8c41e8bc-a82a-5f3c-bbfb-142cc75c92ce"))
+(label "SD_D2_PORT" (at 500.38 127 180) (effects (font (size 0.85 0.85)) (justify right)) (uuid "77f11131-088b-5880-943b-19f3ecb4feb3"))
+(wire (pts (xy 505.46 132.08) (xy 500.38 132.08)) (stroke (width 0) (type default)) (uuid "0d6ea318-9298-55f9-899b-d5b24adf1f85"))
+(label "SD_D3_PORT" (at 500.38 132.08 180) (effects (font (size 0.85 0.85)) (justify right)) (uuid "edfe863f-b45a-5a8a-a44f-f12cc168a97a"))
+(wire (pts (xy 505.46 137.16) (xy 500.38 137.16)) (stroke (width 0) (type default)) (uuid "9c9c53e5-051f-55d8-aa6d-6abf39a105a6"))
+(label "SD_CMD_PORT" (at 500.38 137.16 180) (effects (font (size 0.85 0.85)) (justify right)) (uuid "86ada120-f311-59b4-98d0-9057d37831e7"))
+(wire (pts (xy 505.46 142.24) (xy 500.38 142.24)) (stroke (width 0) (type default)) (uuid "1e177bdd-93b6-5cc5-9d55-d92631f41127"))
+(label "3V3_MAIN" (at 500.38 142.24 180) (effects (font (size 0.85 0.85)) (justify right)) (uuid "c99eedca-40c6-5550-b08e-37d125415dba"))
+(wire (pts (xy 505.46 147.32) (xy 500.38 147.32)) (stroke (width 0) (type default)) (uuid "8d83ba80-8b9c-5ee5-b446-86e630c93299"))
+(label "SD_CLK_PORT" (at 500.38 147.32 180) (effects (font (size 0.85 0.85)) (justify right)) (uuid "79624a2d-7bbb-5444-9db1-58bacdd2635f"))
+(wire (pts (xy 505.46 152.4) (xy 500.38 152.4)) (stroke (width 0) (type default)) (uuid "15bb346c-ff15-52e6-8160-d283dc0cb221"))
+(label "GND" (at 500.38 152.4 180) (effects (font (size 0.85 0.85)) (justify right)) (uuid "521b9586-4044-5625-b856-7648e5c24720"))
+(wire (pts (xy 505.46 157.48) (xy 500.38 157.48)) (stroke (width 0) (type default)) (uuid "22781650-52fd-55ca-87da-559eb24f8faf"))
+(label "SD_D0_PORT" (at 500.38 157.48 180) (effects (font (size 0.85 0.85)) (justify right)) (uuid "5f9059ab-1861-5c62-add0-17fdce951059"))
+(wire (pts (xy 505.46 162.56) (xy 500.38 162.56)) (stroke (width 0) (type default)) (uuid "f119f84f-b08e-5c26-8a5a-19230636b5e9"))
+(label "SD_D1_PORT" (at 500.38 162.56 180) (effects (font (size 0.85 0.85)) (justify right)) (uuid "162414e7-a579-598c-a1ac-848513d3b784"))
+(wire (pts (xy 551.18 142.24) (xy 556.26 142.24)) (stroke (width 0) (type default)) (uuid "0133cb29-f22c-5b6c-8a77-f52e6e827d95"))
+(label "SD_CARD_DETECT" (at 556.26 142.24 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "c7bb6a0e-75d8-5120-8e95-13966be43fb6"))
+(wire (pts (xy 551.18 147.32) (xy 556.26 147.32)) (stroke (width 0) (type default)) (uuid "2bb15fd0-2ee5-53cc-8efe-64b98f13ab7c"))
+(label "GND" (at 556.26 147.32 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "70c7e099-8f2d-5e9f-bc14-dc6e4881bbd1"))
+(symbol (lib_id "Device:C_Small") (at 429.26 195.58 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "1796d191-88fb-5043-bfa3-e6a0a3ce9266") (property "Reference" "C100" (at 433.07 194.31 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Value" "22u" (at 433.07 196.85 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Footprint" "FC_REV_A_Local:Capacitor_SMD__C_1210_3225Metric" (at 429.26 195.58 0) (effects (font (size 1 1))) (hide yes))(property "Datasheet" "https://www.murata.com/en-us/products/productdetail?partno=GRM32ER71E226KE15L" (at 429.26 195.58 0) (effects (font (size 1 1))) (hide yes))(property "MPN" "GRM32ER71E226KE15L" (at 429.26 195.58 0) (effects (font (size 1 1))) (hide yes))(property "Manufacturer" "Murata" (at 429.26 195.58 0) (effects (font (size 1 1))) (hide yes))(property "LCSC" "" (at 429.26 195.58 0) (effects (font (size 1 1))) (hide yes))(property "Status" "RECOMMENDATION - Stage07; OPEN UNTESTED" (at 429.26 195.58 0) (effects (font (size 1 1))) (hide yes))(property "Footprint_Status" "RECOMMENDATION - verify Stage08/09" (at 429.26 195.58 0) (effects (font (size 1 1))) (hide yes))(property "Specification" "25V X7R 10%; assumed effective 10..28u at <=5.5V incl bias/temp/aging; verify lot/model" (at 429.26 195.58 0) (effects (font (size 1 1))) (hide yes))(pin "1" (uuid "d28f8f0b-112b-53f2-826c-492e52f6cfdf"))(pin "2" (uuid "03304d69-e61b-5b76-a8d6-2fe05cf6c56a"))(instances (project "FC_REV_A" (path "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/c3706ed6-e749-559d-acb9-37025fa631d3" (reference "C100") (unit 1)))))
+(wire (pts (xy 429.26 193.04) (xy 429.26 189.23)) (stroke (width 0) (type default)) (uuid "1935018d-a5de-513c-a458-eee92e922b5c"))
+(label "3V3_MAIN" (at 429.26 189.23 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "a0029746-a4fc-5c0b-b26a-476ca7ec1a76"))
+(wire (pts (xy 429.26 198.12) (xy 429.26 201.93)) (stroke (width 0) (type default)) (uuid "3e680d1b-2e95-5d3f-b6e0-882bbe152ab0"))
+(label "GND" (at 429.26 201.93 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "b2a56bc4-b53f-5232-99c1-f08b4bca071c"))
+(symbol (lib_id "Device:C_Small") (at 482.6 223.52 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "3f8e3587-a0ab-57ef-9167-300ab687de19") (property "Reference" "C101" (at 486.41 222.25 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Value" "100n" (at 486.41 224.79 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Footprint" "FC_REV_A_Local:Capacitor_SMD__C_0603_1608Metric" (at 482.6 223.52 0) (effects (font (size 1 1))) (hide yes))(property "Datasheet" "https://www.murata.com/en-us/products/productdetail?partno=GRM188R71H104KA93D" (at 482.6 223.52 0) (effects (font (size 1 1))) (hide yes))(property "MPN" "GRM188R71H104KA93D" (at 482.6 223.52 0) (effects (font (size 1 1))) (hide yes))(property "Manufacturer" "Murata" (at 482.6 223.52 0) (effects (font (size 1 1))) (hide yes))(property "LCSC" "" (at 482.6 223.52 0) (effects (font (size 1 1))) (hide yes))(property "Status" "RECOMMENDATION - Stage07; OPEN UNTESTED" (at 482.6 223.52 0) (effects (font (size 1 1))) (hide yes))(property "Footprint_Status" "RECOMMENDATION - verify Stage08/09" (at 482.6 223.52 0) (effects (font (size 1 1))) (hide yes))(property "Specification" "50V X7R 10%; noncritical local bypass" (at 482.6 223.52 0) (effects (font (size 1 1))) (hide yes))(pin "1" (uuid "25d3367e-7312-510f-9e12-34150b586437"))(pin "2" (uuid "280664bd-8dd0-5eed-afdd-b61ed0519947"))(instances (project "FC_REV_A" (path "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/c3706ed6-e749-559d-acb9-37025fa631d3" (reference "C101") (unit 1)))))
+(wire (pts (xy 482.6 220.98) (xy 482.6 217.17)) (stroke (width 0) (type default)) (uuid "ed5e4ddd-6f43-55ff-ae02-711f232a5b46"))
+(label "3V3_MAIN" (at 482.6 217.17 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "c2a99516-874d-5939-a9d7-140cfe790540"))
+(wire (pts (xy 482.6 226.06) (xy 482.6 229.87)) (stroke (width 0) (type default)) (uuid "1d5bcf00-da0f-58e9-8a7e-e551e70d5060"))
+(label "GND" (at 482.6 229.87 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "7b615b69-6fc8-5601-aea7-6578b9f8a1c0"))
+(symbol (lib_id "Device:R_Small") (at 368.3 218.44 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "29b00592-70f8-5976-9e13-c626a0597d7f") (property "Reference" "R129" (at 372.11 217.17 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Value" "47k" (at 372.11 219.71 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Footprint" "FC_REV_A_Local:Resistor_SMD__R_0603_1608Metric" (at 368.3 218.44 0) (effects (font (size 1 1))) (hide yes))(property "Datasheet" "https://yageogroup.com/component-documentation/download/specsheet/RC0603FR-0747KL" (at 368.3 218.44 0) (effects (font (size 1 1))) (hide yes))(property "MPN" "RC0603FR-0747KL" (at 368.3 218.44 0) (effects (font (size 1 1))) (hide yes))(property "Manufacturer" "Yageo" (at 368.3 218.44 0) (effects (font (size 1 1))) (hide yes))(property "LCSC" "" (at 368.3 218.44 0) (effects (font (size 1 1))) (hide yes))(property "Status" "RECOMMENDATION - Stage07; OPEN UNTESTED" (at 368.3 218.44 0) (effects (font (size 1 1))) (hide yes))(property "Footprint_Status" "RECOMMENDATION - verify Stage08/09" (at 368.3 218.44 0) (effects (font (size 1 1))) (hide yes))(property "Specification" "Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating" (at 368.3 218.44 0) (effects (font (size 1 1))) (hide yes))(pin "1" (uuid "7f1ff3f7-f16c-57b5-b636-2ac3e81219c0"))(pin "2" (uuid "17f48533-4b85-50e9-973b-9072adbcb824"))(instances (project "FC_REV_A" (path "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/c3706ed6-e749-559d-acb9-37025fa631d3" (reference "R129") (unit 1)))))
+(wire (pts (xy 368.3 215.9) (xy 368.3 212.09)) (stroke (width 0) (type default)) (uuid "1769ff88-ba1f-5706-b957-27aa592b4129"))
+(label "3V3_MAIN" (at 368.3 212.09 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "10fdcdbc-e620-53eb-8cf7-e44d2b8fb867"))
+(wire (pts (xy 368.3 220.98) (xy 368.3 224.79)) (stroke (width 0) (type default)) (uuid "5bf68ad2-b7bd-5770-aedb-11c039426b02"))
+(label "SD_CARD_DETECT" (at 368.3 224.79 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "c64aad11-47d7-547c-84e6-d3d9f8a0b994"))
+(text "CD switch closes to grounded shell on insertion: active LOW. DAT3 is a data contact, not the mechanical detect." (at 20.32 252.73 0) (effects (font (size 1.1 1.1)) (justify left)) (uuid "5c18df0b-9722-5c1a-a6ad-60652cd9ae85"))
+(symbol (lib_id "Device:R_Small") (at 66.04 322.58 0) (unit 1) (in_bom yes) (on_board yes) (dnp yes) (uuid "0cf4a5d4-f55b-5df8-b3bd-f953e283a923") (property "Reference" "R130" (at 69.85 321.31 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Value" "1k" (at 69.85 323.85 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Footprint" "FC_REV_A_Local:Resistor_SMD__R_0603_1608Metric" (at 66.04 322.58 0) (effects (font (size 1 1))) (hide yes))(property "Datasheet" "https://yageogroup.com/component-documentation/download/specsheet/RC0603FR-071KL" (at 66.04 322.58 0) (effects (font (size 1 1))) (hide yes))(property "MPN" "RC0603FR-071KL" (at 66.04 322.58 0) (effects (font (size 1 1))) (hide yes))(property "Manufacturer" "Yageo" (at 66.04 322.58 0) (effects (font (size 1 1))) (hide yes))(property "LCSC" "" (at 66.04 322.58 0) (effects (font (size 1 1))) (hide yes))(property "Status" "RECOMMENDATION - Stage07; OPEN UNTESTED" (at 66.04 322.58 0) (effects (font (size 1 1))) (hide yes))(property "Footprint_Status" "RECOMMENDATION - verify Stage08/09" (at 66.04 322.58 0) (effects (font (size 1 1))) (hide yes))(property "Specification" "Thick film 1% (0R jumper 5% family); total +/-3% design allowance; 0.1W; 50% power derating" (at 66.04 322.58 0) (effects (font (size 1 1))) (hide yes))(pin "1" (uuid "b7d2dbde-fc4c-5183-a341-90e4c7d77642"))(pin "2" (uuid "cce1f7d8-629c-591b-9a27-841526b0fe7d"))(instances (project "FC_REV_A" (path "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/c3706ed6-e749-559d-acb9-37025fa631d3" (reference "R130") (unit 1)))))
+(wire (pts (xy 66.04 320.04) (xy 66.04 316.23)) (stroke (width 0) (type default)) (uuid "13ff81fc-3bb9-558b-bd1d-b2ea597c6819"))
+(label "STATUS_LED" (at 66.04 316.23 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "6101bd9d-20ee-5760-a094-e18858623a7b"))
+(wire (pts (xy 66.04 325.12) (xy 66.04 328.93)) (stroke (width 0) (type default)) (uuid "6e6c44a7-ce15-5a51-bfb8-ca85c1b466c4"))
+(label "LED_A" (at 66.04 328.93 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "2c0547e4-8f50-5f71-ad5f-179ba34c10fc"))
+(symbol (lib_id "Device:LED_Small") (at 144.78 322.58 0) (unit 1) (in_bom yes) (on_board yes) (dnp yes) (uuid "a9eb32b5-12db-5bcd-900a-3f2f6a4eced2") (property "Reference" "D1" (at 148.59 321.31 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Value" "GREEN optional" (at 148.59 323.85 0) (effects (font (size 0.95 0.95)) (justify left)) )(property "Footprint" "FC_REV_A_Local:LED_SMD__LED_0603_1608Metric" (at 144.78 322.58 0) (effects (font (size 1 1))) (hide yes))(property "Datasheet" "https://www.kingbrightusa.com/images/catalog/SPEC/APT1608LZGCK.pdf" (at 144.78 322.58 0) (effects (font (size 1 1))) (hide yes))(property "MPN" "APT1608LZGCK" (at 144.78 322.58 0) (effects (font (size 1 1))) (hide yes))(property "Manufacturer" "Kingbright" (at 144.78 322.58 0) (effects (font (size 1 1))) (hide yes))(property "LCSC" "" (at 144.78 322.58 0) (effects (font (size 1 1))) (hide yes))(property "Status" "RECOMMENDATION - Stage07; OPEN UNTESTED" (at 144.78 322.58 0) (effects (font (size 1 1))) (hide yes))(property "Footprint_Status" "RECOMMENDATION - verify Stage08/09" (at 144.78 322.58 0) (effects (font (size 1 1))) (hide yes))(property "Specification" "DNP prototype option; verify Vf/bin at later BOM gate" (at 144.78 322.58 0) (effects (font (size 1 1))) (hide yes))(pin "1" (uuid "10d65171-234b-5038-aee4-35262f4a5c3b"))(pin "2" (uuid "36a45d4f-6dc1-5995-80b4-2ce0f265afd2"))(instances (project "FC_REV_A" (path "/2eb6c94c-3a69-58d9-bd26-e76dd62523a9/c3706ed6-e749-559d-acb9-37025fa631d3" (reference "D1") (unit 1)))))
+(wire (pts (xy 142.24 322.58) (xy 137.16 322.58)) (stroke (width 0) (type default)) (uuid "bb27c367-4958-530f-84f6-b77ed20b182c"))
+(label "GND" (at 137.16 322.58 180) (effects (font (size 0.85 0.85)) (justify right)) (uuid "bbc1ea50-177b-598f-9dae-52a9287fefac"))
+(wire (pts (xy 147.32 322.58) (xy 152.4 322.58)) (stroke (width 0) (type default)) (uuid "dfddc222-08e1-51ab-88b4-4c2173775837"))
+(label "LED_A" (at 152.4 322.58 0) (effects (font (size 0.85 0.85)) (justify left)) (uuid "212937ca-cc70-57b6-b218-43c12b69f44d"))
+(text "SD startup allocation 300mA including insertion charging. Card selection, I(V,t), signal integrity and firmware remain OPEN." (at 209.55 303.53 0) (effects (font (size 1.1 1.1)) (justify left)) (uuid "edd3c1bc-dcd1-5f24-aaed-a60ff8f797aa"))
+(text "Bring-up 400kHz then conservative clock; 4-bit operation test required. Never power a card from an external adapter." (at 209.55 320.04 0) (effects (font (size 1.1 1.1)) (justify left)) (uuid "7f616629-f6f7-545d-ad09-f5069ea4bb90"))
+(text "PE6 LED DNP, ~1mA nominal. No new load on 3V3_SENS. No buzzer circuit in this stage." (at 209.55 336.55 0) (effects (font (size 1.1 1.1)) (justify left)) (uuid "2f96d65f-882f-5d7d-953a-d4ca3ed05cad"))
+)
