@@ -7,3 +7,17 @@
 *.zip binary
 *.bin binary
 *.apj binary
+
+# CAD data and generated engineering exports are not software language metrics.
+*.kicad_pcb linguist-detectable=false
+*.kicad_sch linguist-detectable=false
+*.kicad_pro linguist-detectable=false
+*.kicad_sym linguist-detectable=false
+*.kicad_mod linguist-detectable=false
+*.kicad_dru linguist-detectable=false
+*.step linguist-generated=true
+*.stp linguist-generated=true
+verification/** linguist-generated=true
+media/** linguist-generated=true
+fabrication/** linguist-generated=true
+archive/** linguist-vendored=true
