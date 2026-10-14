@@ -9,7 +9,7 @@
 <text x="892" y="170" font-size="20" font-weight="bold">OpenESC</text><text x="892" y="199" font-size="16">Own battery/PDB supply</text>
 <text x="72" y="385" font-size="20" font-weight="bold">Receiver / USB / SWD</text><text x="72" y="414" font-size="16">Controlled input/debug wiring</text>
 <text x="892" y="385" font-size="20" font-weight="bold">Companion</text><text x="892" y="414" font-size="16">Separately powered, advisory</text>
-<text x="755" y="270" font-size="15">V1 J_ESC_FC: GND, M1, M2, M3, M4</text>
+<text x="755" y="270" font-size="12">V1 J_ESC_FC: GND, M1, M2, M3, M4</text>
 <text x="50" y="495" font-size="16">ESC harness: signals and ground only. No raw battery/current/5 V conductor across the controlled boundary.</text>
 <text x="50" y="530" font-size="16">Physical tests pending. Propellers removed for motor tests. Do not hot-plug or apply battery voltage to regulated input.</text>
 </g></svg>

@@ -117,8 +117,6 @@ The [connector pin tables](docs/connector-pinouts.md) are generated from the exa
 
 <p align="center"><img src="media/wiring/boundaries.svg" alt="Power and signal boundary diagram" width="95%" /></p>
 
-<p align="center"><img src="media/wiring/boundaries.svg" alt="Power and signal boundary diagram" width="95%" /></p>
-
 CAD renders above represent the published source, not photographs of tested hardware. [PCB layer and assembly exports](docs/exports/README.md) · [Power and interfaces](docs/power-and-interfaces.md) · [Bring-up procedure](docs/bring-up.md).
 
 ---
